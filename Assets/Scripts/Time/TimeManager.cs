@@ -1,34 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager Inst;
 
-    private List<Toggle> _togglesChildren = new();
+    [SerializeField] private float TimeMultiplier = 1;
 
+    public float CurrentTime { get; private set; } = 0;
+    public int[] TimeInHours { get; private set; } = new int[3];
+    
     private void Awake()
     {
         if(Inst == null)
             Inst = this;
-
-        foreach (Transform child in transform)
-        {
-            var currentToggle = child.GetComponent<Toggle>();
-            _togglesChildren.Add(currentToggle);
-            currentToggle.onValueChanged.AddListener(delegate
-            {
-                ChangeSpeed(currentToggle);
-            } );
-        }
     }
-    private void ChangeSpeed(Toggle source)
+
+    private void Update()
     {
-        Time.timeScale = source.GetComponent<TimeInfo>().timeSpeed;
+        print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
+        CurrentTime += Time.deltaTime * TimeMultiplier;
+        SecToHours();
+        
+    }
+
+    private void SecToHours()
+    {
+        TimeInHours[0] = (int) (CurrentTime / 3600);
+        TimeInHours[1] = (int) (CurrentTime % 3600) / 60;
+        TimeInHours[2] = (int) (CurrentTime % 3600) % 60;
+    }
+
+    public float HoursToSec(int[] time)
+    {
+        return time[0]*3600 + time[1]*60 + time[2];
     }
 }
