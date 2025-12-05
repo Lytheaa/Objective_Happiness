@@ -20,11 +20,6 @@ public class ProsperityIndicator : MonoBehaviour
         _currentProsperityPoints += amount;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        DisplayProsperityIndicator();
-
->>>>>>> Stashed changes
 =======
         DisplayProsperityIndicator();
 
@@ -40,11 +35,6 @@ public class ProsperityIndicator : MonoBehaviour
         _currentProsperityPoints -= amount;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        DisplayProsperityIndicator();
-
->>>>>>> Stashed changes
 =======
         DisplayProsperityIndicator();
 
@@ -62,7 +52,6 @@ public class ProsperityIndicator : MonoBehaviour
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
     private void Update()
     {
         DisplayProsperityIndicator();
@@ -70,16 +59,11 @@ public class ProsperityIndicator : MonoBehaviour
 =======
 =======
 >>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     //private void Update()
     //{
     //    DisplayProsperityIndicator();
     //}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
