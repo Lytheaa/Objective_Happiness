@@ -18,11 +18,21 @@ public class ProsperityIndicator : MonoBehaviour
     public void AddProsperityPoints(int amount)
     {
         _currentProsperityPoints += amount;
+<<<<<<< Updated upstream
+=======
+        DisplayProsperityIndicator();
+
+>>>>>>> Stashed changes
     }
 
     public void SubstractProsperityPoints(int amount)
     {
         _currentProsperityPoints -= amount;
+<<<<<<< Updated upstream
+=======
+        DisplayProsperityIndicator();
+
+>>>>>>> Stashed changes
     }
 
     public void DisplayProsperityIndicator()
@@ -30,8 +40,15 @@ public class ProsperityIndicator : MonoBehaviour
         _prosperityIndicator.fillAmount = _currentProsperityPoints / (float)_maxProsperityPoints;
     }
 
+<<<<<<< Updated upstream
     private void Update()
     {
         DisplayProsperityIndicator();
     }
+=======
+    //private void Update()
+    //{
+    //    DisplayProsperityIndicator();
+    //}
+>>>>>>> Stashed changes
 }
