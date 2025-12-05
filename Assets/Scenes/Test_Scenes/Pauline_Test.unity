@@ -248,8 +248,11 @@ BoxCollider:
   m_Center: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!1 &336955738
@@ -362,6 +365,9 @@ RectTransform:
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -461,6 +467,11 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 =======
 =======
 <<<<<<< Updated upstream
@@ -497,6 +508,7 @@ Transform:
   - {fileID: 1257429166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!1 &991145622
 =======
@@ -536,6 +548,8 @@ Transform:
   - {fileID: 1257429166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
@@ -607,6 +621,7 @@ Transform:
   - {fileID: 1442939622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!1 &1257429165
 GameObject:
@@ -1096,6 +1111,8 @@ MeshFilter:
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2076068728
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1143995664
 >>>>>>> Stashed changes
 GameObject:
@@ -1206,6 +1223,7 @@ Transform:
   m_Father: {fileID: 772154434}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!114 &2076068733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,6 +1232,8 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 <<<<<<< Updated upstream
 =======
@@ -1561,6 +1581,9 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_GameObject: {fileID: 2076068728}
   m_Enabled: 1
@@ -1673,6 +1696,9 @@ PrefabInstance:
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1814,10 +1840,13 @@ SceneRoots:
   - {fileID: 207133473}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 871828848}
   - {fileID: 1866117891}
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   - {fileID: 336955742}
@@ -1833,6 +1862,9 @@ SceneRoots:
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
