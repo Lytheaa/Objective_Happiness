@@ -12,6 +12,8 @@ public class VillagerManager : MonoBehaviour
 
 
     public static event Action OnMoodChange;
+    public static event Action OnVillagerDeath;
+
 
 
     //EVENTS ://
@@ -24,7 +26,10 @@ public class VillagerManager : MonoBehaviour
         /* _actionBehaviour = action;*/
     }
 
-
+    private void Awake()
+    {
+        _data.Age = 1;
+    }
 
     private void Update()
     {
@@ -34,6 +39,9 @@ public class VillagerManager : MonoBehaviour
 
         IsChangingMood(_previousMood);
 
+        KeyChangeAgeTest();
+
+        IsGoingToDie(_data.Age);
 
         //if (_data.IsHappy != previousMood)
         //{
@@ -57,6 +65,14 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
+    private void IsGoingToDie(int age)
+    {
+        if (age >= 50)
+        {
+            OnVillagerDeath();
+        }
+    }
+
 
     private void KeyChangeMoodTest()
     {
@@ -74,6 +90,15 @@ public class VillagerManager : MonoBehaviour
                 }
             }
             Debug.Log($" Is Happy{_data.IsHappy}");
+        }
+    }
+
+    private void KeyChangeAgeTest()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            _data.Age += 10;
+            Debug.Log($" New Age Villager : {_data.Age}");
         }
     }
 

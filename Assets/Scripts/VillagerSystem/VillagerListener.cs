@@ -9,12 +9,21 @@ public class VillagerListener : MonoBehaviour
     void OnEnable()
     {
         VillagerManager.OnMoodChange += UpdateProsperityPoints;
+        VillagerManager.OnVillagerDeath += VillagerDied;
+
     }
 
     void OnDisable()
     {
         VillagerManager.OnMoodChange -= UpdateProsperityPoints;
+        VillagerManager.OnVillagerDeath -= VillagerDied;
 
+    }
+
+    void VillagerDied()
+    {
+        Debug.Log("Villageois mort");
+        GameObject.Destroy(gameObject);
     }
 
     void UpdateProsperityPoints()
