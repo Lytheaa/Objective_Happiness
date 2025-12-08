@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
 
     [SerializeField] public ProsperityIndicator _prosperityIndicator;
-
+    /*private NavMeshAgent agent; */ 
 
     public static event Action OnMoodChange;
     public static event Action OnVillagerDeath;
-
-
 
     //EVENTS ://
     public IVillagerAction _actionBehaviour;
@@ -65,14 +64,31 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
+
+    private void WantToEat(bool previousState)
+    {
+        if(_data.IsHungry != previousState) //Le Villageois change d'état de faim
+        {
+            if(_data.IsHungry == true)
+            {
+                Debug.Log("Villageois affamé");
+                //Ajouter event manger
+
+                // déduire -1 de la variable de ressource nourriture globale   
+                // si la variable ressource nourriture globale > 0
+                //      _data.IsHungry = false;
+
+            }
+        }
+    }
+
     private void IsGoingToDie(int age)
     {
-        if (age >= 50)
+        if (age >= 50 | _data.IsHungry == false) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
         {
             OnVillagerDeath();
         }
     }
-
 
     private void KeyChangeMoodTest()
     {
@@ -101,6 +117,17 @@ public class VillagerManager : MonoBehaviour
             Debug.Log($" New Age Villager : {_data.Age}");
         }
     }
+
+
+    private void GoToWork(Transform target)
+    {
+        //if (target != null)
+        //{
+        //    agent.SetDestination(target.position);
+        //}
+        //Récupérer la target au préalable dans l'initialisation? 
+    }
+
 
 }
 

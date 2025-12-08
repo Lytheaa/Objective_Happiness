@@ -23,7 +23,8 @@ public class VillagerListener : MonoBehaviour
     void VillagerDied()
     {
         Debug.Log("Villageois mort");
-        GameObject.Destroy(gameObject);
+
+        //GameObject.Destroy(/*villager*/GameObject);
     }
 
     void UpdateProsperityPoints()

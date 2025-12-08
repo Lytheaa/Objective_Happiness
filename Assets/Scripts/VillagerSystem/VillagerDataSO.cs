@@ -17,4 +17,7 @@ public class VillagerDataSO : ScriptableObject
 
     private bool _isTired; 
     public bool IsTired { get => _isTired; set => _isTired = value; }
+
+    private bool _isHungry;
+    public bool IsHungry { get => _isHungry; set => _isHungry = value; }
 }
