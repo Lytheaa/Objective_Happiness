@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
-    //public int _metierTest;
+    [SerializeField] public int _metierTest;
 
     //EVENTS ://
     public static event Action OnMoodChange;
@@ -39,13 +39,17 @@ public class VillagerManager : MonoBehaviour
     private void Start()
     {
         _data.Age = 1;
+
         /// Choisir métier d'origine //
         _data.WorkIndex = ChooseWork();
+        _metierTest = _data.WorkIndex;
 
     }
 
     private int ChooseWork()
     {
+        // Si c'est au Start du jeu ? 1 de chaque métier dispo 
+
         //Choisir un métier au hasard parmi les métiers disponibles
         int _randomWorkIndex = _random.Next(1, _work.Count +1);
         return _randomWorkIndex;
@@ -63,7 +67,7 @@ public class VillagerManager : MonoBehaviour
         KeyChangeAgeTest();
 
         CheckAge(_data.Age);
-
+        
     }
 
     private void IsChangingMood(bool previousMood)

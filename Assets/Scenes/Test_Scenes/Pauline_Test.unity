@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: e99b440f7355a974b90307322d135178, type: 2}
+  _metierTest: 0
   _gameManager: {fileID: 1068339743}
   _prosperityIndicator: {fileID: 1463266370}
 --- !u!1 &991145622
@@ -571,6 +572,7 @@ GameObject:
   - component: {fileID: 1077634193}
   - component: {fileID: 1077634192}
   - component: {fileID: 1077634191}
+  - component: {fileID: 1077634194}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -666,6 +668,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077634189}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1077634194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077634189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada5ff357ec3b0b44b700e2c7a4554a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 0}
+  _pickerMaterial: {fileID: 2100000, guid: 8fe91dc79eb564d448ecaba483694393, type: 2}
+  _woodsmanMaterial: {fileID: 2100000, guid: 2404aa67ed7e1644e962ab5d111ec6ad, type: 2}
+  _minerMaterial: {fileID: 2100000, guid: d73030aa029cbb94bbfc56cf9b1f0478, type: 2}
+  _builderMaterial: {fileID: 2100000, guid: c55cf2f3762981e4eba2b52f980f0b06, type: 2}
+  _itinerantMaterial: {fileID: 2100000, guid: 5203f6521e899f24ca0996fa6bf0c39a, type: 2}
 --- !u!1 &1124182210
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnStartGame.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

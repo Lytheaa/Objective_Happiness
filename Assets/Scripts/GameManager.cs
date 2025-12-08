@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Nombre de villageois total")]
     [SerializeField] private int _numberOfVillagers; // Nombre de cueilleurs
+    public int NumberOfVillagers { get { return _numberOfVillagers; } set { _numberOfVillagers = value; } }
+
 
     [Tooltip("Nombre de cueilleurs")]
     [SerializeField] private int _numberOfPickers; // Nombre de cueilleurs

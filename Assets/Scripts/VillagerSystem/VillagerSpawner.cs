@@ -5,6 +5,7 @@ using UnityEngine;
 public class VillagerSpawner : MonoBehaviour
 {
     private Transform _villagerSpawner;
+    private GameManager _gameManager;
 
     [Header("Spawner Settings :")]
     [SerializeField] private float _areaWidth;
@@ -22,6 +23,7 @@ public class VillagerSpawner : MonoBehaviour
     {
         _villagerSpawner = this.transform;
         _villagerSpawner.position = new Vector3(_villagerSpawner.position.x, _villagerSpawner.position.y + 1, _villagerSpawner.position.z);
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser plus tard
     }
 
     // Update is called once per frame
@@ -32,25 +34,28 @@ public class VillagerSpawner : MonoBehaviour
 
     public void SpawnVillager(int numberOfVillagers)
     {
-        // Condition de spawn : timer ?
-
         Vector3 areaSpawnPosition = _villagerSpawner.position;
 
-        float minX = areaSpawnPosition.x - _areaWidth *.5f;
-        float maxX = areaSpawnPosition.x + _areaWidth *.5f;
+        float minX = areaSpawnPosition.x - _areaWidth * .5f;
+        float maxX = areaSpawnPosition.x + _areaWidth * .5f;
 
-        float minZ = areaSpawnPosition.z - _areaLenght *.5f;
-        float maxZ = areaSpawnPosition.z + _areaLenght *.5f;
+        float minZ = areaSpawnPosition.z - _areaLenght * .5f;
+        float maxZ = areaSpawnPosition.z + _areaLenght * .5f;
 
         for (int i = 0; i < numberOfVillagers; i++)
         {
-        Vector3 spawnPosition = Vector3.zero;
-        spawnPosition.x = Random.Range(minX, maxX);
-        spawnPosition.z = Random.Range(minZ, maxZ);
-        spawnPosition.y = areaSpawnPosition.y;
+            Vector3 spawnPosition = Vector3.zero;
+            spawnPosition.x = Random.Range(minX, maxX);
+            spawnPosition.z = Random.Range(minZ, maxZ);
+            spawnPosition.y = areaSpawnPosition.y;
 
-        //Instancier le villageois dans le GameObject "VillagersList"
+            //Instancier le villageois dans le GameObject "VillagersList"
             Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersInScene.transform); //Verifier rotation des sprites 2D
+
+            _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
+
+            //Ajouter le villageois à la liste des villageois dans VillagersList ?
+
         }
 
     }
