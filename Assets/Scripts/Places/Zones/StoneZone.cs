@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quarry : MonoBehaviour
+public class StoneZone : Place
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Action()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //+stone
+        Debug.Log("Stone working");
     }
 }
