@@ -18,7 +18,7 @@ public class VillagersGraphics : MonoBehaviour
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-        _data = GetComponentInParent<VillagerManager>()._data;
+        _data = GetComponentInParent<Villager>()._data;
     }
 
     private void Start() // Appel méthode au Start pour initialiser les graphics selon le métier 
@@ -43,13 +43,13 @@ public class VillagersGraphics : MonoBehaviour
             _meshRenderer.material = _minerMaterial;
         }
         else if (_data.WorkIndex == 4) //Builder graphics
-
         {
             _meshRenderer.material = _builderMaterial;
         }
-        else if (_data.WorkIndex == 5) //Itinerant graphics
+        else if (_data.WorkIndex == 5)  //Itinerant graphics
         {
             _meshRenderer.material = _itinerantMaterial;
         }
+
     }
 }
