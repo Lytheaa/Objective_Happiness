@@ -8,5 +8,4 @@ public class BuildingDataSO : ScriptableObject
 {
     public Sprite PreviewSprite;
     //store 3D model in here too
-    public Action<Action> Behavior;
 }
