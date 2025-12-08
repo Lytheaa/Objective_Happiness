@@ -9,7 +9,7 @@ public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
 
-    [SerializeField] public ProsperityIndicator _prosperityIndicator;
+    [SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
     /*private NavMeshAgent agent; */ 
 
     public static event Action OnMoodChange;
