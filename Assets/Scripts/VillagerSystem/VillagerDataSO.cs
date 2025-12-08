@@ -20,4 +20,11 @@ public class VillagerDataSO : ScriptableObject
 
     private bool _isHungry;
     public bool IsHungry { get => _isHungry; set => _isHungry = value; }
+
+    //private Dictionary<string, int> _work = new Dictionary<string, int>() 
+    //{ {"Picker",1} , {"Woodsman",2}, {"Miner",3}, {"Builder",4}, {"Itinerant",5} };
+
+    private int _workIndex;
+    public int WorkIndex { get => _workIndex; set => _workIndex = value; }
+
 }

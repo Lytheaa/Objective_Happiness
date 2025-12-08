@@ -30,7 +30,7 @@ public class VillagerSpawner : MonoBehaviour
         KeySpawnTest();
     }
 
-    public void SpawnVillager()
+    public void SpawnVillager(int numberOfVillagers)
     {
         // Condition de spawn : timer ?
 
@@ -48,7 +48,10 @@ public class VillagerSpawner : MonoBehaviour
         spawnPosition.y = areaSpawnPosition.y;
 
         //Instancier le villageois dans le GameObject "VillagersList"
-        Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersInScene.transform); //Verifier rotation des sprites 2D
+        //for(int i = 0; i < numberOfVillagers; i++)
+        //{
+            Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersInScene.transform); //Verifier rotation des sprites 2D
+        //}
 
     }
 
@@ -67,7 +70,7 @@ public class VillagerSpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("Spawn Villager");
-            SpawnVillager();
+            SpawnVillager(3);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Random = System.Random; 
 using UnityEngine.Events;
 using UnityEngine.AI;
 
@@ -9,26 +10,44 @@ public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
 
-    [SerializeField] public GameManager _gameManager;
-    [SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
-    /*private NavMeshAgent agent; */ 
-
+    //EVENTS ://
     public static event Action OnMoodChange;
     public static event Action OnVillagerDeath;
 
-    //EVENTS ://
+    [SerializeField] public GameManager _gameManager;
+    [SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
+    /*private NavMeshAgent agent; */
+
+    private Dictionary<string, int> _work = new Dictionary<string, int>()
+    { {"Picker",1} , {"Woodsman",2}, {"Miner",3}, {"Builder",4}, {"Itinerant",5} };
+
+    private Random _random = new Random();
+
+
     public IVillagerAction _actionBehaviour;
 
 
     public void Initialize(VillagerDataSO data/*, IVillagerAction action*/)
     {
         _data = data;
+
+
         /* _actionBehaviour = action;*/
     }
 
-    private void Awake()
+    private void Start()
     {
         _data.Age = 1;
+        /// Choisir métier d'origine //
+        _data.WorkIndex = ChooseWork();
+
+    }
+
+    private int ChooseWork()
+    {
+        //Choisir un métier au hasard parmi les métiers disponibles
+        int _randomWorkIndex = _random.Next(1, _work.Count +1);
+        return _randomWorkIndex;
     }
 
     private void Update()
@@ -41,16 +60,8 @@ public class VillagerManager : MonoBehaviour
 
         KeyChangeAgeTest();
 
-        IsGoingToDie(_data.Age);
+        CheckAge(_data.Age);
 
-        //if (_data.IsHappy != previousMood)
-        //{
-        //    if (_data.IsHappy == false)
-        //    {
-        //        Debug.Log("Villageois malheureux");
-        //        OnMoodChange();
-        //    }
-        //}
     }
 
     private void IsChangingMood(bool previousMood)
@@ -83,16 +94,19 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-    private void IsGoingToDie(int age)
+    private void CheckAge(int age)
     {
         if (age >= 50 | _data.IsHungry == false) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
         {
             OnVillagerDeath();
+            Destroy(this.gameObject); //A déplacer à la fin de la journée
         }
     }
 
     private void GoToWork(Transform target)
     {
+
+        
         //if (target != null)
         //{
         //    agent.SetDestination(target.position);
