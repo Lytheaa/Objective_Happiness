@@ -7,8 +7,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Available resources :")]
     [SerializeField] private int _food;
+    public int Food { get { return _food; } set { _food = value; } }
+
     [SerializeField] private int _wood;
+    public int Wood { get { return _wood; } set { _wood = value; } }
+
     [SerializeField] private int _stone;
+    public int Stone { get { return _stone; } set { _stone = value; } }
 
     [Header("Type of villagers")]
 

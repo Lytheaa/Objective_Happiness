@@ -9,6 +9,7 @@ public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
 
+    [SerializeField] public GameManager _gameManager;
     [SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
     /*private NavMeshAgent agent; */ 
 
@@ -90,6 +91,15 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
+    private void GoToWork(Transform target)
+    {
+        //if (target != null)
+        //{
+        //    agent.SetDestination(target.position);
+        //}
+        //Récupérer la target au préalable dans l'initialisation? 
+    }
+
     private void KeyChangeMoodTest() //K
     {
         if (Input.GetKeyDown(KeyCode.K))
@@ -119,14 +129,6 @@ public class VillagerManager : MonoBehaviour
     }
 
 
-    private void GoToWork(Transform target)
-    {
-        //if (target != null)
-        //{
-        //    agent.SetDestination(target.position);
-        //}
-        //Récupérer la target au préalable dans l'initialisation? 
-    }
 
 
 }
