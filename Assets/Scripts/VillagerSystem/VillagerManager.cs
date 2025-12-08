@@ -90,7 +90,7 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-    private void KeyChangeMoodTest()
+    private void KeyChangeMoodTest() //K
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -109,7 +109,7 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-    private void KeyChangeAgeTest()
+    private void KeyChangeAgeTest() //D
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
