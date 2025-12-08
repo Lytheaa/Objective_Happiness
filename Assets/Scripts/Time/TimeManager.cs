@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
@@ -9,8 +10,19 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] private float TimeMultiplier = 1;
 
+    public float GlobalTime { get; private set; } = 0;
     public float CurrentTime { get; private set; } = 0;
     public int[] TimeInHours { get; private set; } = new int[3];
+
+    private float _eventCooldown = 2;
+    private float _lastEventTime = 0;
+
+    public UnityEvent OnWorkTime = new UnityEvent();
+    public UnityEvent OnSleepTime = new UnityEvent();
+    public UnityEvent OnDayEnds = new UnityEvent();
+    
+    [SerializeField] private int[] workTime = new int[3] { 9, 0, 0 };
+    [SerializeField] private int[] sleepTime = new int[3] { 20, 0, 0 };
     
     private void Awake()
     {
@@ -22,8 +34,25 @@ public class TimeManager : MonoBehaviour
     {
         //print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
         CurrentTime += Time.deltaTime * TimeMultiplier;
+        GlobalTime += CurrentTime;
         SecToHours();
+        if (CurrentTime >= HoursToSec(new int[] { 24, 0, 0 }))
+        {
+            CurrentTime = 0;
+            OnDayEnds?.Invoke();
+        }
+
+        if (CurrentTime >= HoursToSec(workTime) && CurrentTime < HoursToSec(workTime)+1 && GlobalTime >= _lastEventTime + _eventCooldown)
+        {
+            _lastEventTime = GlobalTime;
+            OnWorkTime?.Invoke();
+        }
         
+        if (CurrentTime >= HoursToSec(sleepTime) && CurrentTime < HoursToSec(sleepTime)+1 && GlobalTime >= _lastEventTime + _eventCooldown)
+        {
+            _lastEventTime = GlobalTime;
+            OnSleepTime?.Invoke();
+        }
     }
 
     private void SecToHours()

@@ -10,6 +10,7 @@ public class ConstructionModeButton : MonoBehaviour
 {
     [SerializeField] private List<GameObject> buildings;
     [SerializeField] private GameObject buildingPreviewButton;
+    public float truc;
     private void Awake()
     {
         foreach (GameObject building in buildings)
