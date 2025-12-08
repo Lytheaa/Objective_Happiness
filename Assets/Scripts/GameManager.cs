@@ -15,10 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _stone;
     public int Stone { get { return _stone; } set { _stone = value; } }
 
-    //[Header("Run game Settings :")]
-    //[Tooltip("Nombre de villageois au spawn initial")]
-    //[SerializeField] private int _firstSpawn = 5;
-    //public int FirstSpawnNumberOfVillagers { get { return _firstSpawn; } }
 
     [Header("Type of villagers")]
 
@@ -43,8 +39,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _numberOfItinerants; // Nombre de vagabonds
 
 
-    [Header("Script References :")]
-    [SerializeField] private TimeManager _timeManager;
+    //[Header("Script References :")]
+    //[SerializeField] private TimeManager _timeManager;
 
     /// SPAWN de départ : à déplacer ? 
 

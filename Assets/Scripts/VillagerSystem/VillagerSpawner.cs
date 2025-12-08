@@ -29,7 +29,7 @@ public class VillagerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        KeySpawnTest();
+        //KeySpawnTest();
     }
 
     public void SpawnVillager(int numberOfVillagers)
@@ -55,7 +55,6 @@ public class VillagerSpawner : MonoBehaviour
             _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
 
             //Ajouter le villageois à la liste des villageois dans VillagersList ?
-
         }
 
     }
@@ -70,12 +69,12 @@ public class VillagerSpawner : MonoBehaviour
         }
     }
 
-    private void KeySpawnTest()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("Spawn Villager");
-            //SpawnVillager();
-        }
-    }
+    //private void KeySpawnTest()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        Debug.Log("Spawn Villager");
+    //        //SpawnVillager();
+    //    }
+    //}
 }

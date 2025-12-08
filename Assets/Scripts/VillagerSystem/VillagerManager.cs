@@ -9,13 +9,14 @@ using UnityEngine.AI;
 public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
-    [SerializeField] public int _metierTest;
+    [SerializeField] public string _metierTest;
 
     //EVENTS ://
     public static event Action OnMoodChange;
     public static event Action OnVillagerDeath;
 
     [SerializeField] public GameManager _gameManager;
+
     [SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
     /*private NavMeshAgent agent; */
 
@@ -42,13 +43,20 @@ public class VillagerManager : MonoBehaviour
 
         /// Choisir métier d'origine //
         _data.WorkIndex = ChooseWork();
-        _metierTest = _data.WorkIndex;
+        _metierTest = WorkToString(_data.WorkIndex);
 
     }
 
-    private int ChooseWork()
+    private int FirstWork()
     {
+
         // Si c'est au Start du jeu ? 1 de chaque métier dispo 
+        int _workIndex = 1; //Picker
+        return _workIndex;
+    }   
+
+    private int ChooseWork()
+    {        // Si c'est au Start du jeu ? 1 de chaque métier dispo 
 
         //Choisir un métier au hasard parmi les métiers disponibles
         int _randomWorkIndex = _random.Next(1, _work.Count +1);
@@ -118,6 +126,18 @@ public class VillagerManager : MonoBehaviour
         //    agent.SetDestination(target.position);
         //}
         //Récupérer la target au préalable dans l'initialisation? 
+    }
+
+    private string WorkToString(int workIndex)
+    {
+        foreach (KeyValuePair<string, int> pair in _work)
+        {
+            if (pair.Value == workIndex)
+            {
+                return pair.Key;
+            }
+        }
+        return "Unknown";
     }
 
     private void KeyChangeMoodTest() //K
