@@ -30,7 +30,7 @@ public class VillagerSpawner : MonoBehaviour
         KeySpawnTest();
     }
 
-    private void SpawnVillager()
+    public void SpawnVillager()
     {
         // Condition de spawn : timer ?
 
