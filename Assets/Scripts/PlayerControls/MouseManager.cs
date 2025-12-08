@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class MouseManager : MonoBehaviour
 {
+    public static event Action<Vector3> OnMouseMove;
+    public static event Action OnMouseClick;
+    
     private Vector2 _pointerPosition;
     private bool _isPointerDown;
     private Camera _camera;
@@ -36,6 +40,7 @@ public class MouseManager : MonoBehaviour
 
     public void PointerPositionInputCallback(InputAction.CallbackContext context)
     {
+        print("gggg");
         _pointerPosition = context.ReadValue<Vector2>();
 
         RaycastHit hit; ///RayCast from Camera
@@ -47,7 +52,9 @@ public class MouseManager : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                Debug.Log($"objet touché : {hit.collider.gameObject.name}");
+                OnMouseMove?.Invoke(hit.point);
+                print(hit.point);
+                Debug.Log($"objet touchï¿½ : {hit.collider.gameObject.name}");
             }
         }
 
@@ -78,6 +85,7 @@ public class MouseManager : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             _isPointerDown = true;
+            OnMouseClick?.Invoke();
         }
         if (context.phase == InputActionPhase.Canceled)
         {

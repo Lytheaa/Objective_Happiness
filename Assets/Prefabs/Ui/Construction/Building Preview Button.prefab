@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5976056546207655114}
   - component: {fileID: 7110857931653746466}
   m_Layer: 0
-  m_Name: Building Preview Buton
+  m_Name: Building Preview Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
