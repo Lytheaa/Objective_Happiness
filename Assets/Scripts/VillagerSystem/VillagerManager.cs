@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class VillagerManager : MonoBehaviour
 {
     public VillagerDataSO _data;
+    //public int _metierTest;
 
     //EVENTS ://
     public static event Action OnMoodChange;
@@ -51,7 +52,8 @@ public class VillagerManager : MonoBehaviour
     }
 
     private void Update()
-    {
+    { 
+        //_metierTest = _data.WorkIndex;
         bool _previousMood = _data.IsHappy;
 
         KeyChangeMoodTest();
@@ -99,7 +101,7 @@ public class VillagerManager : MonoBehaviour
         if (age >= 50 | _data.IsHungry == false) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
         {
             OnVillagerDeath();
-            Destroy(this.gameObject); //A déplacer à la fin de la journée
+            //Destroy(this.gameObject); //A déplacer à la fin de la journée
         }
     }
 
