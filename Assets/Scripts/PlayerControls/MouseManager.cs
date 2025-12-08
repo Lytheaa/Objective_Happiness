@@ -40,7 +40,6 @@ public class MouseManager : MonoBehaviour
 
     public void PointerPositionInputCallback(InputAction.CallbackContext context)
     {
-        print("gggg");
         _pointerPosition = context.ReadValue<Vector2>();
 
         RaycastHit hit; ///RayCast from Camera
