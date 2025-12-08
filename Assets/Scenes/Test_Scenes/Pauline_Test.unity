@@ -849,9 +849,21 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
-      propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.size
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1124182212}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -861,6 +873,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1124182212}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnVillager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -869,8 +889,16 @@ PrefabInstance:
       value: SpawnVillager
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VillagerSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: VillagerSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: OnDayEnds.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private float TimeMultiplier = 1;
 
     public float GlobalTime { get; private set; } = 0;
+    //public float GlobalTime { get; private set; } = 0;
     public float CurrentTime { get; private set; } = 0;
     public int[] TimeInHours { get; private set; } = new int[3];
 
@@ -40,7 +41,7 @@ public class TimeManager : MonoBehaviour
         print($"{GlobalTime} seconds total");
 
         CurrentTime += Time.deltaTime * TimeMultiplier;
-        GlobalTime += CurrentTime;
+        GlobalTime = Time.time;
 
         SecToHours();
         if (CurrentTime >= HoursToSec(new int[] { 24, 0, 0 }))
