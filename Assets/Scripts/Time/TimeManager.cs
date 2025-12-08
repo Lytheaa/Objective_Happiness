@@ -38,10 +38,10 @@ public class TimeManager : MonoBehaviour
     {
         //print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
 
-        print($"{GlobalTime} seconds total");
+        print($"{GlobalTime} seconds total, {CurrentTime} seconds today");
 
         CurrentTime += Time.deltaTime * TimeMultiplier;
-        GlobalTime = Time.time;
+        GlobalTime = Time.time * TimeMultiplier;
 
         SecToHours();
         if (CurrentTime >= HoursToSec(new int[] { 24, 0, 0 }))
