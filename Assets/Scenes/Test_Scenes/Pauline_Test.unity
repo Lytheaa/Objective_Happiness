@@ -915,7 +915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnSpawnTime.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnStartGame.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument

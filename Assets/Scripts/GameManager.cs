@@ -59,10 +59,4 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ProsperityIndicator _prosperityIndicator;
     public ProsperityIndicator ProsperityIndicator => _prosperityIndicator;
 
-
-
-    ///// SPAWN de départ test : à déplacer ? /// NE FONCTIONNE PAS ACTUELLEMENT
-    //[SerializeField] private bool _firstSpawn = true;
-    //public bool FirstSpawn { get { return _firstSpawn; } set { _firstSpawn = value; } }
-
 }

@@ -27,8 +27,10 @@ public class VillagerSpawner : MonoBehaviour
 
     private void Awake()
     {
+
         _villagerSpawner = this.transform;
         _villagerSpawner.position = new Vector3(_villagerSpawner.position.x, _villagerSpawner.position.y + 1, _villagerSpawner.position.z);
+        
     }
 
     // Update is called once per frame
@@ -55,24 +57,31 @@ public class VillagerSpawner : MonoBehaviour
             spawnPosition.y = areaSpawnPosition.y;
 
             //Instancier le villageois dans le GameObject "VillagersList"
-            GameObject newVillager = Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
+           /* GameObject newVillager = */ 
+            
+            Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
+
 
             ///Remplacer par un event ? ///
             //OnSpawnVillager.Invoke();
             //VillagerWork villagerWork = newVillager.GetComponent<VillagerWork>();
+            //villagerWork.AttributeWork(i);
 
             //if (_firstSpawn)
             //{
             //    villagerWork.AttributeWork(i);
 
-            //    Debug.Log("First Spawn - Villager " + i + " assigned to work index " + villagerWork._workIndex);
+            //    Debug.Log("First Spawn - Villager " + i + " assigned to work index " + villagerWork._data.WorkIndex);
             //}
             //else
             //{
-            //   villagerWork.AttributeWork(Random.Range(1, 6));
+                //villagerWork.AttributeWork(Random.Range(1, 6));
+                //Debug.Log("Other Spawn - Villager " + " assigned to work index " + villagerWork._data.WorkIndex);
+
 
             //}
         }
+
         _firstSpawn = false;
     }
 

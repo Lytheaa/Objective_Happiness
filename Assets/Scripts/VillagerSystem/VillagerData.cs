@@ -1,20 +1,21 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "SO/VillagerData")]
-public class VillagerDataSO : ScriptableObject
+public class VillagerData : MonoBehaviour
 {
-    /// METHODES PUBLIQUES POUR GERER LES EVENTS : Elles permettent de déclencher un évènement à chaque changement de valeur/// 
     private int _age;
-    public int Age { get => _age;
+    public int Age
+    {
+        get => _age;
         set
         {
             if (_age == value) return;
             _age = value;
             OnAgeChange?.Invoke(_age);
         }
-        }
+    }
 
     private bool _isHappy;
     public bool IsHappy
@@ -27,7 +28,7 @@ public class VillagerDataSO : ScriptableObject
             OnMoodChange?.Invoke(_isHappy);
         }
     }
-    
+
     private bool _isTired;
     public bool IsTired
     {
@@ -52,15 +53,16 @@ public class VillagerDataSO : ScriptableObject
     }
 
     private int _workIndex;
-    public int WorkIndex 
-    { get => _workIndex;
+    public int WorkIndex
+    {
+        get => _workIndex;
         set
         {
             if (_workIndex == value) return;
             _workIndex = value;
             OnWorkChange?.Invoke(_workIndex);
         }
-        }
+    }
 
 
     /// EVÊNEMENTS : ///
@@ -73,6 +75,4 @@ public class VillagerDataSO : ScriptableObject
     public UnityEvent<bool> OnHungerChange = new UnityEvent<bool>();
 
     public UnityEvent<int> OnWorkChange = new UnityEvent<int>();
-
-
 }

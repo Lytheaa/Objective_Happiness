@@ -8,42 +8,36 @@ using UnityEngine.AI;
 
 public class Villager : MonoBehaviour
 {
-    public VillagerDataSO _data;
+    public VillagerData _data;
     public GameManager _gameManager; // Pour accéder aux variables globales
     private int _hungryVillagers = 0;
     [SerializeField] private int _limitAge = 50;
-    [SerializeField] private int _age;
+    [SerializeField] private int _ageDisplay;
 
     [SerializeField] private int _workIndex;
 
     private void Awake()
     {
-        //_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
         _gameManager = GameManager.Instance;
+        _data = this.GetComponent<VillagerData>();
+        _data.Age = 0;
     }
 
     private void Start() // Lors de l'instanciation du villageois
     {
         VillagerManager.Instance.RegisterVillager(this);
         _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
-
-        //_data.WorkIndex = SetWork();
-        //_workType = WorkToString(_data.WorkIndex);
-        _age = _data.Age;
     }
 
     private void Update()
     {
-        //KeyTestHungry();
-        //KeyChangeMoodTest();
-
-        _workIndex = _data.WorkIndex;
+        _ageDisplay = _data.Age;
     }
 
-    public void Initialize(VillagerDataSO data)
-    {
-        _data = data;
-    }
+    //public void Initialize(VillagerDataSO data)
+    //{
+    //    _data = data;
+    //}
 
     ///EVÊNEMENTS/// 
 
@@ -88,8 +82,8 @@ public class Villager : MonoBehaviour
     {
         if (age >= _limitAge) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
         {
-            //OnVillagerDeath();
-            Destroy(this.gameObject); //A déplacer à la fin de la journée
+            Debug.Log("Villageois est mort de vieillesse (via event)");
+            //Destroy(this.gameObject); //A déplacer à la fin de la journée
         }
     }
 
