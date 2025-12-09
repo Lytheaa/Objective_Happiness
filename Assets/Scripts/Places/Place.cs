@@ -10,6 +10,10 @@ public class Place : MonoBehaviour
     {
     }
 
+    public virtual void Action()
+    {
+    }
+
     public virtual void PreAction(Villager villager)
     {
     }
