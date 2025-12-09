@@ -10,15 +10,17 @@ public class Villager : MonoBehaviour
 {
     public VillagerData _data;
     public GameManager _gameManager; // Pour accéder aux variables globales
-    private int _hungryVillagers = 0;
+    public VillagerManager _villagerManager;
+
     [SerializeField] private int _limitAge = 50;
     [SerializeField] private int _ageDisplay;
 
     private void Awake()
     {
         _gameManager = GameManager.Instance;
+        _villagerManager = VillagerManager.Instance;
+
         _data = this.GetComponent<VillagerData>();
-        _data.Age = 0;
     }
 
     private void Start() // Lors de l'instanciation du villageois
@@ -29,28 +31,8 @@ public class Villager : MonoBehaviour
 
     private void Update()
     {
-        _ageDisplay = _data.Age;
-        KeyChangeMoodTest();
+        //_ageDisplay = _data.Age;
     }
-
-    ///EVÊNEMENTS/// 
-
-    //private void OnEnable()
-    //{
-    //    _data.OnMoodChange.AddListener(MoodChange);
-    //    _data.OnTirednessChange.AddListener(TirednessChange);
-    //    _data.OnHungerChange.AddListener(FeedVillager);
-    //    _data.OnAgeChange.AddListenerCheckAge);
-    //}
-
-    //private void OnDisable()
-    //{
-    //    _data.OnMoodChange.RemoveListener(MoodChange);
-    //    _data.OnTirednessChange.RemoveListener(TirednessChange);
-    //    _data.OnHungerChange.RemoveListener(FeedVillager);
-    //    _data.OnAgeChange.RemoveListener(CheckAge);
-
-    //}
 
     ///EVENT LISTENER///
     private void OnEnable()
@@ -77,23 +59,26 @@ public class Villager : MonoBehaviour
             if (_gameManager.Food > 0)
             {
                 _gameManager.Food--;
-                _data.IsHungry = false;
+                //_data.IsHungry = false;
             }
             else
             {
-                _hungryVillagers++;
+                _villagerManager._hungryVillagersCount++;
                 Debug.Log("Pas assez de nourriture pour nourrir les villageois");
             }
-            Debug.Log($"Nombre de villageois affamés : {_hungryVillagers}");
+            //Debug.Log($"Nombre de villageois affamés : {_hungryVillagers}");
+
+            //_villagerManager.KillHungryVillagers(_hungryVillagers);
         }
     }
 
     private void CheckAge(int age)
     {
-        if (age >= _limitAge) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
+        _ageDisplay = age;
+        if (age >= _limitAge) // S'il est trop vieux ou affamé : déclancher la mort
         {
             Debug.Log("Villageois est mort de vieillesse (via event)");
-            //Destroy(this.gameObject); //A déplacer à la fin de la journée
+            Destroy(this.gameObject);
         }
     }
 
@@ -141,24 +126,24 @@ public class Villager : MonoBehaviour
     //    }
     //}
 
-    private void KeyChangeMoodTest() //K
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (_data.IsHappy == true)
-            {
-                _data.IsHappy = false;
+    //private void KeyChangeMoodTest() //K
+    //{
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        if (_data.IsHappy == true)
+    //        {
+    //            _data.IsHappy = false;
 
-            }
-            else if (_data.IsHappy == false)
-            {
-                {
-                    _data.IsHappy = true;
-                }
-            }
-            Debug.Log($" Is Happy{_data.IsHappy}");
-        }
-    }
+    //        }
+    //        else if (_data.IsHappy == false)
+    //        {
+    //            {
+    //                _data.IsHappy = true;
+    //            }
+    //        }
+    //        Debug.Log($" Is Happy{_data.IsHappy}");
+    //    }
+    //}
 
 
 }

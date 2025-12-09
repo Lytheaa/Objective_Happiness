@@ -10,6 +10,8 @@ public class VillagerManager : MonoBehaviour
 {
     public static VillagerManager Instance;
 
+    public int _hungryVillagersCount = 0;
+
     [Header("Villagers parameters")]
     [Tooltip("Additional age added to villagers at each growth event")]
     [SerializeField] private int _additionalAge = 10;
@@ -58,11 +60,13 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-    // AUTRE VERSION : 
-
-    public void OnEndOfDay()
+    public void KillHungryVillagers()
     {
-
+        for (int i = 0; i < _hungryVillagersCount; i++)
+        {
+            Destroy(_villagers[i].gameObject);
+            _villagers.RemoveAt(i);
+        }
     }
 
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VillagersGraphics : MonoBehaviour
@@ -20,11 +18,8 @@ public class VillagersGraphics : MonoBehaviour
         _data = GetComponentInParent<VillagerData>();
     }
 
-    private void Start() // Appel méthode au Start pour initialiser les graphics selon le métier 
-    {
-
-    }
-
+    /// EVENT LISTENER///
+    
     private void OnEnable()
     {
         _data.OnWorkChange += SetGraphics;
@@ -36,7 +31,6 @@ public class VillagersGraphics : MonoBehaviour
 
     private void SetGraphics(int workIndex)
     {
-        Debug.Log($"Set graphics called with work index: {workIndex}");
         if (workIndex == 1)  //Picker graphics
         {
             _meshRenderer.material = _pickerMaterial;
