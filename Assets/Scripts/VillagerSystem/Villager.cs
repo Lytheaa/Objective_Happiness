@@ -14,8 +14,6 @@ public class Villager : MonoBehaviour
     [SerializeField] private int _limitAge = 50;
     [SerializeField] private int _ageDisplay;
 
-    [SerializeField] private int _workIndex;
-
     private void Awake()
     {
         _gameManager = GameManager.Instance;
@@ -32,30 +30,42 @@ public class Villager : MonoBehaviour
     private void Update()
     {
         _ageDisplay = _data.Age;
+        KeyChangeMoodTest();
     }
-
-    //public void Initialize(VillagerDataSO data)
-    //{
-    //    _data = data;
-    //}
 
     ///EVÊNEMENTS/// 
 
+    //private void OnEnable()
+    //{
+    //    _data.OnMoodChange.AddListener(MoodChange);
+    //    _data.OnTirednessChange.AddListener(TirednessChange);
+    //    _data.OnHungerChange.AddListener(FeedVillager);
+    //    _data.OnAgeChange.AddListenerCheckAge);
+    //}
+
+    //private void OnDisable()
+    //{
+    //    _data.OnMoodChange.RemoveListener(MoodChange);
+    //    _data.OnTirednessChange.RemoveListener(TirednessChange);
+    //    _data.OnHungerChange.RemoveListener(FeedVillager);
+    //    _data.OnAgeChange.RemoveListener(CheckAge);
+
+    //}
+
+    ///EVENT LISTENER///
     private void OnEnable()
     {
-        _data.OnMoodChange.AddListener(MoodChange);
-        _data.OnTirednessChange.AddListener(TirednessChange);
-        _data.OnHungerChange.AddListener(FeedVillager);
-        _data.OnAgeChange.AddListener(CheckAge);
+        _data.OnMoodChange += MoodChange;
+        _data.OnTirednessChange += TirednessChange;
+        _data.OnHungerChange += FeedVillager;
+        _data.OnAgeChange += CheckAge;
     }
-
     private void OnDisable()
     {
-        _data.OnMoodChange.RemoveListener(MoodChange);
-        _data.OnTirednessChange.RemoveListener(TirednessChange);
-        _data.OnHungerChange.RemoveListener(FeedVillager);
-        _data.OnAgeChange.RemoveListener(CheckAge);
-
+        _data.OnMoodChange -= MoodChange;
+        _data.OnTirednessChange -= TirednessChange;
+        _data.OnHungerChange -= FeedVillager;
+        _data.OnAgeChange -= CheckAge;
     }
 
     /// METHODES LIEES AUX EVENEMENTS///
@@ -114,7 +124,7 @@ public class Villager : MonoBehaviour
     }
 
     ///KEYTESTS///
-    
+
     //private void KeyTestHungry() //H
     //{
     //    if (Input.GetKeyDown(KeyCode.H))
@@ -131,24 +141,24 @@ public class Villager : MonoBehaviour
     //    }
     //}
 
-    //private void KeyChangeMoodTest() //K
-    //{
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        if (_data.IsHappy == true)
-    //        {
-    //            _data.IsHappy = false;
+    private void KeyChangeMoodTest() //K
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (_data.IsHappy == true)
+            {
+                _data.IsHappy = false;
 
-    //        }
-    //        else if (_data.IsHappy == false)
-    //        {
-    //            {
-    //                _data.IsHappy = true;
-    //            }
-    //        }
-    //        Debug.Log($" Is Happy{_data.IsHappy}");
-    //    }
-    //}
+            }
+            else if (_data.IsHappy == false)
+            {
+                {
+                    _data.IsHappy = true;
+                }
+            }
+            Debug.Log($" Is Happy{_data.IsHappy}");
+        }
+    }
 
 
 }

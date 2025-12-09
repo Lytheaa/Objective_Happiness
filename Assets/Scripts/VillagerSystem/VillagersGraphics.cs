@@ -27,11 +27,11 @@ public class VillagersGraphics : MonoBehaviour
 
     private void OnEnable()
     {
-        _data.OnWorkChange.AddListener(SetGraphics);
+        _data.OnWorkChange += SetGraphics;
     }
     private void OnDisable()
     {
-        _data.OnWorkChange.RemoveListener(SetGraphics);
+        _data.OnWorkChange -= SetGraphics;
     }
 
     private void SetGraphics(int workIndex)

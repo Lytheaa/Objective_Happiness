@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
+//using UnityEngine.Events;
 
 public class VillagerData : MonoBehaviour
 {
+    /// VARIABLES : ///
     private int _age;
     public int Age
     {
@@ -66,13 +66,9 @@ public class VillagerData : MonoBehaviour
 
 
     /// EVÊNEMENTS : ///
-    public UnityEvent<int> OnAgeChange = new UnityEvent<int>();
-
-    public UnityEvent<bool> OnMoodChange = new UnityEvent<bool>();
-
-    public UnityEvent<bool> OnTirednessChange = new UnityEvent<bool>();
-
-    public UnityEvent<bool> OnHungerChange = new UnityEvent<bool>();
-
-    public UnityEvent<int> OnWorkChange = new UnityEvent<int>();
+    public event Action<int> OnAgeChange;
+    public event Action<bool> OnMoodChange;
+    public event Action<bool> OnTirednessChange;
+    public event Action<bool> OnHungerChange;
+    public event Action<int> OnWorkChange;
 }
