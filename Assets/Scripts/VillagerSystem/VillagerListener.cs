@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class VillagerListener : MonoBehaviour
 {
-    [SerializeField] public ProsperityIndicator _prosperityIndicator;
+    //[SerializeField] public ProsperityIndicator _prosperityIndicator;
 
-    void OnEnable()
-    {
-        VillagerManager.OnMoodChange += UpdateProsperityPoints;
-        VillagerManager.OnVillagerDeath += VillagerDied;
+    //void OnEnable()
+    //{
+    //    VillagerManager.OnMoodChange += UpdateProsperityPoints;
+    //    VillagerManager.OnVillagerDeath += VillagerDied;
 
-    }
+    //}
 
-    void OnDisable()
-    {
-        VillagerManager.OnMoodChange -= UpdateProsperityPoints;
-        VillagerManager.OnVillagerDeath -= VillagerDied;
+    //void OnDisable()
+    //{
+    //    VillagerManager.OnMoodChange -= UpdateProsperityPoints;
+    //    VillagerManager.OnVillagerDeath -= VillagerDied;
 
-    }
+    //}
 
-    void VillagerDied()
-    {
-        Debug.Log("Villageois mort");
+    //void VillagerDied()
+    //{
+    //    Debug.Log("Villageois mort");
 
-        //GameObject.Destroy(/*villager*/GameObject);
-    }
+    //    //GameObject.Destroy(/*villager*/GameObject);
+    //}
 
-    void UpdateProsperityPoints()
-    {
-        _prosperityIndicator.SubstractProsperityPoints(10);
-    }
+    //void UpdateProsperityPoints()
+    //{
+    //    _prosperityIndicator.SubstractProsperityPoints(10);
+    //}
 }

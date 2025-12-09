@@ -19,6 +19,8 @@ public class TimeManager : MonoBehaviour
     private float _lastEventTime = 0;
     private float _lastSpawnTime = 0;
 
+    public UnityEvent OnStartGame = new UnityEvent();
+
     public UnityEvent OnWorkTime = new UnityEvent();
     public UnityEvent OnSleepTime = new UnityEvent();
     public UnityEvent OnDayEnds = new UnityEvent();
@@ -34,11 +36,17 @@ public class TimeManager : MonoBehaviour
             Inst = this;
     }
 
+    private void Start()
+    {
+        OnStartGame.Invoke();
+        Debug.Log("Game Started, First Spawn initialized");
+    }
+
     private void Update()
     {
         //print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
 
-        print($"{GlobalTime} seconds total, {CurrentTime} seconds today");
+        //print($"{GlobalTime} seconds total, {CurrentTime} seconds today");
 
         CurrentTime += Time.deltaTime * TimeMultiplier;
         GlobalTime = Time.time * TimeMultiplier;
@@ -64,7 +72,6 @@ public class TimeManager : MonoBehaviour
 
         if (GlobalTime >= _lastSpawnTime + HoursToSec(spawnTime))
         {
-
             _lastSpawnTime = GlobalTime;
             OnSpawnTime?.Invoke();
         }
