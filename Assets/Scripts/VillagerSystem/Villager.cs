@@ -23,19 +23,6 @@ public class Villager : MonoBehaviour
 
     private Random _random = new Random();
 
-    ////EVENTS ://
-    //public static event Action OnMoodChange;
-    //public static event Action OnVillagerDeath;
-
-
-    //[SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
-
-    /*private NavMeshAgent agent; */
-
-
-    //private bool _startSpawnDone = false;
-
-
     private void Awake()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
@@ -51,15 +38,35 @@ public class Villager : MonoBehaviour
 
     private void Update()
     {
-        KeyTestHungry();
+        //KeyTestHungry();
+        //KeyChangeMoodTest();
     }
 
     public void Initialize(VillagerDataSO data)
     {
         _data = data;
+    }
+
+    ///EVÊNEMENTS/// 
+
+    private void OnEnable()
+    {
+        _data.OnMoodChange.AddListener(MoodChange);
+        _data.OnTirednessChange.AddListener(TirednessChange);
+        _data.OnHungerChange.AddListener(FeedVillager);
+        _data.OnAgeChange.AddListener(CheckAge);
+    }
+
+    private void OnDisable()
+    {
+        _data.OnMoodChange.RemoveListener(MoodChange);
+        _data.OnTirednessChange.RemoveListener(TirednessChange);
+        _data.OnHungerChange.RemoveListener(FeedVillager);
+        _data.OnAgeChange.RemoveListener(CheckAge);
 
     }
 
+    /// METHODES LIEES AUX EVENEMENTS///
     private int SetWork()
     {
         int _workIndex;
@@ -106,9 +113,9 @@ public class Villager : MonoBehaviour
         return "Unknown";
     }
 
-    public void FeedVillager(bool previousState)
+    public void FeedVillager(bool isHungry)
     {
-        if (_data.IsHungry != previousState)
+        if (isHungry)
         {
             if (_gameManager.Food > 0)
             {
@@ -124,18 +131,6 @@ public class Villager : MonoBehaviour
         }
     }
 
-    private void IsChangingMood(bool previousMood)
-    {
-        if (_data.IsHappy != previousMood)
-        {
-            if (!_data.IsHappy)
-            {
-                Debug.Log("Villageois malheureux");
-                //OnMoodChange();
-            }
-        }
-    }
-
     private void CheckAge(int age)
     {
         if (age >= _limitAge) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
@@ -143,34 +138,6 @@ public class Villager : MonoBehaviour
             //OnVillagerDeath();
             Destroy(this.gameObject); //A déplacer à la fin de la journée
         }
-    }
-
-    private void KeyTestHungry() //H
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            if (!_data.IsHungry)
-            {
-                _data.IsHungry = true;
-            }
-            else
-            {
-                _data.IsHungry = false;
-            }
-            Debug.Log($" Villager is hungry : {_data.IsHungry}");
-        }
-    }
-
-    //TEST EVENTS : 
-
-    private void OnEnable()
-    {
-        _data.OnMoodChange.AddListener(MoodChange);
-    }
-
-    private void OnDisable()
-    {
-        _data.OnMoodChange.RemoveListener(MoodChange);
     }
 
     private void MoodChange(bool isHappy)
@@ -184,64 +151,58 @@ public class Villager : MonoBehaviour
             Debug.Log("Villageois est maintenant malheureux (via event)");
         }
     }
+
+    private void TirednessChange(bool isTired)
+    {
+        if (isTired)
+        {
+            Debug.Log("Villageois est maintenant fatigué (via event)");
+        }
+        else
+        {
+            Debug.Log("Villageois n'est plus fatigué (via event)");
+        }
+    }
+
+    ///KEYTESTS///
+    
+    //private void KeyTestHungry() //H
+    //{
+    //    if (Input.GetKeyDown(KeyCode.H))
+    //    {
+    //        if (!_data.IsHungry)
+    //        {
+    //            _data.IsHungry = true;
+    //        }
+    //        else
+    //        {
+    //            _data.IsHungry = false;
+    //        }
+    //        Debug.Log($" Villager is hungry : {_data.IsHungry}");
+    //    }
+    //}
+
+    //private void KeyChangeMoodTest() //K
+    //{
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        if (_data.IsHappy == true)
+    //        {
+    //            _data.IsHappy = false;
+
+    //        }
+    //        else if (_data.IsHappy == false)
+    //        {
+    //            {
+    //                _data.IsHappy = true;
+    //            }
+    //        }
+    //        Debug.Log($" Is Happy{_data.IsHappy}");
+    //    }
+    //}
+
+
 }
-
-//    private void Update()
-//    {
-//        //_metierTest = _data.WorkIndex;
-//        bool _previousMood = _data.IsHappy;
-
-//        KeyChangeMoodTest();
-
-//        IsChangingMood(_previousMood);
-
-//        KeyChangeAgeTest();
-
-//        CheckAge(_data.Age);
-
-
-//    }
-
-//    private void GoToWork(Transform target)
-//    {
-
-
-//        //if (target != null)
-//        //{
-//        //    agent.SetDestination(target.position);
-//        //}
-//        //Récupérer la target au préalable dans l'initialisation? 
-//    }
-
-//    private void KeyChangeMoodTest() //K
-//    {
-//        if (Input.GetKeyDown(KeyCode.K))
-//        {
-//            if (_data.IsHappy == true)
-//            {
-//                _data.IsHappy = false;
-
-//            }
-//            else if (_data.IsHappy == false)
-//            {
-//                {
-//                    _data.IsHappy = true;
-//                }
-//            }
-//            Debug.Log($" Is Happy{_data.IsHappy}");
-//        }
-//    }
-
-//    private void KeyChangeAgeTest() //D
-//    {
-//        if (Input.GetKeyDown(KeyCode.D))
-//        {
-//            _data.Age += 10;
-//            Debug.Log($" New Age Villager : {_data.Age}");
-//        }
-//    }
-
-//}
 
 
 
