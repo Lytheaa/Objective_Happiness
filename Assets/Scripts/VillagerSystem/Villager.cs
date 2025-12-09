@@ -13,7 +13,10 @@ public class Villager : MonoBehaviour
     public VillagerManager _villagerManager;
 
     [SerializeField] private int _limitAge = 50;
+
+    [Tooltip("Display properties in inspector to check parameters")]
     [SerializeField] private int _ageDisplay;
+    [SerializeField] private bool _isHungryDisplay;
 
     private void Awake()
     {
@@ -26,12 +29,12 @@ public class Villager : MonoBehaviour
     private void Start() // Lors de l'instanciation du villageois
     {
         VillagerManager.Instance.RegisterVillager(this);
-        _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
     }
 
     private void Update()
     {
-        //_ageDisplay = _data.Age;
+        _ageDisplay = _data.Age;
+        _isHungryDisplay = _data.IsHungry;
     }
 
     ///EVENT LISTENER///
@@ -59,16 +62,14 @@ public class Villager : MonoBehaviour
             if (_gameManager.Food > 0)
             {
                 _gameManager.Food--;
-                //_data.IsHungry = false;
+                
             }
             else
             {
-                _villagerManager._hungryVillagersCount++;
-                Debug.Log("Pas assez de nourriture pour nourrir les villageois");
+                _villagerManager.HungryVillagersCount++;
             }
-            //Debug.Log($"Nombre de villageois affamés : {_hungryVillagers}");
 
-            //_villagerManager.KillHungryVillagers(_hungryVillagers);
+           _data.IsHungry = false; // Réinitialiser la faim une fois le compteur mis à jour
         }
     }
 
@@ -107,43 +108,6 @@ public class Villager : MonoBehaviour
             Debug.Log("Villageois n'est plus fatigué (via event)");
         }
     }
-
-    ///KEYTESTS///
-
-    //private void KeyTestHungry() //H
-    //{
-    //    if (Input.GetKeyDown(KeyCode.H))
-    //    {
-    //        if (!_data.IsHungry)
-    //        {
-    //            _data.IsHungry = true;
-    //        }
-    //        else
-    //        {
-    //            _data.IsHungry = false;
-    //        }
-    //        Debug.Log($" Villager is hungry : {_data.IsHungry}");
-    //    }
-    //}
-
-    //private void KeyChangeMoodTest() //K
-    //{
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        if (_data.IsHappy == true)
-    //        {
-    //            _data.IsHappy = false;
-
-    //        }
-    //        else if (_data.IsHappy == false)
-    //        {
-    //            {
-    //                _data.IsHappy = true;
-    //            }
-    //        }
-    //        Debug.Log($" Is Happy{_data.IsHappy}");
-    //    }
-    //}
 
 
 }

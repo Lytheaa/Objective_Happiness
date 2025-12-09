@@ -7,7 +7,7 @@ using UnityEngine;
 public class VillagerWork : MonoBehaviour
 {
     private VillagerData _data;
-    private GameManager _gameManager;
+    private VillagerManager _villagerManager;
 
     private Dictionary<string, int> _work = new Dictionary<string, int>()
     {{"Picker (1)",1} , {"Woodsman (2)",2}, {"Miner (3)",3}, {"Builder (4)",4}, {"Itinerant (5)",5} };
@@ -17,9 +17,9 @@ public class VillagerWork : MonoBehaviour
 
     private void Awake()
     {
-        _gameManager = GameManager.Instance;
+        _villagerManager = VillagerManager.Instance;
+
         _data = GetComponentInParent<VillagerData>();
-        Debug.Log($"Work Index at Awake: {_data.WorkIndex}");
     }
 
     public void SetWork(int workIndex)
@@ -46,19 +46,19 @@ public class VillagerWork : MonoBehaviour
         switch (workIndex) //Ajouter au compteur de métier dans GameManager - créer une fonction dédiée ?
         {
             case 1: //Picker
-                _gameManager.NumberOfPickers++;
+                _villagerManager.NumberOfPickers++;
                 break;
             case 2: //Woodsman
-                _gameManager.NumberOfWoodsman++;
+                _villagerManager.NumberOfWoodsman++;
                 break;
             case 3: //Miner
-                _gameManager.NumberOfMiners++;
+                _villagerManager.NumberOfMiners++;
                 break;
             case 4: //Builder
-                _gameManager.NumberOfBuilders++;
+                _villagerManager.NumberOfBuilders++;
                 break;
             case 5: //Itinerant
-                _gameManager.NumberOfItinerants++;
+                _villagerManager.NumberOfItinerants++;
                 break;
         }
 
