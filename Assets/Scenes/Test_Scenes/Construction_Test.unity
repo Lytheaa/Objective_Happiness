@@ -497,7 +497,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2749786493146150708, guid: 034f58541c319234f872641388b381c5, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749786493146150708, guid: 034f58541c319234f872641388b381c5, type: 3}
+      propertyPath: showGizmos
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749786493146150708, guid: 034f58541c319234f872641388b381c5, type: 3}
+      propertyPath: CollisionSphere.a
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749786493146150708, guid: 034f58541c319234f872641388b381c5, type: 3}
+      propertyPath: CollisionSphere.g
+      value: 0.02336049
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749786493146150708, guid: 034f58541c319234f872641388b381c5, type: 3}
+      propertyPath: CollisionSphere.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749786493146150708, guid: 034f58541c319234f872641388b381c5, type: 3}
+      propertyPath: masonProgressAmount
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3770689557082947710, guid: 034f58541c319234f872641388b381c5, type: 3}
       propertyPath: m_LocalPosition.x

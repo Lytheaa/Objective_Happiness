@@ -3,13 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class InConstruction : MonoBehaviour
+public class InConstruction : Place
 {
     public Sprite PreviewSprite;
-
+    public float ConstructionProgress { get { return _constructionProgress; } set { _constructionProgress = Math.Clamp(value, 0, 1); }}
+    private float _constructionProgress = 0;
+    
+    [Header("PlacingMode")]
     [SerializeField] private Material validMat;
     [SerializeField] private Material invalidMat;
+    
+    [Header("Mason Work")]
+    [Range(0,1)] [SerializeField] private float masonProgressAmount = .1f;
+    
+    [Header("Gizmos")]
+    [SerializeField] private bool showGizmos = false;
 
     private bool _canPlace = false;
     private bool _placed = false;
@@ -49,7 +59,18 @@ public class InConstruction : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!showGizmos) return;
+        
         Gizmos.DrawSphere(transform.position, 1.2f);
+    }
+
+    public override void Action()
+    {
+        if (!_placed) return;
+        
+        ConstructionProgress += masonProgressAmount;
+        if(ConstructionProgress >= 1)
+            enabled = false;
     }
 
     private bool CanPlace()
@@ -61,13 +82,11 @@ public class InConstruction : MonoBehaviour
         {
             if (hit.collider.GetComponent<Place>())
             {
-                print("donthiitttt");
                 return _canPlace = false;
             }
 
             if (hit.collider.GetComponent<ConstructibleZone>())
             {
-                print("hitttt");
                 _canPlace = true;
             }
         }
