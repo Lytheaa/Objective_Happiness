@@ -10,13 +10,19 @@ public class VillagerManager : MonoBehaviour
 {
     public static VillagerManager Instance;
 
+    private int _hungryVillagersCount = 0;
+    public int HungryVillagersCount { get { return _hungryVillagersCount; } set { _hungryVillagersCount = value; } }
+
     [Header("Villagers parameters")]
+    [Tooltip("Max age of villagers before death")]
+    [SerializeField] private int _maxAge = 50;
+    public int MaxAge { get { return _maxAge; } }
+
     [Tooltip("Additional age added to villagers at each growth event")]
-    [SerializeField] private int _additionalAge = 10;
+    [SerializeField] private int _grownAge = 10;
+    //public int AdditionalAge { get { return _additionalAge; } }
 
     [Header("Villagers indicators")]
-    [SerializeField] private int _hungryVillagersCount = 0;
-    public int HungryVillagersCount { get { return _hungryVillagersCount; } set { _hungryVillagersCount = value; } }
 
     [Header("Villagers List")]
     [SerializeField] private List<Villager> _villagers = new List<Villager>();
@@ -58,6 +64,7 @@ public class VillagerManager : MonoBehaviour
         _villagers.Add(villager);
     }
 
+    /// GESTION DE LA FATIGUE ///
 
     public void SetAllTired()
     {
@@ -70,13 +77,17 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
+    /// GESTION DE L'AGE ///
+
     public void GrownVillagers()
     {
         foreach (var villager in _villagers)
         {
-            villager._data.Age += _additionalAge;
+            villager._data.Age += _grownAge;
         }
     }
+
+    /// GESTION DE LA FAIM ///
 
     public void SetAllHungry()
     {

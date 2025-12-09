@@ -12,8 +12,7 @@ public class Villager : MonoBehaviour
     public GameManager _gameManager; // Pour accéder aux variables globales
     public VillagerManager _villagerManager;
 
-    [SerializeField] private int _limitAge = 50;
-
+    [Header("Debug Variables")] // TO SUPRESS LATER
     [Tooltip("Display properties in inspector to check parameters")]
     [SerializeField] private int _ageDisplay;
     [SerializeField] private bool _isHungryDisplay;
@@ -75,8 +74,9 @@ public class Villager : MonoBehaviour
 
     private void CheckAge(int age)
     {
-        _ageDisplay = age;
-        if (age >= _limitAge) // S'il est trop vieux ou affamé : déclancher la mort
+        //_ageDisplay = age;
+
+        if (age >= _villagerManager.MaxAge) // S'il est trop vieux ou affamé : déclancher la mort
         {
             Debug.Log("Villageois est mort de vieillesse (via event)");
             Destroy(this.gameObject);
