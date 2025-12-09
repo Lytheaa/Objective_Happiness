@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _numberOfItinerants; // Nombre de vagabonds
     public int NumberOfItinerants { get { return _numberOfItinerants; } set { _numberOfItinerants = value; } }
 
+    [Header("Script References :")]
+    [SerializeField] private ProsperityIndicator _prosperityIndicator;
+    public ProsperityIndicator ProsperityIndicator => _prosperityIndicator;
 
-
-    //[Header("Script References :")]
-    //[SerializeField] private TimeManager _timeManager;
 
     /// SPAWN de départ : à déplacer ? 
 
