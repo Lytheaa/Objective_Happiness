@@ -64,6 +64,24 @@ public class VillagerManager : MonoBehaviour
         _villagers.Add(villager);
     }
 
+    /// DEPLACEMENT DES VILLAGEOIS ///
+    
+    private void GoToWork()
+    {
+         foreach (var villager in _villagers)
+        {
+            //villager.GoToWork();
+        }
+    }
+
+    private void GoToRest()
+    {
+        foreach (var villager in _villagers)
+        {
+            //villager.GoToRest();
+        }
+    }
+
     /// GESTION DE LA FATIGUE ///
 
     public void SetAllTired()

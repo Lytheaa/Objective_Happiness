@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class VillagerMovement : MonoBehaviour
+public class VillagerControler : MonoBehaviour
 {
     NavMeshAgent _navMeshAgent;
     ///Tableau des points de déplacement possibles pour les villageois :

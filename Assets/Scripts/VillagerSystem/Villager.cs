@@ -12,16 +12,18 @@ public class Villager : MonoBehaviour
     public GameManager _gameManager; // Pour accéder aux variables globales
     public VillagerManager _villagerManager;
 
-    [Header("Debug Variables")] // TO SUPRESS LATER
-    [Tooltip("Display properties in inspector to check parameters")]
+    [Header("Debug Variables")] // TO SUPRESS LATER (?)
+
+    [Tooltip("Display age propertie in inspector to check parameters")]
     [SerializeField] private int _ageDisplay;
+
+    [Tooltip("Display hungry propertie in inspector to check parameters")]
     [SerializeField] private bool _isHungryDisplay;
 
     private void Awake()
     {
         _gameManager = GameManager.Instance;
         _villagerManager = VillagerManager.Instance;
-
         _data = this.GetComponent<VillagerData>();
     }
 

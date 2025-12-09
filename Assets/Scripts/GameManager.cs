@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _stone;
     public int Stone { get { return _stone; } set { _stone = value; } }
 
-    [Header("Prosperity indicator references :")]
 
+    [Header("Prosperity indicator references :")]
     [Tooltip("Référence à l'indicateur de prospérité dans l'UI")]
     [SerializeField] private ProsperityIndicator _prosperityIndicator;
     public ProsperityIndicator ProsperityIndicator => _prosperityIndicator;

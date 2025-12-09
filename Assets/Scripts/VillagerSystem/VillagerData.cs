@@ -64,6 +64,8 @@ public class VillagerData : MonoBehaviour
         }
     }
 
+
+
     /// EVÊNEMENTS : ///
     public event Action<int> OnAgeChange;
     public event Action<bool> OnMoodChange;

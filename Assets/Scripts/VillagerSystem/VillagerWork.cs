@@ -18,7 +18,6 @@ public class VillagerWork : MonoBehaviour
     private void Awake()
     {
         _villagerManager = VillagerManager.Instance;
-
         _data = GetComponentInParent<VillagerData>();
     }
 
