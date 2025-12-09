@@ -11,6 +11,16 @@ public class VillagerMovement : MonoBehaviour
     private Transform _destination;
 
 
+    private void Awake()
+    {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
+    private void SetDestination(Transform destination)
+    {
+        if (destination != null)
+        {
 
+        }
+    }
 }

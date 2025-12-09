@@ -190,3 +190,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 0}
   _workType: 
+  _workIndex: 0

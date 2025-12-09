@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; } // Singleton
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+
+    }
 
     [Header("Available resources :")]
     [SerializeField] private int _food;
@@ -50,8 +61,8 @@ public class GameManager : MonoBehaviour
 
 
 
-    /// SPAWN de départ test : à déplacer ? /// NE FONCTIONNE PAS ACTUELLEMENT
-    [SerializeField] private bool _firstSpawn = true;
-    public bool FirstSpawn { get { return _firstSpawn; } set { _firstSpawn = value; } }
+    ///// SPAWN de départ test : à déplacer ? /// NE FONCTIONNE PAS ACTUELLEMENT
+    //[SerializeField] private bool _firstSpawn = true;
+    //public bool FirstSpawn { get { return _firstSpawn; } set { _firstSpawn = value; } }
 
 }

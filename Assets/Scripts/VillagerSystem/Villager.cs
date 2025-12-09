@@ -14,9 +14,12 @@ public class Villager : MonoBehaviour
     [SerializeField] private int _limitAge = 50;
     [SerializeField] private int _age;
 
+    [SerializeField] private int _workIndex;
+
     private void Awake()
     {
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
+        //_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
+        _gameManager = GameManager.Instance;
     }
 
     private void Start() // Lors de l'instanciation du villageois
@@ -33,6 +36,8 @@ public class Villager : MonoBehaviour
     {
         //KeyTestHungry();
         //KeyChangeMoodTest();
+
+        _workIndex = _data.WorkIndex;
     }
 
     public void Initialize(VillagerDataSO data)

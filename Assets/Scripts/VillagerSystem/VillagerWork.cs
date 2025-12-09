@@ -15,57 +15,79 @@ public class VillagerWork : MonoBehaviour
 
     [Tooltip("Work Type of the Villager")]
     [SerializeField] public string _workType;
+    [SerializeField] public int _workIndex;
 
     ///TEST :
-    int newIndex =0;
+    //int newIndex =0;
 
     private void Awake()
     {
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
+        //_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
+        _gameManager = GameManager.Instance;
         _data = GetComponentInParent<Villager>()._data;
     }
 
     private void Start()
     {
-        _data.WorkIndex = SetWork();
+        //_data.WorkIndex = SetWork();
+        //_workType = WorkToString(_data.WorkIndex);
+    }
+
+    private void Update()
+    {
+        _workIndex = _data.WorkIndex;
+    }
+
+
+    //public void Initialize(VillagerDataSO data)
+    //{
+    //    _data = data;
+    //}
+
+
+    public void AttributeWork(int workIndex)
+    {
+        _data.WorkIndex = workIndex;
+        //workIndex = _data.WorkIndex;
         _workType = WorkToString(_data.WorkIndex);
     }
 
-    private int SetWork()
-    {
-        int _workIndex;
-        //if (_gameManager.FirstSpawn)
-        //{
-        //    _workIndex = SetFirstWork();
-        //}
-        //else
-        //{
-            _workIndex = SetRandomWork();
-        //}
-        CountNumberOfWorkers(_workIndex);
-        return _workIndex;
-    }
+
+    //private int SetWork()
+    //{
+    //    int _workIndex;
+    //    if (_gameManager.FirstSpawn)
+    //    {
+    //        _workIndex = SetFirstWork();
+    //    }
+    //    else
+    //    {
+    //        _workIndex = SetRandomWork();
+    //    }
+    //    CountNumberOfWorkers(_workIndex);
+    //    return _workIndex;
+    //}
 
     private int SetRandomWork()
     {
         int _workIndex;
-        _workIndex = _random.Next(1, _work.Count +1); 
+        _workIndex = _random.Next(1, _work.Count + 1);
         return _workIndex;
     }
 
-    private int SetFirstWork() ///NE FONCTIONNE PAS 
-    {
-        int _workIndex;
-        if (newIndex < _work.Count)
-        {
-            newIndex++;
-        }
+    //private int SetFirstWork() ///NE FONCTIONNE PAS 
+    //{
+    //    int _workIndex;
+    //    if (newIndex < _work.Count)
+    //    {
+    //        newIndex++;
+    //    }
 
-        _workIndex = newIndex;
-        //int _workIndex = 2;
+    //    _workIndex = newIndex;
+    //    //int _workIndex = 2;
 
-        return _workIndex;
-    }
+    //    return _workIndex;
+    //}
 
     private string WorkToString(int workIndex)
     {
@@ -103,3 +125,4 @@ public class VillagerWork : MonoBehaviour
     }
 
 }
+

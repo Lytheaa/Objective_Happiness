@@ -51,9 +51,16 @@ public class VillagerDataSO : ScriptableObject
         }
     }
 
-    private int _workIndex;
+    private int _workIndex = 0;
     public int WorkIndex 
-    { get => _workIndex; set => _workIndex = value; }
+    { get => _workIndex;
+        set
+        {
+            if (_workIndex == value) return;
+            _workIndex = value;
+            OnWorkChange?.Invoke(_workIndex);
+        }
+        }
 
 
     /// EVÊNEMENTS : ///
@@ -64,6 +71,8 @@ public class VillagerDataSO : ScriptableObject
     public UnityEvent<bool> OnTirednessChange = new UnityEvent<bool>();
 
     public UnityEvent<bool> OnHungerChange = new UnityEvent<bool>();
+
+    public UnityEvent<int> OnWorkChange = new UnityEvent<int>();
 
 
 }

@@ -20,7 +20,10 @@ public class VillagerManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public void RegisterVillager(Villager villager)
@@ -37,7 +40,7 @@ public class VillagerManager : MonoBehaviour
     }
 
     public void SetAllTired()
-        {
+    {
         foreach (var villager in _villagers)
         {
             if (villager._data.WorkIndex != 5) // Les vagabonds ne se fatiguent pas
@@ -51,7 +54,7 @@ public class VillagerManager : MonoBehaviour
     {
         foreach (var villager in _villagers)
         {
-                villager._data.Age += _additionalAge;
+            villager._data.Age += _additionalAge;
         }
     }
 

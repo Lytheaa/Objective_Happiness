@@ -21,6 +21,10 @@ public class VillagerSpawner : MonoBehaviour
 
     //[SerializeField] private event UnityAction OnSpawnVillager;
 
+    /// SPAWN de départ test : à déplacer ? /// NE FONCTIONNE PAS ACTUELLEMENT
+/*    [SerializeField] */private bool _firstSpawn = true;
+    //public bool FirstSpawn { get { return _firstSpawn; } set { _firstSpawn = value; } }
+
     private void Awake()
     {
         _villagerSpawner = this.transform;
@@ -43,7 +47,7 @@ public class VillagerSpawner : MonoBehaviour
         float minZ = areaSpawnPosition.z - _areaLenght * .5f;
         float maxZ = areaSpawnPosition.z + _areaLenght * .5f;
 
-        for (int i = 0; i < numberOfVillagers; i++)
+        for (int i = 1; i < numberOfVillagers +1; i++)
         {
             Vector3 spawnPosition = Vector3.zero;
             spawnPosition.x = Random.Range(minX, maxX);
@@ -53,10 +57,23 @@ public class VillagerSpawner : MonoBehaviour
             //Instancier le villageois dans le GameObject "VillagersList"
             GameObject newVillager = Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
 
+            ///Remplacer par un event ? ///
             //OnSpawnVillager.Invoke();
+            //VillagerWork villagerWork = newVillager.GetComponent<VillagerWork>();
 
+            //if (_firstSpawn)
+            //{
+            //    villagerWork.AttributeWork(i);
+
+            //    Debug.Log("First Spawn - Villager " + i + " assigned to work index " + villagerWork._workIndex);
+            //}
+            //else
+            //{
+            //   villagerWork.AttributeWork(Random.Range(1, 6));
+
+            //}
         }
-
+        _firstSpawn = false;
     }
 
     private void OnDrawGizmosSelected()
