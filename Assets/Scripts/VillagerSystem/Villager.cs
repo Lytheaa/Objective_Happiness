@@ -148,6 +148,7 @@ public class Villager : MonoBehaviour
         }
         else
         {
+            _gameManager.ProsperityIndicator.SubstractProsperityPoints(10); // Changer valeur
             Debug.Log("Villageois est maintenant malheureux (via event)");
         }
     }

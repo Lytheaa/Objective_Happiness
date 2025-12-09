@@ -11,8 +11,8 @@ public class VillagerSpawner : MonoBehaviour
     [SerializeField] private float _areaWidth;
     [SerializeField] private float _areaLenght;
     [SerializeField] private float _areaHeight = 1f;
-    [SerializeField] private Transform _villagersInScene;
     [SerializeField] private GameObject _villagerPrefab;
+    [SerializeField] private Transform _villagersContainerInScene;
 
     [Header("Gizmos appearance :")]
     [SerializeField] private Color _gizmosColor = Color.red;
@@ -50,7 +50,7 @@ public class VillagerSpawner : MonoBehaviour
             spawnPosition.y = areaSpawnPosition.y;
 
             //Instancier le villageois dans le GameObject "VillagersList"
-            Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersInScene.transform); //Verifier rotation des sprites 2D
+            Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
 
             _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
 
