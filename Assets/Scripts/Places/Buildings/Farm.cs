@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Farm : Place
 {
-    public override void Action()
+    [SerializeField] private float foodAmountMultiplier = 1.5f;
+    public override void Action(Villager villager)
     {
-        //increase some% of each buisson zones
-        Debug.Log("Farm triggers");
+        var foodZonesList = GameObject.FindObjectsByType<FoodZone>(FindObjectsSortMode.None);
+        foreach (FoodZone zone in foodZonesList)
+        {
+            zone.progressAmount *= foodAmountMultiplier;
+        }
     }
 }

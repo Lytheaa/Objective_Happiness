@@ -8,12 +8,8 @@ public class DecorativeBuilding : Place
     [SerializeField] private float prosperityBonus;
     private void Awake()
     {
-        TimeManager.Inst.OnDayEnds.AddListener(Action);
+        //TimeManager.Inst.OnDayEnds.AddListener(Action);
     }
 
-    public override void Action()
-    {
-        // prosperity++
-        Debug.Log("Decorative building triggers");
-    }
+    
 }

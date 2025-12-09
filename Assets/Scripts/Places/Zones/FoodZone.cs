@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class FoodZone : Place
 {
-    public override void Action()
+    public float progressAmount = .1f;
+    public override void Action(Villager villager)
     {
-        //increase food
-        Debug.Log("Food working");
+        //get the game manager from future pauline's push
+    }
+
+    public override void PreAction(Villager villager)
+    {
+        //villager start work animation
+    }
+
+    public override void PostAction(Villager villager)
+    {
+        //villager ends work animation
     }
 }

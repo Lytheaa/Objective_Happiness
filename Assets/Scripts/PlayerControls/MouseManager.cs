@@ -52,8 +52,7 @@ public class MouseManager : MonoBehaviour
             if (hit.collider != null)
             {
                 OnMouseMove?.Invoke(hit.point);
-                print(hit.point);
-                Debug.Log($"objet touch� : {hit.collider.gameObject.name}");
+                //Debug.Log($"objet touch� : {hit.collider.gameObject.name}");
             }
         }
 

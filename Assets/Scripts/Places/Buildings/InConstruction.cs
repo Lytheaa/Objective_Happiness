@@ -16,10 +16,12 @@ public class InConstruction : Place
     [SerializeField] private Material invalidMat;
     
     [Header("Mason Work")]
-    [Range(0,1)] [SerializeField] private float masonProgressAmount = .1f;
+    [Range(0,1)] public float progressAmount = .1f;
     
     [Header("Gizmos")]
     [SerializeField] private bool showGizmos = false;
+
+    [SerializeField] private Villager test;
 
     private bool _canPlace = false;
     private bool _placed = false;
@@ -64,20 +66,35 @@ public class InConstruction : Place
         Gizmos.DrawSphere(transform.position, 1.2f);
     }
 
-    public override void Action()
+    public override void PreAction(Villager villager)
     {
+        print("preAction");
+        //start villager animation
+        //make it dont move
+    }
+
+    public override void Action(Villager villager)
+    {
+        print("action");
         if (!_placed) return;
         
-        ConstructionProgress += masonProgressAmount;
+        ConstructionProgress += progressAmount;
         if(ConstructionProgress >= 1)
             enabled = false;
+    }
+
+    public override void PostAction(Villager villager)
+    {
+        print("postAction");
+        //disable villager working anim
+        //make it move again
     }
 
     private bool CanPlace()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit[] allHits = Physics.SphereCastAll(ray, 1.2f);
-        print("lenght: "+allHits.Length);
+        //print("lenght: "+allHits.Length);
         foreach (var hit in allHits)
         {
             if (hit.collider.GetComponent<Place>())
@@ -100,6 +117,7 @@ public class InConstruction : Place
         MouseManager.OnMouseMove -= StickTo;
         transform.gameObject.layer = 0; //default layer
         _meshRenderer.material = _defaultMat;
+        StartCoroutine(ActionCoroutine(test));
     }
 
     private void StickTo(Vector3 position)
