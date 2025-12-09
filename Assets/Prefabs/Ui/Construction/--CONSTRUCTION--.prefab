@@ -73,8 +73,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: -40, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8326139126185657083
 CanvasRenderer:
@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4338669917527667265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -340,8 +340,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 0}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: -600, y: 100}
+  m_SizeDelta: {x: 800, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1880049019916577553
 CanvasRenderer:
@@ -394,15 +394,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
-    m_Right: 5
-    m_Top: 5
-    m_Bottom: 5
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 5
   m_StartCorner: 1
   m_StartAxis: 0
-  m_CellSize: {x: 40, y: 40}
-  m_Spacing: {x: 5, y: 5}
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!114 &8187314862292585045
@@ -419,8 +419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildings:
   - {fileID: 769703743773479289, guid: 034f58541c319234f872641388b381c5, type: 3}
-  - {fileID: 769703743773479289, guid: 034f58541c319234f872641388b381c5, type: 3}
-  - {fileID: 769703743773479289, guid: 034f58541c319234f872641388b381c5, type: 3}
-  - {fileID: 769703743773479289, guid: 034f58541c319234f872641388b381c5, type: 3}
-  - {fileID: 769703743773479289, guid: 034f58541c319234f872641388b381c5, type: 3}
+  - {fileID: 769703743773479289, guid: 6716d20f54ae03849a73135764b4db58, type: 3}
+  - {fileID: 769703743773479289, guid: a31ac6e7bb0d68f4a9b115a91edd2491, type: 3}
+  - {fileID: 769703743773479289, guid: 4a795a9c07f024d4cb43edd7cf4f478f, type: 3}
+  - {fileID: 769703743773479289, guid: 56d157959d40f27418c54a040e7c7d4e, type: 3}
   constructionButton: {fileID: 1182072983381484110, guid: 167662195de648649af12cf5b7231316, type: 3}
