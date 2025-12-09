@@ -15,6 +15,4 @@ public class DecorativeBuilding : Place
     {
         //gamemanager.inst.prospirity += prosperityBonus
     }
-
-    
 }
