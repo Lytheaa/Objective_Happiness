@@ -60,14 +60,25 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-    public void KillHungryVillagers()
+    public void KillHungryVillagers() // Version avec mélange
     {
         for (int i = 0; i < _hungryVillagersCount; i++)
         {
-            Destroy(_villagers[i].gameObject);
-            _villagers.RemoveAt(i);
+            int randomIndex = UnityEngine.Random.Range(0, _villagers.Count);
+            Destroy(_villagers[randomIndex].gameObject);
+            _villagers.RemoveAt(randomIndex);
         }
     }
+
+    //public void KillHungryVillagers() // Version sans mélange
+    //{
+    //    for (int i = 0; i < _hungryVillagersCount; i++)
+    //    {
+    //        Destroy(_villagers[i].gameObject);
+    //        _villagers.RemoveAt(i);
+    //    }
+    //}
+
 
 }
 
