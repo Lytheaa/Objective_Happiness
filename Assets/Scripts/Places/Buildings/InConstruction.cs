@@ -17,11 +17,8 @@ public class InConstruction : Place
     
     [Header("Mason Work")]
     [Range(0,1)] public float progressAmount = .1f;
-    
-    [Header("Gizmos")]
-    [SerializeField] private bool showGizmos = false;
 
-    [SerializeField] private Villager test;
+    [Header("Gizmos")] [SerializeField] private bool showGizmos = false;
 
     private bool _canPlace = false;
     private bool _placed = false;
@@ -117,7 +114,6 @@ public class InConstruction : Place
         MouseManager.OnMouseMove -= StickTo;
         transform.gameObject.layer = 0; //default layer
         _meshRenderer.material = _defaultMat;
-        StartCoroutine(ActionCoroutine(test));
     }
 
     private void StickTo(Vector3 position)
