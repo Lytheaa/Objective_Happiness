@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VillagerSpawner : MonoBehaviour
 {
     private Transform _villagerSpawner;
-    private GameManager _gameManager;
 
     [Header("Spawner Settings :")]
     [SerializeField] private float _areaWidth;
@@ -18,12 +19,12 @@ public class VillagerSpawner : MonoBehaviour
     [SerializeField] private Color _gizmosColor = Color.red;
     [SerializeField] private bool _drawGizmos = false;
 
+    //[SerializeField] private event UnityAction OnSpawnVillager;
 
     private void Awake()
     {
         _villagerSpawner = this.transform;
         _villagerSpawner.position = new Vector3(_villagerSpawner.position.x, _villagerSpawner.position.y + 1, _villagerSpawner.position.z);
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser plus tard
     }
 
     // Update is called once per frame
@@ -50,11 +51,10 @@ public class VillagerSpawner : MonoBehaviour
             spawnPosition.y = areaSpawnPosition.y;
 
             //Instancier le villageois dans le GameObject "VillagersList"
-            Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
+            GameObject newVillager = Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
 
-            _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
+            //OnSpawnVillager.Invoke();
 
-            //Ajouter le villageois à la liste des villageois dans VillagersList ?
         }
 
     }

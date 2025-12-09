@@ -17,6 +17,7 @@ public class VillagerManager : MonoBehaviour
     [Header("Villagers List")]
     [SerializeField] private List<Villager> _villagers = new List<Villager>();
 
+
     private void Awake()
     {
         Instance = this;
@@ -35,11 +36,22 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
+    public void SetAllTired()
+        {
+        foreach (var villager in _villagers)
+        {
+            if (villager._data.WorkIndex != 5) // Les vagabonds ne se fatiguent pas
+            {
+                villager._data.IsTired = true;
+            }
+        }
+    }
+
     public void GrownVillagers()
     {
         foreach (var villager in _villagers)
         {
-            villager._data.Age += _additionalAge;
+                villager._data.Age += _additionalAge;
         }
     }
 

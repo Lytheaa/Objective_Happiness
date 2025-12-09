@@ -136,14 +136,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2263595549768351895}
   - component: {fileID: 6603455764440606806}
-  - component: {fileID: 5983285717578439314}
+  - component: {fileID: 1971429117752039834}
   m_Layer: 0
   m_Name: Villager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2263595549768351895
 Transform:
   m_ObjectHideFlags: 0
@@ -174,10 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: e99b440f7355a974b90307322d135178, type: 2}
   _gameManager: {fileID: 0}
-  _workType: 
   _limitAge: 50
   _age: 0
---- !u!114 &5983285717578439314
+--- !u!114 &1971429117752039834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,6 +185,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8941412899264389602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 704ee0e3d94c97a4ebc919a6eed4af40, type: 3}
+  m_Script: {fileID: 11500000, guid: f3d63958d5aa40a4985423b6524e42c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 0}
+  _workType: 

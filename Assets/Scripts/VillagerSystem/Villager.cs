@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using Random = System.Random;
+//using Random = System.Random;
 using UnityEngine.Events;
 using UnityEngine.AI;
 
@@ -10,29 +10,22 @@ public class Villager : MonoBehaviour
 {
     public VillagerDataSO _data;
     public GameManager _gameManager; // Pour accéder aux variables globales
-
-    [Tooltip("Work Type of the Villager")]
-    [SerializeField] public string _workType;
-
-    private Dictionary<string, int> _work = new Dictionary<string, int>()
-    {{"Picker",1} , {"Woodsman",2}, {"Miner",3}, {"Builder",4}, {"Itinerant",5} };
-
     private int _hungryVillagers = 0;
     [SerializeField] private int _limitAge = 50;
     [SerializeField] private int _age;
-
-    private Random _random = new Random();
 
     private void Awake()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // A optimiser ?
     }
 
-    private void Start()
+    private void Start() // Lors de l'instanciation du villageois
     {
         VillagerManager.Instance.RegisterVillager(this);
-        _data.WorkIndex = SetWork();
-        _workType = WorkToString(_data.WorkIndex);
+        _gameManager.NumberOfVillagers++; // Ajouter au compteur de villageois total dans GameManager ? 
+
+        //_data.WorkIndex = SetWork();
+        //_workType = WorkToString(_data.WorkIndex);
         _age = _data.Age;
     }
 
@@ -67,51 +60,6 @@ public class Villager : MonoBehaviour
     }
 
     /// METHODES LIEES AUX EVENEMENTS///
-    private int SetWork()
-    {
-        int _workIndex;
-
-        //if (_gameManager.NumberOfVillagers < _work.Count)
-        //{
-        //    _workIndex = 1;
-        //}
-        //else
-        //{
-        _workIndex = _random.Next(0, _work.Count);
-        //}
-
-        switch (_workIndex) //Ajouter au compteur de métier dans GameManager - créer une fonction dédiée ?
-        {
-            case 1: //Picker
-                _gameManager.NumberOfPickers++;
-                break;
-            case 2: //Woodsman
-                _gameManager.NumberOfWoodsman++;
-                break;
-            case 3: //Miner
-                _gameManager.NumberOfMiners++;
-                break;
-            case 4: //Builder
-                _gameManager.NumberOfBuilders++;
-                break;
-            case 5: //Itinerant
-                _gameManager.NumberOfItinerants++;
-                break;
-        }
-        return _workIndex;
-    }
-
-    private string WorkToString(int workIndex)
-    {
-        foreach (KeyValuePair<string, int> pair in _work)
-        {
-            if (pair.Value == workIndex)
-            {
-                return pair.Key;
-            }
-        }
-        return "Unknown";
-    }
 
     public void FeedVillager(bool isHungry)
     {
@@ -157,6 +105,7 @@ public class Villager : MonoBehaviour
     {
         if (isTired)
         {
+            /// Cherche une place pour dormir ? ///
             Debug.Log("Villageois est maintenant fatigué (via event)");
         }
         else

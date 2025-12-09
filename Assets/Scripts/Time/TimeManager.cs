@@ -44,7 +44,7 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
-        //print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
+        print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
 
         //print($"{GlobalTime} seconds total, {CurrentTime} seconds today");
 
