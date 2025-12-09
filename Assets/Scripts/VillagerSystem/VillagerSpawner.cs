@@ -59,6 +59,9 @@ public class VillagerSpawner : MonoBehaviour
                 workIndex = Random.Range(1, 6); // Assigner un travail aléatoire pour les autres spawns
             }
             villagerWork.SetWork(workIndex);
+
+            //VillagerControler villagerControler = newVillager.GetComponent<VillagerControler>();
+            //villagerControler.SetWayPoints(waypoints);
         }
         _firstSpawn = false;
     }
