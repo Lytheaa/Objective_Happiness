@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DecorativeBuilding : Place
 {
-    [SerializeField] private float prosperityBonus;
+    [SerializeField] private int prosperityBonus;
     private void Awake()
     {
         TimeManager.Inst.OnDayEnds.AddListener(Action);
@@ -13,6 +13,6 @@ public class DecorativeBuilding : Place
 
     public override void Action()
     {
-        //gamemanager.inst.prospirity += prosperityBonus
+        GameManager.Instance.ProsperityIndicator.AddProsperityPoints(prosperityBonus);
     }
 }
