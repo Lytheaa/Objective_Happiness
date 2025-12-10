@@ -13,7 +13,6 @@ public class DecorativeBuilding : Place
 
     public override void Action()
     {
-        // prosperity++
-        Debug.Log("Decorative building triggers");
+        //gamemanager.inst.prospirity += prosperityBonus
     }
 }

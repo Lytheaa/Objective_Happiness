@@ -3,20 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Button = UnityEngine.UIElements.Button;
 
 public class ConstructionModeButton : MonoBehaviour
 {
     [SerializeField] private List<GameObject> buildings;
-    [SerializeField] private GameObject buildingPreviewButton;
-    public float truc;
+    [SerializeField] private GameObject constructionButton;
+    [SerializeField] private Transform BuildingsParent;
+    
     private void Awake()
     {
         foreach (GameObject building in buildings)
         {
-            var currentButton = Instantiate(buildingPreviewButton, transform);
-            currentButton.GetComponent<Button>().clicked += delegate { Instantiate(building); };
+            var currentButton = Instantiate(constructionButton, transform);
+            var buttonComp = currentButton.GetComponent<Button>();
+            buttonComp.onClick.AddListener(delegate { BuyBuildings(building.GetComponent<Place>()); });
+            buttonComp.onClick.AddListener(delegate { transform.gameObject.SetActive(false); });
+            currentButton.gameObject.GetComponentsInChildren<Image>()[1].sprite = building.GetComponent<InConstruction>().PreviewSprite;
         }
+    }
+
+    private void BuyBuildings(Place building)
+    {
+        //if(building.WoodCost <= GameManager.Instance.Wood && ...)
+        Instantiate(building);
+        //else
+        //not enough ressources feedback
     }
 }
