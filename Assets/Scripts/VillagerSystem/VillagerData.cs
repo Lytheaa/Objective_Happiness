@@ -52,16 +52,6 @@ public class VillagerData : MonoBehaviour
         }
     }
 
-    private bool _isBusy; 
-    public bool IsBusy
-    {
-        get => _isBusy;
-        set
-        {
-            if(_isBusy == value) return;
-            _isBusy = value;
-        }
-    }
 
     private int _workIndex;
     public int WorkIndex
@@ -75,6 +65,16 @@ public class VillagerData : MonoBehaviour
         }
     }
 
+    private bool _isBusy; 
+    public bool IsBusy
+    {
+        get => _isBusy;
+        set
+        {
+            if(_isBusy == value) return;
+            _isBusy = value;
+        }
+    }
 
 
     /// EVÊNEMENTS : ///

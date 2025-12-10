@@ -7,6 +7,7 @@ using UnityEngine;
 public class VillagerWork : MonoBehaviour
 {
     private VillagerData _data;
+    
     private VillagerManager _villagerManager;
 
     private Dictionary<string, int> _work = new Dictionary<string, int>()

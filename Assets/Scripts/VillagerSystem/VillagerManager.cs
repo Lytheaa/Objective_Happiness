@@ -69,6 +69,7 @@ public class VillagerManager : MonoBehaviour
     
     public void GoToWork()
     {
+        /// S'il n'est pas fatiqué ajouter condition : 
         foreach(var villager in _villagers)
         {
             if (villager._data.WorkIndex > 0 && villager._data.WorkIndex < 5) /// Si les villageois ont un métier autre que vagabond 
@@ -88,11 +89,16 @@ public class VillagerManager : MonoBehaviour
         //}
     }
 
-    private void GoToRest()
+    public void GoToRest()
     {
+        Debug.Log("Villagers are going to sleep ");
+
         foreach (var villager in _villagers)
         {
-            //villager.GoToRest();
+            if (villager._data.WorkIndex > 0 && villager._data.WorkIndex < 5) /// Si les villageois ont un métier autre que vagabond 
+            {
+                villager.Controler.GoToSleep();
+            }
         }
     }
 

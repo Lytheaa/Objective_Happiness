@@ -180,6 +180,7 @@ MonoBehaviour:
   _villagerManager: {fileID: 0}
   _ageDisplay: 0
   _isHungryDisplay: 0
+  _isTiredDisplay: 0
 --- !u!114 &1971429117752039834
 MonoBehaviour:
   m_ObjectHideFlags: 0

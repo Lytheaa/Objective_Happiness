@@ -14,8 +14,6 @@ public class VillagerControler : MonoBehaviour
 
     private Transform _target;
 
-    int _houseIndex = 0;
-
     private void Awake()
     {
         _placesManager = PlacesManager.Instance;
@@ -43,26 +41,25 @@ public class VillagerControler : MonoBehaviour
         }
     }
 
-    //if (_currentIndex != _wanderingWaypoints.Count - 1)
-    //{ _currentIndex++; }
-    //else
-    //{ _currentIndex = 0; }  
-
-    private void GoToSleep()
+    public void GoToSleep()
     {
         int houseIndex = 0;
 
         foreach (Transform houses in _housesWaypoints)
         {
-            if (houseIndex != _housesWaypoints.Count)
+            //if (houseIndex != _housesWaypoints.Count)
+            //{
+            //    houseIndex++;
+            //}
+            //else
+            //{
+            //    houseIndex = 0;
+            //}
+
+            if (!houses.GetComponent<House>().IsOccupied)
             {
-                houseIndex++;
+                _navMeshAgent.SetDestination(_housesWaypoints[houseIndex].position);
             }
-            else
-            {
-                houseIndex = 0;
-            }
-            _navMeshAgent.SetDestination(_housesWaypoints[houseIndex].position);
         }
     }
 
