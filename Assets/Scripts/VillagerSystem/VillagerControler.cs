@@ -68,29 +68,29 @@ public class VillagerControler : MonoBehaviour
     }
 
 
-    public void GotoWork(int work) /// MODIF
-    {
-        foreach (Transform zone in _workZonesWaypoints)
-        {
-            switch (work)
-            {
-                case 1: //Picker
-                    _target = zone.GetComponent<FoodZone>().transform;
-                    break;
-                case 2: //Woodsman
-                    _target = zone.GetComponent<Forest>().transform;
-                    break;
-                case 3: //Miner
-                    _target = zone.GetComponent<StoneZone>().transform;
-                    break;
-                case 4:
-                    Debug.Log($"Zone work target = maçon");
-                    break;
-            }
+    //public void GotoWork(int work) /// MODIF
+    //{
+    //    foreach (Transform zone in _workZonesWaypoints)
+    //    {
+    //        switch (work)
+    //        {
+    //            case 1: //Picker
+    //                _target = zone.GetComponent<FoodZone>().transform;
+    //                break;
+    //            case 2: //Woodsman
+    //                _target = zone.GetComponent<Forest>().transform;
+    //                break;
+    //            case 3: //Miner
+    //                _target = zone.GetComponent<StoneZone>().transform;
+    //                break;
+    //            case 4:
+    //                Debug.Log($"Zone work target = maçon");
+    //                break;
+    //        }
 
-            _navMeshAgent.SetDestination(_target.position);
-        }
-    }
+    //        _navMeshAgent.SetDestination(_target.position);
+    //    }
+    //}
 
     //public void GoToWork()
     //    {

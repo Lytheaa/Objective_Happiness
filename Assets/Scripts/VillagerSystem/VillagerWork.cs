@@ -61,7 +61,6 @@ public class VillagerWork : MonoBehaviour
                 _villagerManager.NumberOfItinerants++;
                 break;
         }
-
     }
 
 }

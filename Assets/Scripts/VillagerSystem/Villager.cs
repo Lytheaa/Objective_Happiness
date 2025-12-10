@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
+using UnityEngine.AI;
 //using Random = System.Random;
 using UnityEngine.Events;
-using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Villager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Villager : MonoBehaviour
     [SerializeField] private bool _isHungryDisplay;
 
     [SerializeField] private bool _isTiredDisplay;
+
+    [SerializeField] private Transform _workTarget;
 
     private void Awake()
     {
@@ -52,7 +55,7 @@ public class Villager : MonoBehaviour
         _data.OnTirednessChange += TirednessChange;
         _data.OnHungerChange += FeedVillager;
         _data.OnAgeChange += CheckAge;
-        //_data.OnWorkChange += 
+        _data.OnWorkChange += SetWorkTarget;
     }
     private void OnDisable()
     {
@@ -60,6 +63,8 @@ public class Villager : MonoBehaviour
         _data.OnTirednessChange -= TirednessChange;
         _data.OnHungerChange -= FeedVillager;
         _data.OnAgeChange -= CheckAge;
+        _data.OnWorkChange -= SetWorkTarget;
+
     }
 
     /// METHODES LIEES AUX EVENEMENTS///
@@ -120,7 +125,28 @@ public class Villager : MonoBehaviour
         }
     }
 
+    private void SetWorkTarget(int work)
+    {
+        Transform newWorkTarget;
 
+        foreach (Transform zone in _workZonesWaypoints)
+        {
+            switch (work)
+            {
+                case 1: //Picker
+                newWorkTarget = zone.GetComponent<FoodZone>().transform;
+                    break;
+                case 2: //Woodsman
+                newWorkTarget = zone.GetComponent<Forest>().transform;
+                    break;
+                case 3: //Miner
+                newWorkTarget = zone.GetComponent<StoneZone>().transform;
+                    break;
+                case 4:
+                    Debug.Log($"Zone work target = maçon");
+                    break;
+            }
+        }
 }
 
 
