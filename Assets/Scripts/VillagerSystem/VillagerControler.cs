@@ -22,7 +22,7 @@ public class VillagerControler : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _wanderingWaypoints = _placesManager.WanderingWaypoints;
         _housesWaypoints = _placesManager.HousesWayPoints;
-        _workZonesWaypoints = _placesManager.WorkZonesWaypoints;
+        //_workZonesWaypoints = _placesManager.WorkZonesWaypoints;
 
     }
 

@@ -134,10 +134,8 @@ public class VillagerManager : MonoBehaviour
             villager.Die();
             _villagers.RemoveAt(randomIndex);
         }
-
         _hungryVillagersCount = 0; // Reset après les morts
     }
-
 
     /// VILLAGER COUNTER :/// 
 
@@ -152,7 +150,6 @@ public class VillagerManager : MonoBehaviour
         VillagerWork.OnWorkChange -= ChangeWorkersCountersValues;
         Villager.OnDeath -= SubstractWorkersCounter;
     }
-
 
     private void ChangeWorkersCountersValues(int previousWorkId, int newWorkId)
     {
