@@ -8,54 +8,43 @@ public class VillagerControler : MonoBehaviour
 {
     private PlacesManager _placesManager;
     private NavMeshAgent _navMeshAgent;
-    private List<Transform> _wanderingWaypoints;
 
-    ///Tableau des points de déplacement possibles pour les villageois :
+    private List<Transform> _wanderingWaypoints;
     
     private Transform _target;
-
-    int _currentIndex = 0;
-
 
 
     private void Awake()
     {
         _placesManager = PlacesManager.Instance;
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _wanderingWaypoints = _placesManager.WanderingWaypoints;
 
     }
 
     private void Start()
     {
-        _wanderingWaypoints = _placesManager.WanderingWaypoints;
-        ///TEST ERRANCE : 
-        //_currentIndex = Random.Range(0, _wanderingWaypoints.Count-1);
-        _navMeshAgent.SetDestination(_wanderingWaypoints[0].position);
-
-
     }
 
     private void Update()
     {
-        if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 
-        {
-            if (_currentIndex != _wanderingWaypoints.Count - 1)
-            { _currentIndex++; }
-            else
-            { _currentIndex = 0; }  
-
-            _navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
-
-            // _currentIndex = Random.Range(0, _wanderingWaypoints.Count-1);
-            //_navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
-        }
-
-        //if (_target != null)
-        //{
-        //    _navMeshAgent.SetDestination(_target.position);
-        //}
+        WanderingMovement();
     }
 
+    private void WanderingMovement() //Random movement between waypoints
+    {
+        int _currentIndex;
+        if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 
+        {
+             _currentIndex = Random.Range(0, _wanderingWaypoints.Count);
+            _navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
+        }
+    }
+
+    //if (_currentIndex != _wanderingWaypoints.Count - 1)
+    //{ _currentIndex++; }
+    //else
+    //{ _currentIndex = 0; }  
 
     private void GoToSleep()
     {
