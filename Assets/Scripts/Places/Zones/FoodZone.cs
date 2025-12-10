@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FoodZone : Place
 {
-    public float progressAmount = .1f;
+    public int progressAmount = 1;
     public override void Action(Villager villager)
     {
-        //get the game manager from future pauline's push
+        GameManager.Instance.Food += progressAmount;
     }
 
     public override void PreAction(Villager villager)

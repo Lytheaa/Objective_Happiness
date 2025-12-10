@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ConstructionModeButton : MonoBehaviour
 {
+    public static event Action<Transform> OnBuildingCreation;
+    
     [SerializeField] private List<GameObject> buildings;
     [SerializeField] private GameObject constructionButton;
     [SerializeField] private Transform BuildingsParent;
@@ -26,9 +28,19 @@ public class ConstructionModeButton : MonoBehaviour
 
     private void BuyBuildings(Place building)
     {
-        //if(building.WoodCost <= GameManager.Instance.Wood && ...)
-        Instantiate(building);
-        //else
-        //not enough ressources feedback
+        if (building.WoodCost <= GameManager.Instance.Wood &&
+            building.StoneCost <= GameManager.Instance.Stone 
+            /*&& GameManager.instance.VillagerManager.AvailableBuilder >= building.BuilderCost*/)
+        {
+            GameManager.Instance.Wood -= building.WoodCost;
+            GameManager.Instance.Stone -= building.StoneCost;
+            //-BuilderCost
+            var newBuilding = Instantiate(building);
+            OnBuildingCreation?.Invoke(newBuilding.transform);
+        }
+        else
+        {
+            print("not enough resources");
+        }
     }
 }

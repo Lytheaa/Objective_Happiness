@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Farm : Place
 {
-    [SerializeField] private float foodAmountMultiplier = 1.5f;
+    [SerializeField] private int foodAmountMultiplier = 2;
 
     private void Start()
     {
