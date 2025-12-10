@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class VillagersGraphics : MonoBehaviour
 {
-    public VillagerData _data;
+    private Villager _villager;
+    //public VillagerData _data;
     private MeshRenderer _meshRenderer;
 
     /// COLORS  - Test avec des materials : à changer pour des components Image ? ///
@@ -15,18 +16,21 @@ public class VillagersGraphics : MonoBehaviour
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-        _data = GetComponentInParent<VillagerData>();
+        _villager = GetComponentInParent<Villager>();
+        //_data = GetComponentInParent<VillagerData>();
     }
 
     /// EVENT LISTENER///
     
     private void OnEnable()
     {
-        _data.OnWorkChange += SetGraphics;
+        //_data.OnWorkChange += SetGraphics;
+        _villager.Data.OnWorkChange += SetGraphics;
     }
     private void OnDisable()
     {
-        _data.OnWorkChange -= SetGraphics;
+        //_data.OnWorkChange -= SetGraphics;
+        _villager.Data.OnWorkChange -= SetGraphics;
     }
 
     private void SetGraphics(int workIndex)
