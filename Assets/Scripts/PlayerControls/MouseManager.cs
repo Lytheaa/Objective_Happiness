@@ -34,7 +34,7 @@ public class MouseManager : MonoBehaviour
     {
         if (_isPointerDown)
         {
-            Debug.Log("click");
+            //Debug.Log("click");
         }
     }
 

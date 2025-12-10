@@ -65,6 +65,7 @@ public class InConstruction : Place
 
     public override void PreAction(Villager villager)
     {
+        if (!_placed) return;
         print("preAction");
         //start villager animation
         //make it dont move
@@ -77,11 +78,12 @@ public class InConstruction : Place
         
         ConstructionProgress += progressAmount;
         if(ConstructionProgress >= 1)
-            enabled = false;
+            enabled = false; //disable this component
     }
 
     public override void PostAction(Villager villager)
     {
+        if (!_placed) return;
         print("postAction");
         //disable villager working anim
         //make it move again

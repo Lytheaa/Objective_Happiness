@@ -8,14 +8,7 @@ public class House : Place
     private GameObject _villagerGraphics;
     public override void Action(Villager villager)
     {
-        if (villager != _villager)
-            return;
-        
-        var villagerGraphics = villager.transform.GetChild(0).gameObject;
-
-        villagerGraphics.SetActive(false);
-        //play Building animation
-        Debug.Log("House interaction");
+        Debug.Log("sleeping");
     }
 
     public override void PreAction(Villager villager)

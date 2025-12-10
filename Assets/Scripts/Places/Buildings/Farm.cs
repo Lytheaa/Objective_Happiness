@@ -12,7 +12,7 @@ public class Farm : Place
         Action();
     }
 
-    public override void Action(Villager villager)
+    public override void Action()
     {
         var foodZonesList = FindObjectsByType<FoodZone>(FindObjectsSortMode.None);
         foreach (FoodZone zone in foodZonesList)
