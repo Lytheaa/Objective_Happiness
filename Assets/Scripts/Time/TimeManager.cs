@@ -39,7 +39,6 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         OnStartGame.Invoke();
-        Debug.Log("Game Started, First Spawn initialized");
     }
 
     private void Update()
@@ -62,6 +61,7 @@ public class TimeManager : MonoBehaviour
         {
             _lastEventTime = GlobalTime;
             OnWorkTime?.Invoke();
+            Debug.Log("Work Time Event Triggered");
         }
         
         if (CurrentTime >= HoursToSec(sleepTime) && CurrentTime < HoursToSec(sleepTime)+1 && GlobalTime >= _lastEventTime + _eventCooldown)
