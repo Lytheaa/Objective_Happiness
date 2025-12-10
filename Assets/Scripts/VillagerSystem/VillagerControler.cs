@@ -6,11 +6,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class VillagerControler : MonoBehaviour
 {
-    private VillagerMovementsManager _villagerMovementsManager;
+    private PlacesManager _placesManager;
     private NavMeshAgent _navMeshAgent;
     private List<Transform> _wanderingWaypoints;
+
     ///Tableau des points de déplacement possibles pour les villageois :
-    ///
+    
     private Transform _target;
 
     int _currentIndex = 0;
@@ -19,14 +20,14 @@ public class VillagerControler : MonoBehaviour
 
     private void Awake()
     {
-        _villagerMovementsManager = VillagerMovementsManager.Instance;
+        _placesManager = PlacesManager.Instance;
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
     }
 
     private void Start()
     {
-        _wanderingWaypoints = _villagerMovementsManager.WanderingWaypoints;
+        _wanderingWaypoints = _placesManager.WanderingWaypoints;
         ///TEST ERRANCE : 
         //_currentIndex = Random.Range(0, _wanderingWaypoints.Count-1);
         _navMeshAgent.SetDestination(_wanderingWaypoints[0].position);
@@ -47,13 +48,18 @@ public class VillagerControler : MonoBehaviour
 
             // _currentIndex = Random.Range(0, _wanderingWaypoints.Count-1);
             //_navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
-
         }
 
         //if (_target != null)
         //{
         //    _navMeshAgent.SetDestination(_target.position);
         //}
+    }
+
+
+    private void GoToSleep()
+    {
+
     }
 
     public void SetWayPoints()

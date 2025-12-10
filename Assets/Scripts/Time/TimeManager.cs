@@ -38,9 +38,7 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
-
         OnStartGame.Invoke();
-        Debug.Log("Game Started, First Spawn initialized");
     }
 
     private void Update()

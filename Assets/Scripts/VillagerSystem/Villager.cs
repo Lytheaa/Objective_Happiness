@@ -20,30 +20,12 @@ public class Villager : MonoBehaviour
     [Tooltip("Display hungry propertie in inspector to check parameters")]
     [SerializeField] private bool _isHungryDisplay;
 
-    //private void Awake()
-    //{
-    //    //_gameManager = GameManager.Instance;
-    //    //_villagerManager = VillagerManager.Instance;
-    //    //_data = GetComponent<VillagerData>();
-
-
-    //}
-
     private void Awake()
-{
-    _data = GetComponent<VillagerData>(); // plus fiable que GetComponentInParent
-    if (_data == null)
-        Debug.LogError("VillagerData MISSING on prefab !!");
-
-    _gameManager = GameManager.Instance;
-    if (_gameManager == null)
-        Debug.LogError("GameManager instance is NULL !!");
-
-    _villagerManager = VillagerManager.Instance;
-    if (_villagerManager == null)
-        Debug.LogError("VillagerManager instance is NULL !!");
-}
-
+    {
+        _gameManager = GameManager.Instance;
+        _villagerManager = VillagerManager.Instance;
+        _data = GetComponent<VillagerData>();
+    }
 
     private void Start() // Lors de l'instanciation du villageois
     {
@@ -121,6 +103,7 @@ public class Villager : MonoBehaviour
         if (isTired)
         {
             /// Cherche une place pour dormir ? ///
+            /// VillagerControler.GoToSleep();
             Debug.Log("Villageois est maintenant fatigué (via event)");
         }
         else
