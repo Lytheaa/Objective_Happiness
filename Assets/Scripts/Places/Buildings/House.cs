@@ -6,6 +6,7 @@ public class House : Place
 {
     private Villager _villager;
     private GameObject _villagerGraphics;
+    public bool IsOccupied = false;
     public override void Action(Villager villager)
     {
         Debug.Log("sleeping");
@@ -14,7 +15,10 @@ public class House : Place
     public override void PreAction(Villager villager)
     {
         if (villager != _villager && _villager != null)
+        {
+            IsOccupied = true;
             return;
+        }
         
         _villager = villager;
         _villagerGraphics = villager.transform.GetChild(0).gameObject;
@@ -27,6 +31,7 @@ public class House : Place
         
         _villagerGraphics = null;
         _villager = null;
+        IsOccupied = false;
         
     }
 }
