@@ -10,9 +10,9 @@ public class VillagerControler : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
 
     private List<Transform> _wanderingWaypoints;
-    
-    private Transform _target;
+    private List<Transform> _housesWaypoints;
 
+    private Transform _target;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class VillagerControler : MonoBehaviour
 
     private void Update()
     {
-        //WanderingMovement();
+        WanderingMovement();
     }
 
     public void WanderingMovement() //Random movement between waypoints
@@ -36,19 +36,31 @@ public class VillagerControler : MonoBehaviour
         int _currentIndex;
         if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 
         {
-             _currentIndex = Random.Range(0, _wanderingWaypoints.Count);
+            _currentIndex = Random.Range(0, _wanderingWaypoints.Count);
             _navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
         }
     }
 
-    //if (_currentIndex != _wanderingWaypoints.Count - 1)
-    //{ _currentIndex++; }
-    //else
-    //{ _currentIndex = 0; }  
-
-    private void GoToSleep()
+    public void GoToSleep()
     {
+        int houseIndex = 0;
 
+        foreach (Transform houses in _housesWaypoints)
+        {
+            //if (houseIndex != _housesWaypoints.Count)
+            //{
+            //    houseIndex++;
+            //}
+            //else
+            //{
+            //    houseIndex = 0;
+            //}
+
+            if (!houses.GetComponent<House>().IsOccupied)
+            {
+                _navMeshAgent.SetDestination(_housesWaypoints[houseIndex].position);
+            }
+        }
     }
 
     public void SetWayPoints()

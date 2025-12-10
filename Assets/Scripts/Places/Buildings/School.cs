@@ -12,6 +12,7 @@ public class School : Place
 
     public override void PreAction(Villager villager)
     {
+        base.PreAction(villager);
         var villagerGraphics = villager.transform.GetChild(0).gameObject;
         villagerGraphics.SetActive(false);
     }
