@@ -5,6 +5,7 @@ using UnityEngine;
 using Random = System.Random;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class VillagerManager : MonoBehaviour
 {
@@ -68,15 +69,23 @@ public class VillagerManager : MonoBehaviour
     
     public void GoToWork()
     {
-        Debug.Log("Villagers going to work...");
-        foreach (var villager in _villagers)
+        foreach(var villager in _villagers)
         {
-            if (villager._data.WorkIndex == 5) // Les vagabonds errent
-            {
-                villager.Controler.WanderingMovement();
-                Debug.Log("Villageois vagabond errant...");
-            }
+            if (villager._data.WorkIndex > 0 && villager._data.WorkIndex < 5) /// Si les villageois ont un métier autre que vagabond 
+            { }
+           
         }
+        //Debug.Log("Villagers going to work...");
+        //foreach (var villager in _villagers)
+        //{
+        //    //Les autres rejoignent leur travail : temps 
+
+        //    if (villager._data.WorkIndex == 5) // Les vagabonds errent
+        //    {
+        //        villager.Controler.WanderingMovement();
+        //        Debug.Log("Villageois vagabond errant...");
+        //    }
+        //}
     }
 
     private void GoToRest()

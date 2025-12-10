@@ -10,6 +10,7 @@ public class VillagerControler : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
 
     private List<Transform> _wanderingWaypoints;
+    private List<Transform> _housesWaypoints;
     
     private Transform _target;
 
@@ -28,7 +29,7 @@ public class VillagerControler : MonoBehaviour
 
     private void Update()
     {
-        //WanderingMovement();
+        WanderingMovement();
     }
 
     public void WanderingMovement() //Random movement between waypoints
@@ -48,7 +49,17 @@ public class VillagerControler : MonoBehaviour
 
     private void GoToSleep()
     {
+        int houseIndex;
+        foreach (Transform houses in _housesWaypoints)
+        {
+            //_navMeshAgent
 
+            //if (_currentIndex != _wanderingWaypoints.Count - 1)
+            //{ _currentIndex++; }
+            //else
+            //{ _currentIndex = 0; }  
+
+        }
     }
 
     public void SetWayPoints()
