@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class ConstructionModeButton : MonoBehaviour
 {
-    public static event Action<Transform> OnBuildingCreation;
-    
     [SerializeField] private List<GameObject> buildings;
     [SerializeField] private GameObject constructionButton;
     [SerializeField] private Transform BuildingsParent;
@@ -36,7 +34,9 @@ public class ConstructionModeButton : MonoBehaviour
             GameManager.Instance.Stone -= building.StoneCost;
             //-BuilderCost
             var newBuilding = Instantiate(building);
-            OnBuildingCreation?.Invoke(newBuilding.transform);
+            
+            if(newBuilding is House)
+                PlacesManager.Instance.HousesWayPoints.Add(newBuilding.transform);
         }
         else
         {
