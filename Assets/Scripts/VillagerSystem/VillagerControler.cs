@@ -11,6 +11,8 @@ public class VillagerControler : MonoBehaviour
 
     private List<Transform> _wanderingWaypoints;
     private List<Transform> _housesWaypoints;
+    private List<Transform> _workZonesWaypoints;
+
 
     private Transform _target;
 
@@ -20,6 +22,7 @@ public class VillagerControler : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _wanderingWaypoints = _placesManager.WanderingWaypoints;
         _housesWaypoints = _placesManager.HousesWayPoints;
+        _workZonesWaypoints = _placesManager.WorkZonesWaypoints;
 
     }
 
@@ -64,11 +67,59 @@ public class VillagerControler : MonoBehaviour
         }
     }
 
-    public void SetWayPoints()
-    {
 
+    public void GotoWork(int work) /// MODIF
+    {
+        foreach (Transform zone in _workZonesWaypoints)
+        {
+            switch (work)
+            {
+                case 1: //Picker
+                    _target = zone.GetComponent<FoodZone>().transform;
+                    break;
+                case 2: //Woodsman
+                    _target = zone.GetComponent<Forest>().transform;
+                    break;
+                case 3: //Miner
+                    _target = zone.GetComponent<StoneZone>().transform;
+                    break;
+                case 4:
+                    Debug.Log($"Zone work target = maçon");
+                    break;
+            }
+
+            _navMeshAgent.SetDestination(_target.position);
+        }
     }
 
+    //public void GoToWork()
+    //    {
+    //    _navMeshAgent.SetDestination(_target.position);
+    //}
+
+    //public Transform SetTargetWork(int work)
+    //{
+    //    foreach (Transform zone in _workZonesWaypoints)
+    //    {
+    //        switch (work)
+    //        {
+    //            case 1: //Picker
+    //                _target = zone.GetComponent<FoodZone>().transform; 
+    //                break;
+    //            case 2: //Woodsman
+    //                _target = zone.GetComponent<Forest>().transform;
+    //                break;
+    //            case 3: //Miner
+    //                _target = zone.GetComponent<StoneZone>().transform;
+    //                break;
+    //            case 4:
+    //                Debug.Log($"Zone work target = maçon");
+    //                break;
+    //        }
+
+    //    return _target;
+    //    }
+    //}
 
 
     //private void OnTriggerEnter(Collider other)

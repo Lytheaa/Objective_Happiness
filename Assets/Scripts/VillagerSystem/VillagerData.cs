@@ -65,6 +65,17 @@ public class VillagerData : MonoBehaviour
         }
     }
 
+    private Transform _workTarget;
+    public Transform WorkTarget
+    {
+        get { return _workTarget; }
+        set
+        {
+            if (_workTarget == value) return;
+            _workTarget = value;
+        }
+    }
+
     private bool _isBusy; 
     public bool IsBusy
     {
@@ -75,6 +86,7 @@ public class VillagerData : MonoBehaviour
             _isBusy = value;
         }
     }
+
 
 
     /// EVÊNEMENTS : ///

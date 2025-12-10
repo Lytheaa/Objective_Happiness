@@ -52,6 +52,7 @@ public class Villager : MonoBehaviour
         _data.OnTirednessChange += TirednessChange;
         _data.OnHungerChange += FeedVillager;
         _data.OnAgeChange += CheckAge;
+        //_data.OnWorkChange += 
     }
     private void OnDisable()
     {

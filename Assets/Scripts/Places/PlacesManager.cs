@@ -12,7 +12,8 @@ public class PlacesManager : MonoBehaviour
     [SerializeField] List<Transform> _housesWayPoints; // Maisons des villageois 
     public List<Transform> HousesWayPoints => _housesWayPoints;
 
-
+    [SerializeField] List<Transform> _workZonesWaypoints; //Zones de travail, dans l'inspector, à modifier
+    public List<Transform> WorkZonesWaypoints => _workZonesWaypoints;
 
     private void Awake()
     {

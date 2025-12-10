@@ -73,20 +73,11 @@ public class VillagerManager : MonoBehaviour
         foreach(var villager in _villagers)
         {
             if (villager._data.WorkIndex > 0 && villager._data.WorkIndex < 5) /// Si les villageois ont un métier autre que vagabond 
-            { }
+            {
+                
+            }
            
         }
-        //Debug.Log("Villagers going to work...");
-        //foreach (var villager in _villagers)
-        //{
-        //    //Les autres rejoignent leur travail : temps 
-
-        //    if (villager._data.WorkIndex == 5) // Les vagabonds errent
-        //    {
-        //        villager.Controler.WanderingMovement();
-        //        Debug.Log("Villageois vagabond errant...");
-        //    }
-        //}
     }
 
     public void GoToRest()
