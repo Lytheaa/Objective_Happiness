@@ -53,6 +53,8 @@ public class TimeManager : MonoBehaviour
         {
             CurrentTime = 0;
             OnDayEnds?.Invoke();
+            _workTimeTriggered = false; 
+            _sleepTimeTriggered = false;
         }
 
         if (CurrentTime >= HoursToSec(workTime) && !_workTimeTriggered)

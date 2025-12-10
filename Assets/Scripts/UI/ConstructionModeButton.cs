@@ -34,8 +34,8 @@ public class ConstructionModeButton : MonoBehaviour
             GameManager.Instance.Stone -= building.StoneCost;
             //-BuilderCost
             var newBuilding = Instantiate(building);
-            
-            if(newBuilding is House)
+
+            if (newBuilding.TryGetComponent<House>(out House component) )
                 PlacesManager.Instance.HousesWayPoints.Add(newBuilding.transform);
         }
         else
