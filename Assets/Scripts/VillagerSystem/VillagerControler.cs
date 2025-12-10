@@ -11,9 +11,10 @@ public class VillagerControler : MonoBehaviour
 
     private List<Transform> _wanderingWaypoints;
     private List<Transform> _housesWaypoints;
-    
+
     private Transform _target;
 
+    int _houseIndex = 0;
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class VillagerControler : MonoBehaviour
         int _currentIndex;
         if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 
         {
-             _currentIndex = Random.Range(0, _wanderingWaypoints.Count);
+            _currentIndex = Random.Range(0, _wanderingWaypoints.Count);
             _navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
         }
     }
@@ -49,16 +50,19 @@ public class VillagerControler : MonoBehaviour
 
     private void GoToSleep()
     {
-        int houseIndex;
+        int houseIndex = 0;
+
         foreach (Transform houses in _housesWaypoints)
         {
-            //_navMeshAgent
-
-            //if (_currentIndex != _wanderingWaypoints.Count - 1)
-            //{ _currentIndex++; }
-            //else
-            //{ _currentIndex = 0; }  
-
+            if (houseIndex != _housesWaypoints.Count)
+            {
+                houseIndex++;
+            }
+            else
+            {
+                houseIndex = 0;
+            }
+            _navMeshAgent.SetDestination(_housesWaypoints[houseIndex].position);
         }
     }
 
