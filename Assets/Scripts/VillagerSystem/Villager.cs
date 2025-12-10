@@ -23,6 +23,8 @@ public class Villager : MonoBehaviour
     [Tooltip("Display hungry propertie in inspector to check parameters")]
     [SerializeField] private bool _isHungryDisplay;
 
+    [SerializeField] private bool _isTiredDisplay;
+
     private void Awake()
     {
         _gameManager = GameManager.Instance;
@@ -40,6 +42,7 @@ public class Villager : MonoBehaviour
     {
         _ageDisplay = _data.Age;
         _isHungryDisplay = _data.IsHungry;
+        _isTiredDisplay = _data.IsTired;
     }
 
     ///EVENT LISTENER///
