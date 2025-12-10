@@ -28,10 +28,10 @@ public class VillagerControler : MonoBehaviour
 
     private void Update()
     {
-        WanderingMovement();
+        //WanderingMovement();
     }
 
-    private void WanderingMovement() //Random movement between waypoints
+    public void WanderingMovement() //Random movement between waypoints
     {
         int _currentIndex;
         if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 

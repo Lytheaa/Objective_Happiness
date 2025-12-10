@@ -66,11 +66,16 @@ public class VillagerManager : MonoBehaviour
 
     /// DEPLACEMENT DES VILLAGEOIS ///
     
-    private void GoToWork()
+    public void GoToWork()
     {
-         foreach (var villager in _villagers)
+        Debug.Log("Villagers going to work...");
+        foreach (var villager in _villagers)
         {
-            //villager.GoToWork();
+            //if (villager._data.WorkIndex == 5) // Les vagabonds errent
+            //{
+                villager.Controler.WanderingMovement();
+                Debug.Log("Villageois vagabond errant...");
+            //}
         }
     }
 

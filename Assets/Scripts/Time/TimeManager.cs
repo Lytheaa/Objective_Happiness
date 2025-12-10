@@ -61,6 +61,7 @@ public class TimeManager : MonoBehaviour
         {
             _lastEventTime = GlobalTime;
             OnWorkTime?.Invoke();
+            Debug.Log("Work Time Event Triggered");
         }
         
         if (CurrentTime >= HoursToSec(sleepTime) && CurrentTime < HoursToSec(sleepTime)+1 && GlobalTime >= _lastEventTime + _eventCooldown)

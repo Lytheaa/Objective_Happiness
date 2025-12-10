@@ -12,6 +12,9 @@ public class Villager : MonoBehaviour
     public GameManager _gameManager; // Pour accéder aux variables globales
     public VillagerManager _villagerManager;
 
+    private VillagerControler _controler;
+    public VillagerControler Controler { get { return _controler; } }
+
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
     [Tooltip("Display age propertie in inspector to check parameters")]
@@ -25,6 +28,7 @@ public class Villager : MonoBehaviour
         _gameManager = GameManager.Instance;
         _villagerManager = VillagerManager.Instance;
         _data = GetComponent<VillagerData>();
+        _controler = GetComponent<VillagerControler>();
     }
 
     private void Start() // Lors de l'instanciation du villageois
