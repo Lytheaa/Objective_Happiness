@@ -1027,9 +1027,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8187314862292585045, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: BuildingsParent
+      value: 
+      objectReference: {fileID: 1627499863}
     - target: {fileID: 8363801345099829621, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_Spacing.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_Spacing.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_CellSize.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_CellSize.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999253792930566987, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
