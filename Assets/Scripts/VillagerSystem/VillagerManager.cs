@@ -71,11 +71,11 @@ public class VillagerManager : MonoBehaviour
         Debug.Log("Villagers going to work...");
         foreach (var villager in _villagers)
         {
-            //if (villager._data.WorkIndex == 5) // Les vagabonds errent
-            //{
+            if (villager._data.WorkIndex == 5) // Les vagabonds errent
+            {
                 villager.Controler.WanderingMovement();
                 Debug.Log("Villageois vagabond errant...");
-            //}
+            }
         }
     }
 
