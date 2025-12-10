@@ -9,11 +9,10 @@ public class ProsperityIndicator : MonoBehaviour
     private int _maxProsperityPoints = 100;
     //public int MaxProsperityPoints => _maxProsperityPoints;
     [Range(0, 100)]
-    [SerializeField] private int _currentProsperityPoints = 100; 
+    [SerializeField] private int _currentProsperityPoints = Mathf.Clamp(70, 0, 100); 
     //public int CurrentProsperityPoints => _currentProsperityPoints;
 
     [SerializeField] private Image _prosperityIndicator;
-
 
     public void AddProsperityPoints(int amount)
     {
@@ -32,8 +31,8 @@ public class ProsperityIndicator : MonoBehaviour
         _prosperityIndicator.fillAmount = _currentProsperityPoints / (float)_maxProsperityPoints;
     }
 
-    //private void Update()
-    //{
-    //    DisplayProsperityIndicator();
-    //}
+    private void Update() /// DEBUG - TO SUPRESS 
+    {
+        DisplayProsperityIndicator();
+    }
 }
