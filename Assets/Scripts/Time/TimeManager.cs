@@ -65,13 +65,14 @@ public class TimeManager : MonoBehaviour
         {
             _workTimeTriggered = true;
             OnWorkTime?.Invoke();
-            Debug.Log("Work Time Event Triggered");
+            Debug.Log("Work Time !");
         }
         
         if (CurrentTime >= HoursToSec(sleepTime) && !_sleepTimeTriggered)
         {
             _sleepTimeTriggered = true;
             OnSleepTime?.Invoke();
+            Debug.Log("Sleep Time !");
         }
 
         if (GlobalTime >= _lastSpawnTime + HoursToSec(spawnTime))

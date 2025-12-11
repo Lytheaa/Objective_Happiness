@@ -75,7 +75,7 @@ public class VillagerData : MonoBehaviour
         }
     }
 
-    private bool _isBusy; 
+    private bool _isBusy = false; 
     public bool IsBusy
     {
         get => _isBusy;

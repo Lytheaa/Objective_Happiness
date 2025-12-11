@@ -58,7 +58,6 @@ public class VillagerWork : MonoBehaviour
         if (_placesManager.WorkZones.ContainsKey(workIndex))
         {
             _villager.Data.WorkTarget = _placesManager.WorkZones[workIndex];
-            Debug.Log($"Work Place Attributed :{_villager.Data.WorkTarget}");
         }
     }
 }

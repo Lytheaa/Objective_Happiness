@@ -67,8 +67,6 @@ public class VillagerManager : MonoBehaviour
 
     public void TimeToWork()
     {
-        Debug.Log("Time to work !");
-
         /// S'il n'est pas fatiqué ajouter condition : 
         foreach (var villager in _villagers)
         {
@@ -79,11 +77,8 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-
     public void TimeToRest()
     {
-        Debug.Log("Time to rest !");
-
         foreach (var villager in _villagers)
         {
             if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 

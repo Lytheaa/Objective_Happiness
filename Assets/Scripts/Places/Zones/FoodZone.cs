@@ -13,10 +13,13 @@ public class FoodZone : Place
     public override void PreAction(Villager villager)
     {
         //villager start work animation
+        base.PreAction(villager);
     }
 
     public override void PostAction(Villager villager)
     {
         //villager ends work animation
+        base.PostAction(villager);
+
     }
 }

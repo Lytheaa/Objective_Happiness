@@ -11,8 +11,7 @@ public class VillagerController : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Villager _villager;
 
-    Transform _workTarget;
-
+    private Transform _target;
 
     private void Awake()
     {
@@ -23,7 +22,29 @@ public class VillagerController : MonoBehaviour
 
     private void Update()
     {
-        WanderingMovement();
+        if (_villager.Data.IsBusy)
+        {
+            if (_navMeshAgent.remainingDistance < .5f /*&& !_navMeshAgent.pathPending*/)
+            {
+                RaycastHit[] allHits = Physics.SphereCastAll(transform.position, 2, Vector3.down);
+                foreach (var hit in allHits)
+                {
+                    Place place;
+                    if (hit.collider.TryGetComponent<Place> (out place))
+                    {
+                        if (hit.collider.transform == _target)
+                        {
+                            StartCoroutine(place.ActionCoroutine(_villager));
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            WanderingMovement();
+        }
     }
 
     private void GoToSchool()
@@ -31,7 +52,9 @@ public class VillagerController : MonoBehaviour
         if (_placesManager.SchoolWaypoints.Count > 0)
         {
             int schoolIndex = Random.Range(0, _placesManager.SchoolWaypoints.Count);
-            _navMeshAgent.SetDestination(_placesManager.SchoolWaypoints[schoolIndex].position);
+            _target = _placesManager.SchoolWaypoints[schoolIndex];
+            _navMeshAgent.SetDestination(_target.position);
+            //_navMeshAgent.SetDestination(_placesManager.SchoolWaypoints[schoolIndex].position);
         }
     }
 
@@ -40,12 +63,17 @@ public class VillagerController : MonoBehaviour
 
         if (_villager.Data.WorkId < 4) // S'il a un métier autre que vagabond ou maçon 
         {
-            _navMeshAgent.SetDestination(_villager.Data.WorkTarget.position);
+            _target = _villager.Data.WorkTarget;
+            _navMeshAgent.SetDestination(_target.position);
+            _villager.Data.IsBusy = true;
+            //_navMeshAgent.SetDestination(_villager.Data.WorkTarget.position);
         }
         else if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maçon, et qu'au moins un bâtiment est à construite
-        { 
+        {
             int newIndex = Random.Range(0, _placesManager.NewBuildings.Count);
-            _navMeshAgent.SetDestination(_placesManager.NewBuildings[newIndex].position);
+            _target = _placesManager.NewBuildings[newIndex];
+            _navMeshAgent.SetDestination(_target.position);
+            //_navMeshAgent.SetDestination(_placesManager.NewBuildings[newIndex].position);
         }
         else
         {
@@ -80,10 +108,11 @@ public class VillagerController : MonoBehaviour
 
             if (!houses.GetComponent<House>().IsOccupied)
             {
-                _navMeshAgent.SetDestination(_placesManager.HousesWayPoints[houseIndex].position);
+                _target = _placesManager.HousesWayPoints[houseIndex];
+                _navMeshAgent.SetDestination(_target.position);
+                //_navMeshAgent.SetDestination(_placesManager.HousesWayPoints[houseIndex].position);
             }
         }
     }
-
 
 }
