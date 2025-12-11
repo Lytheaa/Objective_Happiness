@@ -97,7 +97,6 @@ public class Villager : MonoBehaviour
             {
                 _villagerManager.HungryVillagersCount++;
             }
-
             _data.IsHungry = false; // Réinitialiser la faim une fois le compteur mis à jour
         }
     }
@@ -115,8 +114,8 @@ public class Villager : MonoBehaviour
     {
         if (!isHappy)
         {
-            _gameManager.ProsperityIndicator.SubstractProsperityPoints(0.2f); // Changer valeur
-            Debug.Log("Villageois est maintenant malheureux (via event)");
+            _gameManager.ProsperityIndicator.SubstractProsperityPoints(1f); // Changer valeur
+            Debug.Log("Villageois est maintenant malheureux (via event), soustraction de points de prospérité");
         }
     }
 

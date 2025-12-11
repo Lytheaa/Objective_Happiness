@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada5ff357ec3b0b44b700e2c7a4554a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 0}
   _pickerMaterial: {fileID: 2100000, guid: 8fe91dc79eb564d448ecaba483694393, type: 2}
   _woodsmanMaterial: {fileID: 2100000, guid: 2404aa67ed7e1644e962ab5d111ec6ad, type: 2}
   _minerMaterial: {fileID: 2100000, guid: d73030aa029cbb94bbfc56cf9b1f0478, type: 2}
@@ -175,12 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5498b10a4fc0f5640905ba770d2ef8fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 0}
-  _gameManager: {fileID: 0}
-  _villagerManager: {fileID: 0}
   _ageDisplay: 0
   _isHungryDisplay: 0
   _isTiredDisplay: 0
+  _isHappyDisplay: 0
+  _workTarget: {fileID: 0}
 --- !u!114 &1971429117752039834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +226,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
