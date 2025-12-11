@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Forest : Place
+public class WoodZone : Place
 {
       [SerializeField] int progressAmount = 1;
       public override void Action(Villager villager)
