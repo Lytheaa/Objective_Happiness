@@ -66,14 +66,14 @@ public class InConstruction : Place
     public override void PreAction(Villager villager)
     {
         if (!_placed) return;
-        print("preAction");
+        //print("preAction");
         //start villager animation
         //make it dont move
     }
 
     public override void Action(Villager villager)
     {
-        print("action");
+        //print("action");
         if (!_placed) return;
         
         ConstructionProgress += progressAmount;
