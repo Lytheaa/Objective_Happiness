@@ -72,9 +72,9 @@ public class VillagerManager : MonoBehaviour
         /// S'il n'est pas fatiqué ajouter condition : 
         foreach (var villager in _villagers)
         {
-            if (villager != null && villager.Controler != null)
+            if (villager != null && villager.Controller != null)
             {
-                villager.Controler.GoToWork();
+                villager.Controller.GoToWork();
             }
         }
     }
@@ -88,7 +88,7 @@ public class VillagerManager : MonoBehaviour
         {
             if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 
             {
-                villager.Controler.GoToSleep();
+                villager.Controller.GoToSleep();
             }
         }
     }

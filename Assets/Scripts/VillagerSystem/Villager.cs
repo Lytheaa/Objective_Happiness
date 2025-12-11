@@ -19,8 +19,8 @@ public class Villager : MonoBehaviour
     private VillagerManager _villagerManager;
     public VillagerManager VillagerManager { get { return _villagerManager; } }
 
-    private VillagerControler _controler;
-    public VillagerControler Controler { get { return _controler; } }
+    private VillagerController _controller;
+    public VillagerController Controller { get { return _controller; } }
 
     private VillagerWork _work;
     public VillagerWork Work { get { return _work; } }
@@ -48,7 +48,7 @@ public class Villager : MonoBehaviour
         _gameManager = GameManager.Instance;
         _villagerManager = VillagerManager.Instance;
         _data = GetComponent<VillagerData>();
-        _controler = GetComponent<VillagerControler>();
+        _controller = GetComponent<VillagerController>();
         _work = GetComponent<VillagerWork>();
     }
 

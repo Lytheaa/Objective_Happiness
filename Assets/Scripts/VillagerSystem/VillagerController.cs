@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class VillagerControler : MonoBehaviour
+public class VillagerController : MonoBehaviour
 {
     private PlacesManager _placesManager;
     private NavMeshAgent _navMeshAgent;
