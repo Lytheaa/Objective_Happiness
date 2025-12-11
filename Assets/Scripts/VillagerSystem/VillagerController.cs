@@ -70,12 +70,13 @@ public class VillagerController : MonoBehaviour
         }
         else if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maçon, et qu'au moins un bâtiment est à construite
         {
-            Debug.Log($"Builder on work");
+            //Debug.Log($"Builder on work");
             int newIndex = Random.Range(0, _placesManager.NewBuildings.Count -1);
 
-            Debug.Log($"Building index {newIndex}");
+            //Debug.Log($"Building index {newIndex}");
             _target = _placesManager.NewBuildings[newIndex];
-            Debug.Log($"Builder : Construction new building {_target}");
+            //Debug.Log($"Builder : Construction new building {_target}");
+
             _navMeshAgent.SetDestination(_target.position);
             _villager.Data.IsBusy = true;
             //_navMeshAgent.SetDestination(_placesManager.NewBuildings[newIndex].position);

@@ -11,6 +11,7 @@ public class InConstruction : Place
     public float ConstructionProgress { get { return _constructionProgress; } set { _constructionProgress = Math.Clamp(value, 0, 1); }}
     private float _constructionProgress = 0;
     
+
     [Header("PlacingMode")]
     [SerializeField] private Material validMat;
     [SerializeField] private Material invalidMat;
@@ -87,7 +88,7 @@ public class InConstruction : Place
     public override void PostAction(Villager villager)
     {
         if (!_placed) return;
-        print("postAction");
+        //print("postAction");
         //disable villager working anim
         //make it move again
     }
