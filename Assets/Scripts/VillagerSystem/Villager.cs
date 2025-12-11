@@ -25,6 +25,9 @@ public class Villager : MonoBehaviour
     private VillagerWork _work;
     public VillagerWork Work { get { return _work; } }
 
+    private VillagersGraphics _graphics;
+    public VillagersGraphics Graphics { get { return _graphics; } }
+
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
     [Tooltip("Display age propertie in inspector to check parameters")]
@@ -50,6 +53,7 @@ public class Villager : MonoBehaviour
         _data = GetComponent<VillagerData>();
         _controller = GetComponent<VillagerController>();
         _work = GetComponent<VillagerWork>();
+        _graphics = GetComponent<VillagersGraphics>();
     }
 
     private void Update()
