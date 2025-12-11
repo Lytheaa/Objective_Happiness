@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class VillagerWork : MonoBehaviour
 {
-    private VillagerData _data;
+    private Villager _villager;
     
     private VillagerManager _villagerManager;
+    private PlacesManager _placesManager;
 
     private Dictionary<string, int> _work = new Dictionary<string, int>()
     {{"Picker (1)",1} , {"Woodsman (2)",2}, {"Miner (3)",3}, {"Builder (4)",4}, {"Itinerant (5)",5} };
@@ -21,18 +22,21 @@ public class VillagerWork : MonoBehaviour
     private void Awake()
     {
         _villagerManager = VillagerManager.Instance;
-        _data = GetComponentInParent<VillagerData>();
+        _villager = GetComponentInParent<Villager>();
+        _placesManager = PlacesManager.Instance;
     }
 
     public void SetWork(int newWorkId)
     {
-        int previousWorkId = _data.WorkId; 
+        int previousWorkId = _villager.Data.WorkId; 
 
-        _data.WorkId = newWorkId;
+        _villager.Data.WorkId = newWorkId;
+
+        SetWorkPlaceTarget(newWorkId);
 
         _workType = WorkToString(newWorkId);
 
-        OnWorkChange(previousWorkId, newWorkId);
+        OnWorkChange(previousWorkId, newWorkId); ///MAJ COUNTER
 
         _villagerManager.UpdateWorkersCounter();
     }
@@ -49,5 +53,13 @@ public class VillagerWork : MonoBehaviour
         return "Unknown";
     }
 
+    private void SetWorkPlaceTarget(int workIndex)
+    {
+        if (_placesManager.WorkZones.ContainsKey(workIndex))
+        {
+            _villager.Data.WorkTarget = _placesManager.WorkZones[workIndex];
+            Debug.Log($"Work Place Attributed :{_villager.Data.WorkTarget}");
+        }
+    }
 }
 

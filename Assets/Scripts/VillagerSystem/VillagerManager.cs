@@ -64,22 +64,30 @@ public class VillagerManager : MonoBehaviour
 
     /// DEPLACEMENT DES VILLAGEOIS ///
     
-    public void GoToWork()
+    public void TimeToWork()
     {
+        Debug.Log("Time to work !");
+
         /// S'il n'est pas fatiqué ajouter condition : 
-        foreach(var villager in _villagers)
+        foreach (var villager in _villagers)
         {
-            if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 
+            if (villager != null && villager.Controler != null)
             {
-                
+                if (villager.Data.WorkId > 0 && villager.Data.WorkId < 3) /// Si les villageois ont un métier autre que vagabond et maçon
+                {
+                    villager.Controler.GoToWork();
+                }
+                else
+                {
+                    Debug.Log($"Un villageois ne peut pas aller travailler");
+                }
             }
-           
         }
     }
 
-    public void GoToRest()
+    public void TimeToRest()
     {
-        Debug.Log("Villagers are going to sleep ");
+        Debug.Log("Time to rest !");
 
         foreach (var villager in _villagers)
         {

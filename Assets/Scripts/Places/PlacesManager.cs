@@ -12,14 +12,17 @@ public class PlacesManager : MonoBehaviour
     [SerializeField] List<Transform> _housesWayPoints; // Maisons des villageois 
     public List<Transform> HousesWayPoints => _housesWayPoints;
 
-    //[SerializeField] List<Transform> _workZonesWaypoints; //Zones de travail, dans l'inspector, à modifier
-    //public List<Transform> WorkZonesWaypoints => _workZonesWaypoints;
+    [SerializeField] GameObject _containerZonesInScene;
 
     [SerializeField] Dictionary<int, Transform> _workZones= new Dictionary<int, Transform>(){};
+    public Dictionary<int, Transform> WorkZones => _workZones;
 
     private void Awake()
     {
         Instance = this;
 
+        _workZones.Add(1, _containerZonesInScene.GetComponentInChildren<FoodZone>().transform);
+        _workZones.Add(2, _containerZonesInScene.GetComponentInChildren<Forest>().transform);
+        _workZones.Add(3, _containerZonesInScene.GetComponentInChildren<StoneZone>().transform);
     }
 }
