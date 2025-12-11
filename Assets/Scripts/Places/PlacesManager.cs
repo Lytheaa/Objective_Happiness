@@ -12,6 +12,12 @@ public class PlacesManager : MonoBehaviour
     [SerializeField] List<Transform> _housesWayPoints; // Maisons des villageois 
     public List<Transform> HousesWayPoints => _housesWayPoints;
 
+    [SerializeField] List<Transform> _schoolsWaypoints;
+    public List<Transform> SchoolWaypoints => _schoolsWaypoints;
+
+    [SerializeField] List<Transform> _newBuildings; 
+    public List<Transform > NewBuildings => _newBuildings;  
+
     [SerializeField] GameObject _containerZonesInScene;
 
     [SerializeField] Dictionary<int, Transform> _workZones= new Dictionary<int, Transform>(){};
