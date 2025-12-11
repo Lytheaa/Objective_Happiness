@@ -1,19 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
+using UnityEngine.AI;
 //using Random = System.Random;
 using UnityEngine.Events;
-using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Villager : MonoBehaviour
 {
-    public VillagerData _data;
-    public GameManager _gameManager; // Pour accéder aux variables globales
-    public VillagerManager _villagerManager;
+    #region CHAMPS 
+    private GameManager _gameManager; 
+    public GameManager GameManager { get { return _gameManager; } }
+
+    private VillagerData _data;
+    public VillagerData Data {  get { return _data; } }
+
+    private VillagerManager _villagerManager;
+    public VillagerManager VillagerManager { get { return _villagerManager; } }
 
     private VillagerControler _controler;
     public VillagerControler Controler { get { return _controler; } }
+
+    private VillagerWork _work;
+    public VillagerWork Work { get { return _work; } }
 
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
@@ -25,17 +35,19 @@ public class Villager : MonoBehaviour
 
     [SerializeField] private bool _isTiredDisplay;
 
-    private void Awake()
+    [SerializeField] private Transform _workTarget;
+
+    public static event Action<int> OnDeath;
+
+    #endregion
+
+    public void Awake()
     {
         _gameManager = GameManager.Instance;
         _villagerManager = VillagerManager.Instance;
         _data = GetComponent<VillagerData>();
         _controler = GetComponent<VillagerControler>();
-    }
-
-    private void Start() // Lors de l'instanciation du villageois
-    {
-        VillagerManager.Instance.RegisterVillager(this);
+        _work = GetComponent<VillagerWork>();
     }
 
     private void Update()
@@ -46,19 +58,25 @@ public class Villager : MonoBehaviour
     }
 
     ///EVENT LISTENER///
+
     private void OnEnable()
     {
-        _data.OnMoodChange += MoodChange;
+       _data.OnMoodChange += MoodChange;
         _data.OnTirednessChange += TirednessChange;
         _data.OnHungerChange += FeedVillager;
         _data.OnAgeChange += CheckAge;
+        //_data.OnWorkChange += CheckWork;
+
     }
+
     private void OnDisable()
     {
+        if (_data == null) return;
         _data.OnMoodChange -= MoodChange;
         _data.OnTirednessChange -= TirednessChange;
         _data.OnHungerChange -= FeedVillager;
         _data.OnAgeChange -= CheckAge;
+        //_data.OnWorkChange -= CheckWork;
     }
 
     /// METHODES LIEES AUX EVENEMENTS///
@@ -77,7 +95,7 @@ public class Villager : MonoBehaviour
                 _villagerManager.HungryVillagersCount++;
             }
 
-           _data.IsHungry = false; // Réinitialiser la faim une fois le compteur mis à jour
+            _data.IsHungry = false; // Réinitialiser la faim une fois le compteur mis à jour
         }
     }
 
@@ -87,8 +105,8 @@ public class Villager : MonoBehaviour
 
         if (age >= _villagerManager.MaxAge) // S'il est trop vieux ou affamé : déclancher la mort
         {
-            Debug.Log("Villageois est mort de vieillesse (via event)");
-            Destroy(this.gameObject);
+            Debug.Log("Villageois va mourir de vieillesse : event Check Age");
+            Die() ;
         }
     }
 
@@ -119,7 +137,36 @@ public class Villager : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+        Debug.Log("Villageois est mort");
+        OnDeath?.Invoke(Data.WorkId);
+        Destroy(this.gameObject);
 
+    }
+    //private void SetWorkTarget(int work)
+    //{
+    //    Transform newWorkTarget;
+
+    //    foreach (Transform zone in _workZonesWaypoints)
+    //    {
+    //        switch (work)
+    //        {
+    //            case 1: //Picker
+    //                newWorkTarget = zone.GetComponent<FoodZone>().transform;
+    //                break;
+    //            case 2: //Woodsman
+    //                newWorkTarget = zone.GetComponent<Forest>().transform;
+    //                break;
+    //            case 3: //Miner
+    //                newWorkTarget = zone.GetComponent<StoneZone>().transform;
+    //                break;
+    //            case 4:
+    //                Debug.Log($"Zone work target = maçon");
+    //                break;
+    //        }
+    //    }
+    //}
 }
 
 

@@ -8,22 +8,16 @@ public class VillagerControler : MonoBehaviour
 {
     private PlacesManager _placesManager;
     private NavMeshAgent _navMeshAgent;
+    private Villager _villager;
 
-    private List<Transform> _wanderingWaypoints;
-    private List<Transform> _housesWaypoints;
+    Transform _workTarget;
 
-    private Transform _target;
 
     private void Awake()
     {
         _placesManager = PlacesManager.Instance;
+        _villager = GetComponent<Villager>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _wanderingWaypoints = _placesManager.WanderingWaypoints;
-
-    }
-
-    private void Start()
-    {
     }
 
     private void Update()
@@ -31,13 +25,39 @@ public class VillagerControler : MonoBehaviour
         WanderingMovement();
     }
 
+    private void GoToSchool()
+    {
+        if (_placesManager.SchoolWaypoints.Count > 0)
+        {
+            int schoolIndex = Random.Range(0, _placesManager.SchoolWaypoints.Count);
+            _navMeshAgent.SetDestination(_placesManager.SchoolWaypoints[schoolIndex].position);
+        }
+    }
+
+    public void GoToWork()
+    {
+        if (_villager.Data.WorkId < 5)
+        {
+            if (_villager.Data.WorkId < 4) // S'il a un métier autre que vagabond ou maçon 
+            {
+                _workTarget = _villager.Data.WorkTarget;
+            }
+            if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maçon, et qu'au moins un bâtiment est à construite
+            {
+                int newIndex = Random.Range(0, _placesManager.NewBuildings.Count);
+                _workTarget = _placesManager.NewBuildings[newIndex];
+            }
+            _navMeshAgent.SetDestination(_workTarget.position);
+        }
+    }
+
     public void WanderingMovement() //Random movement between waypoints
     {
-        int _currentIndex;
+        int currentIndex;
         if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 
         {
-            _currentIndex = Random.Range(0, _wanderingWaypoints.Count);
-            _navMeshAgent.SetDestination(_wanderingWaypoints[_currentIndex].position);
+            currentIndex = Random.Range(0, _placesManager.WanderingWaypoints.Count);
+            _navMeshAgent.SetDestination(_placesManager.WanderingWaypoints[currentIndex].position);
         }
     }
 
@@ -45,7 +65,7 @@ public class VillagerControler : MonoBehaviour
     {
         int houseIndex = 0;
 
-        foreach (Transform houses in _housesWaypoints)
+        foreach (Transform houses in _placesManager.HousesWayPoints)
         {
             //if (houseIndex != _housesWaypoints.Count)
             //{
@@ -58,20 +78,10 @@ public class VillagerControler : MonoBehaviour
 
             if (!houses.GetComponent<House>().IsOccupied)
             {
-                _navMeshAgent.SetDestination(_housesWaypoints[houseIndex].position);
+                _navMeshAgent.SetDestination(_placesManager.HousesWayPoints[houseIndex].position);
             }
         }
     }
 
-    public void SetWayPoints()
-    {
 
-    }
-
-
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    _target = other.transform;
-    //}
 }

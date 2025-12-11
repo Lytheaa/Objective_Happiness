@@ -37,31 +37,28 @@ public class VillagerSpawner : MonoBehaviour
         float minZ = areaSpawnPosition.z - _areaLenght * .5f;
         float maxZ = areaSpawnPosition.z + _areaLenght * .5f;
 
-        for (int i = 1; i <= numberOfVillagers; i++)
+        for (int i = 0 ; i < numberOfVillagers; i++)
         {
-            Vector3 spawnPosition = Vector3.zero;
-            spawnPosition.x = Random.Range(minX, maxX);
-            spawnPosition.z = Random.Range(minZ, maxZ);
-            spawnPosition.y = areaSpawnPosition.y;
-            
-            GameObject newVillager = Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
+            Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), areaSpawnPosition.y, Random.Range(minZ, maxZ));
 
-            VillagerWork villagerWork = newVillager.GetComponent<VillagerWork>();
+            GameObject villagerGO = Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
+            Villager villager = villagerGO.GetComponent<Villager>();
 
-            //METIER//
-            int workIndex; 
-            if (_firstSpawn) 
+            // SET WORK //
+            int previousWorkIndex = villager.Data.WorkId;
+
+            int newWorkIndex;
+            if (_firstSpawn)
             {
-                workIndex = i; // Assigner un travail unique lors du premier spawn
+                newWorkIndex = i +1 ; // Assigner un travail unique lors du premier spawn
             }
             else
             {
-                workIndex = Random.Range(1, 6); // Assigner un travail aléatoire pour les autres spawns
+                newWorkIndex = Random.Range(1, 6); // Assigner un travail aléatoire pour les autres spawns
             }
-            villagerWork.SetWork(workIndex);
+            villager.Work.SetWork(newWorkIndex);
 
-            //VillagerControler villagerControler = newVillager.GetComponent<VillagerControler>();
-            //villagerControler.SetWayPoints(waypoints);
+            VillagerManager.Instance.RegisterVillager(villager);
         }
         _firstSpawn = false;
     }

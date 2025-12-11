@@ -52,16 +52,26 @@ public class VillagerData : MonoBehaviour
         }
     }
 
-
-    private int _workIndex;
-    public int WorkIndex
+    private int _workId = 0;
+    public int WorkId
     {
-        get => _workIndex;
+        get => _workId;
         set
         {
-            if (_workIndex == value) return;
-            _workIndex = value;
-            OnWorkChange?.Invoke(_workIndex);
+            if (_workId == value) return;
+            _workId = value;
+            OnWorkChange?.Invoke(_workId);
+        }
+    }
+
+    private Transform _workTarget;
+    public Transform WorkTarget
+    {
+        get { return _workTarget; }
+        set
+        {
+            if (_workTarget == value) return;
+            _workTarget = value;
         }
     }
 
@@ -75,7 +85,6 @@ public class VillagerData : MonoBehaviour
             _isBusy = value;
         }
     }
-
 
     /// EVÊNEMENTS : ///
     public event Action<int> OnAgeChange;

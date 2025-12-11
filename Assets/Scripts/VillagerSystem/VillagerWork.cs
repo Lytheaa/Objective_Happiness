@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class VillagerWork : MonoBehaviour
 {
-    private VillagerData _data;
+    private Villager _villager;
     
     private VillagerManager _villagerManager;
+    private PlacesManager _placesManager;
 
     private Dictionary<string, int> _work = new Dictionary<string, int>()
     {{"Picker (1)",1} , {"Woodsman (2)",2}, {"Miner (3)",3}, {"Builder (4)",4}, {"Itinerant (5)",5} };
@@ -16,17 +17,28 @@ public class VillagerWork : MonoBehaviour
     [Tooltip("Work Type of the Villager")]
     [SerializeField] private string _workType;
 
+    public static event Action<int, int> OnWorkChange;
+
     private void Awake()
     {
         _villagerManager = VillagerManager.Instance;
-        _data = GetComponentInParent<VillagerData>();
+        _villager = GetComponentInParent<Villager>();
+        _placesManager = PlacesManager.Instance;
     }
 
-    public void SetWork(int workIndex)
+    public void SetWork(int newWorkId)
     {
-        _data.WorkIndex = workIndex;
-        _workType = WorkToString(workIndex);
-        CountNumberOfWorkers(workIndex);
+        int previousWorkId = _villager.Data.WorkId; 
+
+        _villager.Data.WorkId = newWorkId;
+
+        SetWorkPlaceTarget(newWorkId);
+
+        _workType = WorkToString(newWorkId);
+
+        OnWorkChange(previousWorkId, newWorkId); ///MAJ COUNTER
+
+        _villagerManager.UpdateWorkersCounter();
     }
 
     private string WorkToString(int workIndex)
@@ -41,28 +53,13 @@ public class VillagerWork : MonoBehaviour
         return "Unknown";
     }
 
-    private void CountNumberOfWorkers(int workIndex)
+    private void SetWorkPlaceTarget(int workIndex)
     {
-        switch (workIndex) //Ajouter au compteur de métier dans GameManager - créer une fonction dédiée ?
+        if (_placesManager.WorkZones.ContainsKey(workIndex))
         {
-            case 1: //Picker
-                _villagerManager.NumberOfPickers++;
-                break;
-            case 2: //Woodsman
-                _villagerManager.NumberOfWoodsman++;
-                break;
-            case 3: //Miner
-                _villagerManager.NumberOfMiners++;
-                break;
-            case 4: //Builder
-                _villagerManager.NumberOfBuilders++;
-                break;
-            case 5: //Itinerant
-                _villagerManager.NumberOfItinerants++;
-                break;
+            _villager.Data.WorkTarget = _placesManager.WorkZones[workIndex];
+            Debug.Log($"Work Place Attributed :{_villager.Data.WorkTarget}");
         }
-
     }
-
 }
 
