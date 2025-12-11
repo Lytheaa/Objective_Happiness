@@ -77,8 +77,11 @@ public class InConstruction : Place
         if (!_placed) return;
         
         ConstructionProgress += progressAmount;
-        if(ConstructionProgress >= 1)
+        if (ConstructionProgress >= 1)
+        {
             enabled = false; //disable this component
+            PlacesManager.Instance.
+        }
     }
 
     public override void PostAction(Villager villager)
