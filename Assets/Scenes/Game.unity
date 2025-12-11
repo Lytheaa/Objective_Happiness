@@ -1257,6 +1257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: --PLAYER--
       objectReference: {fileID: 0}
+    - target: {fileID: 3277549211982777186, guid: 1f31f59f4770d764daa9d5c0df26d528, type: 3}
+      propertyPath: _zoneScrollSize
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6685069942135183614, guid: 1f31f59f4770d764daa9d5c0df26d528, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
