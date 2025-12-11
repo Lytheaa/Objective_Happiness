@@ -22,7 +22,9 @@ public class House : Place
         
         _villager = villager;
         _villagerGraphics = villager.transform.GetChild(0).gameObject;
+
         _villagerGraphics.SetActive(false);
+        _villager.Data.IsTired = false;
     }
 
     public override void PostAction(Villager villager)

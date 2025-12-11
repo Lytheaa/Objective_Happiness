@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class VillagerControler : MonoBehaviour
@@ -36,18 +37,19 @@ public class VillagerControler : MonoBehaviour
 
     public void GoToWork()
     {
-        if (_villager.Data.WorkId < 5)
+
+        if (_villager.Data.WorkId < 4) // S'il a un métier autre que vagabond ou maçon 
         {
-            if (_villager.Data.WorkId < 4) // S'il a un métier autre que vagabond ou maçon 
-            {
-                _workTarget = _villager.Data.WorkTarget;
-            }
-            if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maçon, et qu'au moins un bâtiment est à construite
-            {
-                int newIndex = Random.Range(0, _placesManager.NewBuildings.Count);
-                _workTarget = _placesManager.NewBuildings[newIndex];
-            }
-            _navMeshAgent.SetDestination(_workTarget.position);
+            _navMeshAgent.SetDestination(_villager.Data.WorkTarget.position);
+        }
+        else if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maçon, et qu'au moins un bâtiment est à construite
+        { 
+            int newIndex = Random.Range(0, _placesManager.NewBuildings.Count);
+            _navMeshAgent.SetDestination(_placesManager.NewBuildings[newIndex].position);
+        }
+        else
+        {
+            WanderingMovement();
         }
     }
 

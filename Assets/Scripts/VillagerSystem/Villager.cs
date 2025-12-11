@@ -35,6 +35,8 @@ public class Villager : MonoBehaviour
 
     [SerializeField] private bool _isTiredDisplay;
 
+    [SerializeField] private bool _isHappyDisplay;
+
     [SerializeField] private Transform _workTarget;
 
     public static event Action<int> OnDeath;
@@ -55,6 +57,7 @@ public class Villager : MonoBehaviour
         _ageDisplay = _data.Age;
         _isHungryDisplay = _data.IsHungry;
         _isTiredDisplay = _data.IsTired;
+        _isHappyDisplay = _data.IsHappy;
     }
 
     ///EVENT LISTENER///
@@ -66,7 +69,6 @@ public class Villager : MonoBehaviour
         _data.OnHungerChange += FeedVillager;
         _data.OnAgeChange += CheckAge;
         //_data.OnWorkChange += CheckWork;
-
     }
 
     private void OnDisable()
@@ -89,6 +91,7 @@ public class Villager : MonoBehaviour
             if (_gameManager.Food > 0)
             {
                 _gameManager.Food--;
+                _data.IsHappy = true; // les villageois pouvant manger sont heureux
             }
             else
             {
@@ -101,8 +104,6 @@ public class Villager : MonoBehaviour
 
     private void CheckAge(int age)
     {
-        //_ageDisplay = age;
-
         if (age >= _villagerManager.MaxAge) // S'il est trop vieux ou affamé : déclancher la mort
         {
             Debug.Log("Villageois va mourir de vieillesse : event Check Age");
@@ -112,13 +113,9 @@ public class Villager : MonoBehaviour
 
     private void MoodChange(bool isHappy)
     {
-        if (isHappy)
+        if (!isHappy)
         {
-            Debug.Log("Villageois est maintenant heureux (via event)");
-        }
-        else
-        {
-            _gameManager.ProsperityIndicator.SubstractProsperityPoints(10); // Changer valeur
+            _gameManager.ProsperityIndicator.SubstractProsperityPoints(0.2f); // Changer valeur
             Debug.Log("Villageois est maintenant malheureux (via event)");
         }
     }
@@ -144,29 +141,6 @@ public class Villager : MonoBehaviour
         Destroy(this.gameObject);
 
     }
-    //private void SetWorkTarget(int work)
-    //{
-    //    Transform newWorkTarget;
-
-    //    foreach (Transform zone in _workZonesWaypoints)
-    //    {
-    //        switch (work)
-    //        {
-    //            case 1: //Picker
-    //                newWorkTarget = zone.GetComponent<FoodZone>().transform;
-    //                break;
-    //            case 2: //Woodsman
-    //                newWorkTarget = zone.GetComponent<Forest>().transform;
-    //                break;
-    //            case 3: //Miner
-    //                newWorkTarget = zone.GetComponent<StoneZone>().transform;
-    //                break;
-    //            case 4:
-    //                Debug.Log($"Zone work target = maçon");
-    //                break;
-    //        }
-    //    }
-    //}
 }
 
 

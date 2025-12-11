@@ -17,7 +17,7 @@ public class VillagerData : MonoBehaviour
         }
     }
 
-    private bool _isHappy;
+    private bool _isHappy = true;
     public bool IsHappy
     {
         get => _isHappy;

@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class ProsperityIndicator : MonoBehaviour
 {
-    [Range(0,100)]
-    private int _maxProsperityPoints = 100;
+    private float _maxProsperityPoints = 100;
     //public int MaxProsperityPoints => _maxProsperityPoints;
+
     [Range(0, 100)]
-    [SerializeField] private int _currentProsperityPoints = Mathf.Clamp(70, 0, 100); 
+    [SerializeField] private float _currentProsperityPoints = Mathf.Clamp(70, 0, 100); 
     //public int CurrentProsperityPoints => _currentProsperityPoints;
 
     [SerializeField] private Image _prosperityIndicator;
 
-    public void AddProsperityPoints(int amount)
+    public void AddProsperityPoints(float amount)
     {
         _currentProsperityPoints += amount;
         DisplayProsperityIndicator();
     }
 
-    public void SubstractProsperityPoints(int amount)
+    public void SubstractProsperityPoints(float amount)
     {
         _currentProsperityPoints -= amount;
         DisplayProsperityIndicator();
