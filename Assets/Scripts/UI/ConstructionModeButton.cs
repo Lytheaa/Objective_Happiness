@@ -37,13 +37,13 @@ public class ConstructionModeButton : MonoBehaviour
             //-BuilderCost
             var newBuilding = Instantiate(building, BuildingsParent);
 
-            if (newBuilding is House)
+            if (newBuilding is House) {
                 PlacesManager.Instance.HousesWayPoints.Add(newBuilding.transform);
             }
 
-            if (newBuilding.TryGetComponent<School>(out School schoolComponent))
+            if (newBuilding is School)
             {
-                PlacesManager.Instance.SchoolWaypoints.Add(schoolComponent.transform);
+                PlacesManager.Instance.SchoolWaypoints.Add(newBuilding.transform);
             }
 
             PlacesManager.Instance.NewBuildings.Add(newBuilding.transform); 

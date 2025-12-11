@@ -80,7 +80,7 @@ public class InConstruction : Place
         if (ConstructionProgress >= 1)
         {
             enabled = false; //disable this component
-            PlacesManager.Instance.
+            PlacesManager.Instance.NewBuildings.Remove(transform);
         }
     }
 
