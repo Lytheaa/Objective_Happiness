@@ -42,7 +42,9 @@ public class Villager : MonoBehaviour
 
     [SerializeField] private Transform _workTarget;
     [SerializeField] private bool _wantToGoToSchool;
-    [SerializeField] private int _futureWorkId; 
+    [SerializeField] private int _futureWorkId;
+    [SerializeField] private bool _isBusyDisplay;
+    [SerializeField] public bool DisplayPrint = false;
 
     //[SerializeField] private bool _isSelected = false; 
     //public bool IsSelected { get {  return _isSelected; } } 
@@ -68,7 +70,8 @@ public class Villager : MonoBehaviour
         _isTiredDisplay = _data.IsTired;
         _isHappyDisplay = _data.IsHappy;
         _wantToGoToSchool = _data.WantToGoSchool;
-        _futureWorkId = _data.FutureWorkId; 
+        _futureWorkId = _data.FutureWorkId;
+        _isBusyDisplay = _data.IsBusy;
     }
 
     ///EVENT LISTENER///

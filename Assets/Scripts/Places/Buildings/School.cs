@@ -14,7 +14,12 @@ public class School : Place
     {
         base.PreAction(villager);
 
-        var villagerGraphics = villager.transform.GetChild(0).gameObject;
+
+        var villagerGraphics = villager.transform.GetChild(1).gameObject;
+        if (villagerGraphics = null)
+        {
+            Debug.Log("villagers graphics null !");
+        }
         villagerGraphics.SetActive(false);
 
     }
@@ -22,9 +27,9 @@ public class School : Place
     public override void PostAction(Villager villager)
     {
         base.PostAction(villager);
+        Debug.Log("newWorker récupéré ? ");
 
-        var newWorker = villager.GetComponent<Villager>();
-
+        var newWorker = villager;
         if(newWorker == null)
         {
             Debug.Log("newWorker pas récup ?");
@@ -33,6 +38,7 @@ public class School : Place
         newWorker.Work.SetWork(newWorker.Data.FutureWorkId);
         newWorker.Data.FutureWorkId = 0;
 
+        villager.DisplayPrint = true;
         var villagerGraphics = villager.transform.GetChild(0).gameObject;     
         villagerGraphics.SetActive(true);
         

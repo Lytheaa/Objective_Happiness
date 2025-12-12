@@ -25,6 +25,7 @@ public class VillagerController : MonoBehaviour
         {
             if (_navMeshAgent.remainingDistance < .5f /*&& !_navMeshAgent.pathPending*/)
             {
+                
                 RaycastHit[] allHits = Physics.SphereCastAll(transform.position, 2, Vector3.down);
                 foreach (var hit in allHits)
                 {
@@ -33,6 +34,7 @@ public class VillagerController : MonoBehaviour
                     {
                         if (hit.collider.transform == _target)
                         {
+                        _villager.DisplayPrint = true;
                             StartCoroutine(place.ActionCoroutine(_villager));
                             return;
                         }

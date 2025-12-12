@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826eaf4277019bc498999b4ba567eb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActionDuration: 080000000000000000000000
+  ActionDuration: 030000000000000000000000
   WoodCost: 0
   StoneCost: 0
   BuilderCost: 0
