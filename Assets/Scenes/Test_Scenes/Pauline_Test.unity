@@ -2367,6 +2367,10 @@ PrefabInstance:
       value: Picker_toggle
       objectReference: {fileID: 0}
     - target: {fileID: 4147711162544839954, guid: 67da2f08118dcbb48ae230669f4d506d, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147711162544839954, guid: 67da2f08118dcbb48ae230669f4d506d, type: 3}
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 734676322}

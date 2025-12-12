@@ -26,7 +26,7 @@ public class Villager : MonoBehaviour
     public VillagerWork Work { get { return _work; } }
 
     private VillagersGraphics _graphics;
-    public VillagersGraphics Graphics { get { return _graphics; } }
+    public VillagersGraphics Graphics { get => _graphics; set => _graphics = value; }
 
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
@@ -42,6 +42,9 @@ public class Villager : MonoBehaviour
 
     [SerializeField] private Transform _workTarget;
 
+    //[SerializeField] private bool _isSelected = false; 
+    //public bool IsSelected { get {  return _isSelected; } } 
+
     public static event Action<int> OnDeath;
 
     #endregion
@@ -53,7 +56,7 @@ public class Villager : MonoBehaviour
         _data = GetComponent<VillagerData>();
         _controller = GetComponent<VillagerController>();
         _work = GetComponent<VillagerWork>();
-        _graphics = GetComponent<VillagersGraphics>();
+        _graphics = GetComponentInChildren<VillagersGraphics>();
     }
 
     private void Update()
