@@ -10,7 +10,6 @@ public class VillagerController : MonoBehaviour
     private PlacesManager _placesManager;
     private NavMeshAgent _navMeshAgent;
     private Villager _villager;
-
     private Transform _target;
 
     private void Awake()
@@ -47,7 +46,7 @@ public class VillagerController : MonoBehaviour
         }
     }
 
-    private void GoToSchool()
+    public void GoToSchool()
     {
         if (_placesManager.SchoolWaypoints.Count > 0)
         {

@@ -65,14 +65,20 @@ public class VillagerManager : MonoBehaviour
 
     /// DEPLACEMENT DES VILLAGEOIS ///
 
-    public void TimeToWork()
+    public void WorkTime()
     {
         /// S'il n'est pas fatiqué ajouter condition : 
         foreach (var villager in _villagers)
         {
             if (villager != null && villager.Controller != null)
             {
-                villager.Controller.GoToWork();
+                if (villager.Data.WantToGoSchool)
+                {
+                    villager.Controller.GoToSchool();
+                } else
+                {
+                    villager.Controller.GoToWork();
+                }
             }
         }
     }

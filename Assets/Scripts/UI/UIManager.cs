@@ -9,9 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _schoolMenu;
 
     private Villager _villagerSelected; // le villageois actuellement sélectionné
+    public Villager VillagerSelected { get { return _villagerSelected; } set { _villagerSelected = value; } }
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         _schoolMenu.SetActive(false);
     }
 
@@ -38,7 +44,7 @@ public class UIManager : MonoBehaviour
         if (villager != null)
         {
             // Si on clique sur un villageois différent du précédent
-            if (_villagerSelected != null && _villagerSelected != villager) 
+            if (_villagerSelected != null && _villagerSelected != villager)
             {
                 _villagerSelected.Graphics.IsSelected = false;
                 _villagerSelected.Graphics.DisactiveOutline();

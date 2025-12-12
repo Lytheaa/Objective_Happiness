@@ -20,14 +20,12 @@ public class SchoolMenu : MonoBehaviour
             toggles.interactable = false;
             toggles.isOn = false;
         }
-
     }
 
     private void Update()
     {
         SchoolMenuGraphics();
     }
-
 
     private void SchoolMenuGraphics()
     {
@@ -40,7 +38,6 @@ public class SchoolMenu : MonoBehaviour
                     toggle.interactable = true;
                     toggle.image.color = new Color(1, 1, 1, 1);
                 }
-
             }
             else // S'il n'y a pas d'école
             {
@@ -48,9 +45,7 @@ public class SchoolMenu : MonoBehaviour
                 {
                     toggle.interactable = false;
                     toggle.image.color = new Color(1, 1, 1, 0.25f);
-
                 }
-
             }
         }
     }

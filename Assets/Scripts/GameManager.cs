@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
         }
 
         _villagerManager = VillagerManager.Instance;
-
     }
 
     [Header("Available resources :")]
