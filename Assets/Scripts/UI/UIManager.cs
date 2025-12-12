@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _schoolMenu;
 
-    private VillagersGraphics _selectedVillager; // le villageois actuellement sélectionné
+    private VillagersGraphics _graphicsSelected; // le villageois actuellement sélectionné
 
 
     private void Awake()
@@ -39,10 +39,10 @@ public class UIManager : MonoBehaviour
         if (graphics != null)
         {
             // Si on clique sur un villageois différent du précédent
-            if (_selectedVillager != null && _selectedVillager != graphics)
+            if (_graphicsSelected != null && _graphicsSelected != graphics)
             {
-                _selectedVillager.DisactiveOutline();
-                _selectedVillager.IsSelected = false;
+                _graphicsSelected.DisactiveOutline();
+                _graphicsSelected.IsSelected = false;
             }
 
             // Toggle la sélection
@@ -51,13 +51,13 @@ public class UIManager : MonoBehaviour
                 _schoolMenu.SetActive(true);
                 graphics.ActiveOutline();
                 graphics.IsSelected = true;
-                _selectedVillager = graphics;
+                _graphicsSelected = graphics;
             }
             else
             {
                 graphics.DisactiveOutline();
                 graphics.IsSelected = false;
-                _selectedVillager = null;
+                _graphicsSelected = null;
                 _schoolMenu.SetActive(false);
             }
         }
@@ -71,11 +71,11 @@ public class UIManager : MonoBehaviour
 
     private void DeselectCurrentVillager()
     {
-        if (_selectedVillager != null)
+        if (_graphicsSelected != null)
         {
-            _selectedVillager.DisactiveOutline();
-            _selectedVillager.IsSelected = false;
-            _selectedVillager = null;
+            _graphicsSelected.DisactiveOutline();
+            _graphicsSelected.IsSelected = false;
+            _graphicsSelected = null;
         }
     }
 }

@@ -86,10 +86,24 @@ public class VillagerData : MonoBehaviour
         }
     }
 
+    private bool _wantToGoSchool = false;
+    public bool WantToGoSchool
+    {
+        get => _wantToGoSchool;
+        set
+        {
+            if (_wantToGoSchool == value) return;
+            _wantToGoSchool = value;
+
+            OnTargetSchool?.Invoke(_wantToGoSchool);
+        }
+    }
+
     /// EVÊNEMENTS : ///
     public event Action<int> OnAgeChange;
     public event Action<bool> OnMoodChange;
     public event Action<bool> OnTirednessChange;
     public event Action<bool> OnHungerChange;
     public event Action<int> OnWorkChange;
+    public event Action<bool> OnTargetSchool; 
 }
