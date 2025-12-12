@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; } // Singleton
+
     [SerializeField] private GameObject _schoolMenu;
 
     private Villager _villagerSelected; // le villageois actuellement sélectionné
-
 
     private void Awake()
     {
@@ -27,7 +28,6 @@ public class UIManager : MonoBehaviour
     {
         Villager villager = clickedObject.GetComponentInParent<Villager>();
 
-        // Si on clique sur rien, désélectionne le villageois actuel
         if (clickedObject == null)
         {
             DeselectCurrentVillager();
@@ -38,13 +38,12 @@ public class UIManager : MonoBehaviour
         if (villager != null)
         {
             // Si on clique sur un villageois différent du précédent
-            if (_villagerSelected != null && _villagerSelected != villager) // Si ce villageois sélectionné est n'a pas le script villager
+            if (_villagerSelected != null && _villagerSelected != villager) 
             {
                 _villagerSelected.Graphics.IsSelected = false;
                 _villagerSelected.Graphics.DisactiveOutline();
             }
 
-            //TOGGLE
             if (!villager.Graphics.IsSelected)
             {
                 _schoolMenu.SetActive(true);
