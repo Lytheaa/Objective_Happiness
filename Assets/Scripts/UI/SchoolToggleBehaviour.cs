@@ -8,8 +8,7 @@ public class SchoolToggleBehaviour : MonoBehaviour
     private Toggle _toggle;
 
     private UIManager _uIManager;
-
-    //private int _workId; 
+ 
 
     private void Awake()
     {
@@ -30,12 +29,10 @@ public class SchoolToggleBehaviour : MonoBehaviour
     {
         if (_toggle.isOn)
         {
-            //Villager villager = _uIManager.VillagerSelected;
-            //villager.Data.WantToGoSchool = true;
+            Villager villager = _uIManager.VillagerSelected;
+            villager.Data.WantToGoSchool = true;
 
-            _uIManager.VillagerSelected.Data.WantToGoSchool = true;
-
-
+            villager.Data.FutureWorkId = workIndex;
             //villager.Work.SetWork(workIndex);
         }
     }

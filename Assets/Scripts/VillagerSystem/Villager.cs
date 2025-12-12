@@ -10,11 +10,11 @@ using static UnityEngine.GraphicsBuffer;
 public class Villager : MonoBehaviour
 {
     #region CHAMPS 
-    private GameManager _gameManager; 
+    private GameManager _gameManager;
     public GameManager GameManager { get { return _gameManager; } }
 
     private VillagerData _data;
-    public VillagerData Data {  get { return _data; } }
+    public VillagerData Data { get { return _data; } }
 
     private VillagerManager _villagerManager;
     public VillagerManager VillagerManager { get { return _villagerManager; } }
@@ -41,6 +41,8 @@ public class Villager : MonoBehaviour
     [SerializeField] private bool _isHappyDisplay;
 
     [SerializeField] private Transform _workTarget;
+    [SerializeField] private bool _wantToGoToSchool;
+    [SerializeField] private int _futureWorkId; 
 
     //[SerializeField] private bool _isSelected = false; 
     //public bool IsSelected { get {  return _isSelected; } } 
@@ -65,6 +67,8 @@ public class Villager : MonoBehaviour
         _isHungryDisplay = _data.IsHungry;
         _isTiredDisplay = _data.IsTired;
         _isHappyDisplay = _data.IsHappy;
+        _wantToGoToSchool = _data.WantToGoSchool;
+        _futureWorkId = _data.FutureWorkId; 
     }
 
     ///EVENT LISTENER///

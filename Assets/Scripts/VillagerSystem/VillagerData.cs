@@ -99,6 +99,9 @@ public class VillagerData : MonoBehaviour
         }
     }
 
+    private int _futureWorkId = 0; 
+    public int FutureWorkId { get { return _futureWorkId; } set { _futureWorkId = value; } }
+
     /// EVÊNEMENTS : ///
     public event Action<int> OnAgeChange;
     public event Action<bool> OnMoodChange;

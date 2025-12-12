@@ -50,6 +50,7 @@ public class VillagerController : MonoBehaviour
     {
         if (_placesManager.SchoolWaypoints.Count > 0)
         {
+            _villager.Data.IsBusy = true; 
             int schoolIndex = Random.Range(0, _placesManager.SchoolWaypoints.Count);
             _target = _placesManager.SchoolWaypoints[schoolIndex];
             _navMeshAgent.SetDestination(_target.position);
