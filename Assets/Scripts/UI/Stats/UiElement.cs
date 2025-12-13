@@ -1,26 +1,34 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.stats
 {
     public class UiElement : MonoBehaviour, IShow
     {
-        private RectTransform _rectTransform;
+        //private RectTransform _rectTransform;
+        private CanvasGroup _canvasGroup;
+        
+        [SerializeField] private bool _isActiveAtStart = false;
         [SerializeField] private float initialHeight;
         private void Awake()
         {
-            _rectTransform = GetComponent<RectTransform>();
+            // _rectTransform = GetComponent<RectTransform>();
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _canvasGroup.DOFade(0, 0);
         }
 
-        public void Show(bool show)
+        public void Show(bool show, Sequence sequ)
         {
             if (show)
             {
-                _rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, initialHeight), .2f);
+                // _rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, initialHeight), .2f);
+                sequ.Insert(0,_canvasGroup.DOFade(1, .5f));
             }
             else
             {
-                _rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, 0), .2f);
+                sequ.Insert(0, _canvasGroup.DOFade(0, .15f));
             }
         }
     }

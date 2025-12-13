@@ -59,11 +59,11 @@ public class ConstructionModeButton : MonoBehaviour
     {
         if (!visible)
         {
-            transform.DOScaleX(0, .2f);
+            transform.DOScaleX(0, .2f).SetUpdate(true);
         }
         else
         {
-            transform.DOScaleX(1, .2f);
+            transform.DOScaleX(1, .2f).SetUpdate(true);
         }
     }
 }

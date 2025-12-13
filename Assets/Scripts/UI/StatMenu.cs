@@ -32,18 +32,33 @@ public class StatMenu : MonoBehaviour
 
     private void OpenStats(bool activate)
     {
+        var sequence = DOTween.Sequence();
+        sequence.SetUpdate(true);
         if (activate)
         {
-            _rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, _rectTransform.sizeDelta.y + openedYOffsetPos), .2f);
+            sequence.Append(_rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, _rectTransform.sizeDelta.y + openedYOffsetPos), .2f))
+                .OnComplete(delegate { ShowChildren(activate); });
         }
         else
         {
-            _rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, _rectTransform.sizeDelta.y - openedYOffsetPos), .2f);
-        }
-        foreach (var ui in advancedStatsUI)
-        {
-            ui.Show(activate);
+            sequence.OnComplete(delegate { ShowChildren(activate,
+                delegate
+                {
+                    _rectTransform.DOSizeDelta(new Vector2(_rectTransform.sizeDelta.x, _rectTransform.sizeDelta.y - openedYOffsetPos), .2f).SetUpdate(true);
+                    
+                }); });
         }
         _activate = !activate;
+    }
+
+    private void ShowChildren(bool activate, Action onComplete = null)
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.SetUpdate(true);
+        foreach (var ui in advancedStatsUI)
+        {
+            ui.Show(activate, sequence);
+        }
+        sequence.OnComplete(delegate { onComplete?.Invoke(); });
     }
 }
