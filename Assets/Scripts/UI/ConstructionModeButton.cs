@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,20 +10,23 @@ using UnityEngine.UI;
 
 public class ConstructionModeButton : MonoBehaviour
 {
+    [SerializeField] private Button _enterConstructionModeButton;
     [SerializeField] private List<GameObject> buildings;
     [SerializeField] private GameObject constructionButton;
     [SerializeField] private Transform BuildingsParent;
 
+    private bool _isVisible = false;
+
     private void Awake()
     {
+        _enterConstructionModeButton.onClick.AddListener(delegate { if(_isVisible) SetVisible(false); else SetVisible(true); });
         foreach (GameObject building in buildings)
         {
             var currentButton = Instantiate(constructionButton, transform);
             var buttonComp = currentButton.GetComponent<Button>();
             buttonComp.onClick.AddListener(delegate { BuyBuildings(building.GetComponent<Place>()); });
             buttonComp.onClick.AddListener(delegate { SetVisible(false); });
-            currentButton.gameObject.GetComponentsInChildren<Image>()[1].sprite =
-                building.GetComponent<InConstruction>().PreviewSprite;
+            currentButton.gameObject.GetComponent<Image>().sprite = building.GetComponent<InConstruction>().PreviewSprite;
         }
     }
 
@@ -55,9 +59,9 @@ public class ConstructionModeButton : MonoBehaviour
         }
     }
 
-    public void SetVisible(bool visible)
+    public void SetVisible(bool isVisible)
     {
-        if (!visible)
+        if (!isVisible)
         {
             transform.DOScaleX(0, .2f).SetUpdate(true);
         }
@@ -65,5 +69,7 @@ public class ConstructionModeButton : MonoBehaviour
         {
             transform.DOScaleX(1, .2f).SetUpdate(true);
         }
+        _isVisible = isVisible;
     }
+    
 }
