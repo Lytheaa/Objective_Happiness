@@ -4426,6 +4426,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6898764269012644621, guid: f6d0682344ada6b4c98f1678e55a0cf6, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5940,6 +5944,18 @@ PrefabInstance:
     - target: {fileID: 153430150656119486, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
       propertyPath: m_Name
       value: --CONSTRUCTION--
+      objectReference: {fileID: 0}
+    - target: {fileID: 3759250804270536212, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3759250804270536212, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3759250804270536212, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5491277361499697073, guid: e44310257b3e42a49ab9e1fedd178684, type: 3}
       propertyPath: m_Pivot.x
