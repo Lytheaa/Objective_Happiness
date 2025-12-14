@@ -25,12 +25,12 @@ public class Place : MonoBehaviour
     {
     }
 
-    public virtual void PostAction(Villager villager)
+    public virtual void PostAction(Villager villager, Coroutine coroutine)
     {
-        villager.Data.IsBusy = false;
+        coroutine = null;
     }
 
-    public IEnumerator ActionCoroutine(Villager villager)
+    public IEnumerator ActionCoroutine(Villager villager, Coroutine self)
     {
         beginActionTime = TimeManager.Inst.GlobalTime;
         PreAction(villager);
@@ -38,9 +38,11 @@ public class Place : MonoBehaviour
         float endTime = beginActionTime + TimeManager.Inst.HoursToSec(ActionDuration);
         while (TimeManager.Inst.GlobalTime < endTime )
         {
+            if(villager.Data.WorkId == 4)
+            print($"not finished yet: {TimeManager.Inst.GlobalTime} : {endTime}");
             Action(villager);
             yield return null;
         }
-        PostAction(villager);
+        PostAction(villager, self);
     }
 }

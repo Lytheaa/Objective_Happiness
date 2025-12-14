@@ -8,22 +8,28 @@ using UnityEngine.Serialization;
 public class InConstruction : Place
 {
     public Sprite PreviewSprite;
-    public float ConstructionProgress { get { return _constructionProgress; } set { _constructionProgress = Math.Clamp(value, 0, 1); }}
-    private float _constructionProgress = 0;
-    
 
-    [Header("PlacingMode")]
-    [SerializeField] private Material validMat;
+    public float ConstructionProgress
+    {
+        get { return _constructionProgress; }
+        set { _constructionProgress = Math.Clamp(value, 0, 1); }
+    }
+
+    private float _constructionProgress = 0;
+
+
+    [Header("PlacingMode")] [SerializeField]
+    private Material validMat;
+
     [SerializeField] private Material invalidMat;
-    
-    [Header("Mason Work")]
-    [Range(0,1)] public float progressAmount = .1f;
+
+    [Header("Mason Work")] [Range(0, 1)] public float progressAmount = .1f;
 
     [Header("Gizmos")] [SerializeField] private bool showGizmos = false;
 
     private bool _canPlace = false;
     private bool _placed = false;
-    
+
     private MeshRenderer _meshRenderer;
     private Material _defaultMat;
 
@@ -47,7 +53,7 @@ public class InConstruction : Place
 
     private void Update()
     {
-        if(!_placed)
+        if (!_placed)
         {
             CanPlace();
             if (_canPlace)
@@ -60,7 +66,7 @@ public class InConstruction : Place
     private void OnDrawGizmos()
     {
         if (!showGizmos) return;
-        
+
         Gizmos.DrawSphere(transform.position, 1.2f);
     }
 
@@ -76,21 +82,38 @@ public class InConstruction : Place
     {
         //print("action");
         if (!_placed) return;
-        
+
         ConstructionProgress += progressAmount;
         if (ConstructionProgress >= 1)
         {
-            enabled = false; //disable this component
+            print("building finished!!");
             PlacesManager.Instance.NewBuildings.Remove(transform);
+            
+            foreach (Place place in GetComponents<Place>()) //expensive code
+            {
+                if (place is House)
+                {
+                    PlacesManager.Instance.HousesWayPoints.Add(transform);
+                    place.enabled = true;
+                }
+                else if (place is School)
+                {
+                    PlacesManager.Instance.SchoolWaypoints.Add(transform);
+                    place.enabled = true;
+                }
+            }
+
+            enabled = false;
         }
     }
 
-    public override void PostAction(Villager villager)
+    public override void PostAction(Villager villager, Coroutine coroutine)
     {
         if (!_placed) return;
         //print("postAction");
         //disable villager working anim
         //make it move again
+        base.PostAction(villager, coroutine);
     }
 
     private bool CanPlace()
@@ -110,13 +133,14 @@ public class InConstruction : Place
                 _canPlace = true;
             }
         }
+
         return _canPlace;
     }
 
     private void PlaceBuilding()
     {
         _placed = true;
-        
+
         MouseManager.OnMouseMove -= StickTo;
         transform.gameObject.layer = 0; //default layer
         _meshRenderer.material = _defaultMat;

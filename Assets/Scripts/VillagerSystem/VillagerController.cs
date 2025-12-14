@@ -11,6 +11,7 @@ public class VillagerController : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Villager _villager;
     private Transform _target;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -25,7 +26,6 @@ public class VillagerController : MonoBehaviour
         {
             if (_navMeshAgent.remainingDistance < .5f /*&& !_navMeshAgent.pathPending*/)
             {
-                
                 RaycastHit[] allHits = Physics.SphereCastAll(transform.position, 2, Vector3.down);
                 foreach (var hit in allHits)
                 {
@@ -34,7 +34,8 @@ public class VillagerController : MonoBehaviour
                     {
                         if (hit.collider.transform == _target)
                         {
-                            StartCoroutine(place.ActionCoroutine(_villager));
+                            if(_coroutine == null)
+                                _coroutine = StartCoroutine(place.ActionCoroutine(_villager, _coroutine));
                             return;
                         }
                     }
@@ -62,14 +63,14 @@ public class VillagerController : MonoBehaviour
     public void GoToWork()
     {
 
-        if (_villager.Data.WorkId < 4) // S'il a un métier autre que vagabond ou maçon 
+        if (_villager.Data.WorkId < 4) // S'il a un mï¿½tier autre que vagabond ou maï¿½on 
         {
             _target = _villager.Data.WorkTarget;
             _navMeshAgent.SetDestination(_target.position);
             _villager.Data.IsBusy = true;
             //_navMeshAgent.SetDestination(_villager.Data.WorkTarget.position);
         }
-        else if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maçon, et qu'au moins un bâtiment est à construite
+        else if (_villager.Data.WorkId == 4 && _placesManager.NewBuildings.Count > 0) // Si c'est un maï¿½on, et qu'au moins un bï¿½timent est ï¿½ construite
         {
             //Debug.Log($"Builder on work");
             int newIndex = Random.Range(0, _placesManager.NewBuildings.Count -1);
@@ -91,7 +92,7 @@ public class VillagerController : MonoBehaviour
     public void WanderingMovement() //Random movement between waypoints
     {
         int currentIndex;
-        if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante à parcourir avant d'arriver à destination 
+        if (_navMeshAgent.remainingDistance < .5f && !_navMeshAgent.pathPending) //Remainig distance : longueur restante ï¿½ parcourir avant d'arriver ï¿½ destination 
         {
             currentIndex = Random.Range(0, _placesManager.WanderingWaypoints.Count);
             _navMeshAgent.SetDestination(_placesManager.WanderingWaypoints[currentIndex].position);

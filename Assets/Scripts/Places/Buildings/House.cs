@@ -29,14 +29,13 @@ public class House : Place
         _villager.Data.IsTired = false;
     }
 
-    public override void PostAction(Villager villager)
+    public override void PostAction(Villager villager, Coroutine coroutine)
     {
-        base.PostAction(villager);
         _villagerGraphics.SetActive(true);
         
         _villagerGraphics = null;
         _villager = null;
         IsOccupied = false;
-        
+        base.PostAction(villager, coroutine);
     }
 }

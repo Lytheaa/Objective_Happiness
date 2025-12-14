@@ -14,7 +14,8 @@ public class School : Place
     {
         base.PreAction(villager);
 
-
+        villager.DisplayPrint = true;
+        print("at scheool");
         var villagerGraphics = villager.transform.GetChild(1).gameObject;
         if (villagerGraphics = null)
         {
@@ -24,15 +25,14 @@ public class School : Place
 
     }
 
-    public override void PostAction(Villager villager)
+    public override void PostAction(Villager villager, Coroutine coroutine)
     {
-        base.PostAction(villager);
-        Debug.Log("newWorker récupéré ? ");
+        Debug.Log("newWorker rï¿½cupï¿½rï¿½ ? ");
 
         var newWorker = villager;
         if(newWorker == null)
         {
-            Debug.Log("newWorker pas récup ?");
+            Debug.Log("newWorker pas rï¿½cup ?");
         }
         newWorker.Data.WantToGoSchool = false;
         newWorker.Work.SetWork(newWorker.Data.FutureWorkId);
@@ -42,6 +42,7 @@ public class School : Place
         var villagerGraphics = villager.transform.GetChild(0).gameObject;     
         villagerGraphics.SetActive(true);
         
-        ///temporaryWork à vider 
+        ///temporaryWork ï¿½ vider
+        base.PostAction(villager, coroutine);
     }
 }

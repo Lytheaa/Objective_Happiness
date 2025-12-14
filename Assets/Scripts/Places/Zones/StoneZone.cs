@@ -15,8 +15,8 @@ public class StoneZone : Place
         base.PreAction(villager);
     }
 
-    public override void PostAction(Villager villager)
+    public override void PostAction(Villager villager, Coroutine coroutine)
     {
-        base.PostAction(villager);
+        base.PostAction(villager, coroutine);
     }
 }
