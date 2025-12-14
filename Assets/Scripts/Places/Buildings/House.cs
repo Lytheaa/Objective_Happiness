@@ -31,5 +31,6 @@ public class House : Place
         _villager = null;
         IsOccupied = false;
         base.PostAction(villager, coroutine);
+        print("finished sleeping");
     }
 }

@@ -103,8 +103,15 @@ public class VillagerController : MonoBehaviour
 
     public void GoToSleep()
     {
+        if (!_villager.Data.IsTired)
+            return;
         int houseIndex = 0;
 
+        foreach (Transform house in _placesManager.HousesWayPoints)
+        {
+            print($"{_villager.Data.WorkId}: {house.GetComponent<House>().IsOccupied}");
+        }
+        
         foreach (Transform house in _placesManager.HousesWayPoints)
         {
             //if (houseIndex != _housesWaypoints.Count)
@@ -124,8 +131,10 @@ public class VillagerController : MonoBehaviour
                 _navMeshAgent.SetDestination(_target.position);
                 _villager.Data.IsBusy = true;
                 //_navMeshAgent.SetDestination(_placesManager.HousesWayPoints[houseIndex].position);
+                return;
             }
         }
+        if(_villager.Data.WorkId == 1) print("no houses left");
     }
 
 }
