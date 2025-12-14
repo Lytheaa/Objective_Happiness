@@ -1175,6 +1175,10 @@ PrefabInstance:
       value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
+      propertyPath: spawnTime.Array.data[0]
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367453622486982034, guid: 5c31ab8340c226b469264dd0e96a7b69, type: 3}
       propertyPath: OnSleepTime.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1958,6 +1962,10 @@ PrefabInstance:
       propertyPath: _food
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 3865415674368828791, guid: d60fccb2d438d1049bc4c4358b5b5d20, type: 3}
+      propertyPath: _villagerManager
+      value: 
+      objectReference: {fileID: 228730414}
     - target: {fileID: 3865415674368828791, guid: d60fccb2d438d1049bc4c4358b5b5d20, type: 3}
       propertyPath: _prosperityIndicator
       value: 
