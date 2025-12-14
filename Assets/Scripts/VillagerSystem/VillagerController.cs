@@ -103,7 +103,7 @@ public class VillagerController : MonoBehaviour
     {
         int houseIndex = 0;
 
-        foreach (Transform houses in _placesManager.HousesWayPoints)
+        foreach (Transform house in _placesManager.HousesWayPoints)
         {
             //if (houseIndex != _housesWaypoints.Count)
             //{
@@ -114,8 +114,10 @@ public class VillagerController : MonoBehaviour
             //    houseIndex = 0;
             //}
 
-            if (!houses.GetComponent<House>().IsOccupied)
+            var houseComponent = house.GetComponent<House>();
+            if (!houseComponent.IsOccupied)
             {
+                houseComponent.IsOccupied = true;
                 _target = _placesManager.HousesWayPoints[houseIndex];
                 _navMeshAgent.SetDestination(_target.position);
                 _villager.Data.IsBusy = true;

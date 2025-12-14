@@ -15,12 +15,6 @@ public class House : Place
     public override void PreAction(Villager villager)
     {
         base.PreAction(villager);
-
-        if (villager != _villager && _villager != null)
-        {
-            IsOccupied = true;
-            return;
-        }
         
         _villager = villager;
         _villagerGraphics = villager.transform.GetChild(0).gameObject;
