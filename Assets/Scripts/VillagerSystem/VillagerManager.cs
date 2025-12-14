@@ -6,6 +6,7 @@ using Random = System.Random;
 using UnityEngine.Events;
 using UnityEngine.AI;
 using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 public class VillagerManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class VillagerManager : MonoBehaviour
     //public int AdditionalAge { get { return _additionalAge; } }
 
     [Header("Villagers indicators")]
-    [Tooltip("Nombre de villageois affamés")]
+    [Tooltip("Nombre de villageois affamï¿½s")]
     /*[SerializeField]*/
     private int _hungryVillagersCount = 0;
     public int HungryVillagersCount { get { return _hungryVillagersCount; } set { _hungryVillagersCount = value; } }
@@ -38,17 +39,28 @@ public class VillagerManager : MonoBehaviour
     [Tooltip("Nombre de cueilleurs")]
     [SerializeField] private int _numberOfPickers; // Nombre de cueilleurs
 
-    [Tooltip("Nombre de bûcherons")]
-    [SerializeField] private int _numberOfWoodsman; // Nombre de bûcherons
+    [Tooltip("Nombre de bï¿½cherons")]
+    [SerializeField] private int _numberOfWoodsman; // Nombre de bï¿½cherons
 
     [Tooltip("Nombre de mineurs")]
     [SerializeField] private int _numberOfMiners; // Nombre de mineurs
 
-    [Tooltip("Nombre de maçons")]
-    [SerializeField] private int _numberOfBuilders; // Nombre de maçons
+    [Tooltip("Nombre de maï¿½ons")]
+    [SerializeField] private int _numberOfBuilders; // Nombre de maï¿½ons
 
     [Tooltip("Nombre de vagabonds")]
     [SerializeField] private int _numberOfItinerants; // Nombre de vagabonds
+    
+    [FormerlySerializedAs("_PickerAmount")]
+    [Header("Ui References SO")]
+    [SerializeField] private StringReferenceSO pickerAmount;
+    [SerializeField] private StringReferenceSO minerAmount;
+    [SerializeField] private StringReferenceSO builderAmount;
+    [SerializeField] private StringReferenceSO woodWorkerAmount;
+    [SerializeField] private StringReferenceSO itinerantAmount;
+    [SerializeField] private StringReferenceSO villagerAmount;
+    [SerializeField] private StringReferenceSO happyAmount;
+    [SerializeField] private StringReferenceSO sadAmount;
 
     private void Awake()
     {
@@ -56,6 +68,29 @@ public class VillagerManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Update()
+    {
+        //ugly but there's no more time
+        pickerAmount.Reference = _numberOfPickers.ToString();
+        minerAmount.Reference = _numberOfMiners.ToString();
+        builderAmount.Reference = _numberOfBuilders.ToString();
+        woodWorkerAmount.Reference = _numberOfWoodsman.ToString();
+        itinerantAmount.Reference = _numberOfItinerants.ToString();
+        villagerAmount.Reference = _villagers.Count.ToString();
+        
+        //getting all happy and sad people
+        int happyCount = 0;
+        foreach (var villager in _villagers)
+        {
+            if(villager.Data.IsHappy) happyCount++;
+        }
+
+        int sadCount = _villagers.Count - happyCount;
+        happyAmount.Reference = happyCount.ToString();
+        sadAmount.Reference = sadCount.ToString();
+        
     }
 
     public void RegisterVillager(Villager villager)
@@ -67,7 +102,7 @@ public class VillagerManager : MonoBehaviour
 
     public void WorkTime()
     {
-        /// S'il n'est pas fatiqué ajouter condition : 
+        /// S'il n'est pas fatiquï¿½ ajouter condition : 
         foreach (var villager in _villagers)
         {
             if (villager != null && villager.Controller != null)
@@ -87,7 +122,7 @@ public class VillagerManager : MonoBehaviour
     {
         foreach (var villager in _villagers)
         {
-            if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 
+            if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un mï¿½tier autre que vagabond 
             {
                 villager.Controller.GoToSleep();
             }
@@ -137,7 +172,7 @@ public class VillagerManager : MonoBehaviour
         }
     }
 
-    public void KillHungryVillagers() // Version avec mélange
+    public void KillHungryVillagers() // Version avec mï¿½lange
     {
         if (HungryVillagersCount > 0)
         {
@@ -150,9 +185,9 @@ public class VillagerManager : MonoBehaviour
                 villager.Die();
                 _villagers.RemoveAt(randomIndex);
             }
-            _hungryVillagersCount = 0; // Reset après les morts
+            _hungryVillagersCount = 0; // Reset aprï¿½s les morts
 
-            SetAllSad(); ///Tous les villageois encore vivants sont tristes à cause de la famine 
+            SetAllSad(); ///Tous les villageois encore vivants sont tristes ï¿½ cause de la famine 
         }
     }
 

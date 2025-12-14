@@ -16,7 +16,8 @@ namespace UI.stats
         {
             // _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
-            _canvasGroup.DOFade(0, 0);
+            if(!_isActiveAtStart) _canvasGroup.DOFade(0, 0).SetUpdate(true);
+            else _canvasGroup.DOFade(1, 0).SetUpdate(true);
         }
 
         public void Show(bool show, Sequence sequ)

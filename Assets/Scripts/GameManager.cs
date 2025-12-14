@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,15 @@ public class GameManager : MonoBehaviour
         _villagerManager = VillagerManager.Instance;
     }
 
+    private void Update()
+    {
+        int globalResources = _stone + _wood;
+        globalResourcesAmount.Reference = globalResources.ToString();
+        foodAmount.Reference = _food.ToString();
+        woodAmount.Reference = _wood.ToString();
+        stoneAmount.Reference = _stone.ToString();
+    }
+
     [Header("Available resources :")]
     [SerializeField] private int _food;
     public int Food { get { return _food; } set { _food = value; } }
@@ -30,8 +40,14 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Prosperity indicator references :")]
-    [Tooltip("Référence à l'indicateur de prospérité dans l'UI")]
+    [Tooltip("Rï¿½fï¿½rence ï¿½ l'indicateur de prospï¿½ritï¿½ dans l'UI")]
     [SerializeField] private ProsperityIndicator _prosperityIndicator;
     public ProsperityIndicator ProsperityIndicator => _prosperityIndicator;
+    
+    [Header("Ui References SO")]
+    [SerializeField] private StringReferenceSO foodAmount;
+    [SerializeField] private StringReferenceSO woodAmount;
+    [SerializeField] private StringReferenceSO stoneAmount;
+    [SerializeField] private StringReferenceSO globalResourcesAmount;
 
 }

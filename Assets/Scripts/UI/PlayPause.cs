@@ -9,17 +9,18 @@ public class PlayPause : MonoBehaviour
     [SerializeField] private Sprite playSprite;
     [SerializeField] private Sprite pauseSprite;
     [SerializeField] private Image icon;
-    private bool _isPaused = false;
+    //private bool _isPaused = false;
 
     private void Awake()
     {
-        GetComponent<Toggle>().onValueChanged.AddListener(delegate
+        var _toggle = GetComponent<Toggle>();
+        
+        _toggle.onValueChanged.AddListener(delegate
         {
-            if (_isPaused)
+            if (_toggle.isOn)
                 icon.sprite = playSprite;
             else
                 icon.sprite = pauseSprite;
-            _isPaused = !_isPaused;
         });
     }
 }

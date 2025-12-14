@@ -52,3 +52,11 @@ MonoBehaviour:
   _numberOfMiners: 0
   _numberOfBuilders: 0
   _numberOfItinerants: 0
+  pickerAmount: {fileID: 11400000, guid: a6bcec70203ad6544a69f497d1dedb87, type: 2}
+  minerAmount: {fileID: 11400000, guid: 0c5cc03e848d3544f92455a3c588685f, type: 2}
+  builderAmount: {fileID: 11400000, guid: ccd5d39cbaa5c5643a756cdde06c9960, type: 2}
+  woodWorkerAmount: {fileID: 11400000, guid: 70239cef0d24f314aaeca4772dda7470, type: 2}
+  itinerantAmount: {fileID: 11400000, guid: 43f0f1d082a08be488792881edbf87a9, type: 2}
+  villagerAmount: {fileID: 11400000, guid: 945043aba2cca6d42bcbb9a139144e59, type: 2}
+  happyAmount: {fileID: 11400000, guid: 5d6677be73094ab4aa48204c4bd6a2eb, type: 2}
+  sadAmount: {fileID: 11400000, guid: 429fde7d73ac721429b6f94497b69e27, type: 2}

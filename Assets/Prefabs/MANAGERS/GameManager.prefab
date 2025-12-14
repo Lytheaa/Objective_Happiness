@@ -49,3 +49,7 @@ MonoBehaviour:
   _wood: 0
   _stone: 0
   _prosperityIndicator: {fileID: 0}
+  foodAmount: {fileID: 11400000, guid: 543222ae9da04894d9007982de21d0ad, type: 2}
+  woodAmount: {fileID: 11400000, guid: 35e6d8b97bc7b8342853b61c36796866, type: 2}
+  stoneAmount: {fileID: 11400000, guid: 42a232810b498bf4bacc4c850a6d2f69, type: 2}
+  globalResourcesAmount: {fileID: 11400000, guid: 8653216a575ad4d499b2e718bea7c910, type: 2}
