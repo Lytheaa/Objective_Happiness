@@ -102,6 +102,8 @@ public class InConstruction : Place
                     place.enabled = true;
                 }
             }
+            
+            villager.Controller.GoToWork();
 
             enabled = false;
         }

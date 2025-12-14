@@ -27,6 +27,7 @@ public class Place : MonoBehaviour
 
     public virtual void PostAction(Villager villager, Coroutine coroutine)
     {
+        if(villager.Data.WorkId == 1) print($"no mor busy?? (megamind meme) {villager.Data.WorkTarget.name}");
         villager.Data.IsBusy = false;
         coroutine = null;
     }

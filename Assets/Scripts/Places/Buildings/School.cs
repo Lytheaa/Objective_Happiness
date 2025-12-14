@@ -15,8 +15,7 @@ public class School : Place
         base.PreAction(villager);
 
         villager.DisplayPrint = true;
-        print("at scheool");
-        var villagerGraphics = villager.transform.GetChild(1).gameObject;
+        var villagerGraphics = villager.transform.GetChild(0).gameObject;
         if (villagerGraphics = null)
         {
             Debug.Log("villagers graphics null !");

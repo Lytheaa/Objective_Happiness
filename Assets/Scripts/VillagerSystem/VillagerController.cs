@@ -30,13 +30,22 @@ public class VillagerController : MonoBehaviour
                 foreach (var hit in allHits)
                 {
                     Place place;
-                    if (hit.collider.TryGetComponent<Place> (out place))
+                    var allComponents = hit.collider.GetComponents<Place>();
+                    if (allComponents.Length > 0)
                     {
-                        if (hit.collider.transform == _target)
+                        foreach (var comp in allComponents)
                         {
-                            if(_coroutine == null)
-                                _coroutine = StartCoroutine(place.ActionCoroutine(_villager, _coroutine));
-                            return;
+                            if(_villager.Data.WorkId == 1 && comp is House) print("coming home!!!!!!!!!!!");
+                            if (hit.collider.transform == _target)
+                            {
+                                if(_villager.Data.WorkId == 1) print($"{comp.name} ||| {comp is InConstruction}");
+                                if(!comp.enabled) //if we are not a mason full of energy, we continue because we cant work on InConstruction buildings
+                                    continue;
+                            
+                                if(_coroutine == null)
+                                    _coroutine = StartCoroutine(comp.ActionCoroutine(_villager, _coroutine));
+                                return;
+                            }
                         }
                     }
                 }
@@ -50,6 +59,8 @@ public class VillagerController : MonoBehaviour
 
     public void GoToSchool()
     {
+        InterruptCoroutine();
+        
         if (_placesManager.SchoolWaypoints.Count > 0)
         {
             _villager.Data.IsBusy = true; 
@@ -64,6 +75,8 @@ public class VillagerController : MonoBehaviour
     {
         if (_villager.Data.IsTired)
             return;
+        
+        InterruptCoroutine();
 
         if (_villager.Data.WorkId < 4) // S'il a un m�tier autre que vagabond ou ma�on 
         {
@@ -105,12 +118,15 @@ public class VillagerController : MonoBehaviour
     {
         if (!_villager.Data.IsTired)
             return;
+        
+        InterruptCoroutine();
+        
         int houseIndex = 0;
 
-        foreach (Transform house in _placesManager.HousesWayPoints)
-        {
-            print($"{_villager.Data.WorkId}: {house.GetComponent<House>().IsOccupied}");
-        }
+        // foreach (Transform house in _placesManager.HousesWayPoints)
+        // {
+        //     print($"{_villager.Data.WorkId}: {house.GetComponent<House>().IsOccupied}");
+        // }
         
         foreach (Transform house in _placesManager.HousesWayPoints)
         {
@@ -127,7 +143,7 @@ public class VillagerController : MonoBehaviour
             if (!houseComponent.IsOccupied)
             {
                 houseComponent.IsOccupied = true;
-                _target = _placesManager.HousesWayPoints[houseIndex];
+                _target = houseComponent.transform;
                 _navMeshAgent.SetDestination(_target.position);
                 _villager.Data.IsBusy = true;
                 //_navMeshAgent.SetDestination(_placesManager.HousesWayPoints[houseIndex].position);
@@ -135,6 +151,28 @@ public class VillagerController : MonoBehaviour
             }
         }
         if(_villager.Data.WorkId == 1) print("no houses left");
+    }
+
+    public void InterruptCoroutine()
+    {
+        if (_coroutine == null) return;
+        
+        StopCoroutine(_coroutine);
+        _coroutine = null;
+        
+        RaycastHit[] allHits = Physics.SphereCastAll(transform.position, 2, Vector3.down);
+        foreach (var hit in allHits)
+        {
+            Place place;
+            if (hit.collider.TryGetComponent<Place> (out place))
+            {
+                if (hit.collider.transform == _target)
+                {
+                    place.PostAction(_villager, _coroutine);
+                    return;
+                }
+            }
+        }
     }
 
 }

@@ -14,6 +14,7 @@ public class House : Place
 
     public override void PreAction(Villager villager)
     {
+        print("begin to sleep");
         base.PreAction(villager);
         
         _villager = villager;
@@ -30,7 +31,7 @@ public class House : Place
         _villagerGraphics = null;
         _villager = null;
         IsOccupied = false;
-        base.PostAction(villager, coroutine);
         print("finished sleeping");
+        base.PostAction(villager, coroutine);
     }
 }
