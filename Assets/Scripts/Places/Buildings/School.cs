@@ -14,13 +14,12 @@ public class School : Place
     {
         base.PreAction(villager);
 
-        villager.DisplayPrint = true;
-        var villagerGraphics = villager.transform.GetChild(0).gameObject;
-        if (villagerGraphics = null)
-        {
-            Debug.Log("villagers graphics null !");
-        }
-        villagerGraphics.SetActive(false);
+        //var villagerGraphics = villager.transform.GetChild(0).gameObject; //ca marche pas encore
+        // if (villagerGraphics = null)
+        // {
+        //     Debug.Log("villagers graphics null !");
+        // }
+        // villagerGraphics.SetActive(false);
 
     }
 
@@ -36,10 +35,9 @@ public class School : Place
         newWorker.Data.WantToGoSchool = false;
         newWorker.Work.SetWork(newWorker.Data.FutureWorkId);
         newWorker.Data.FutureWorkId = 0;
-
-        villager.DisplayPrint = true;
-        var villagerGraphics = villager.transform.GetChild(0).gameObject;     
-        villagerGraphics.SetActive(true);
+        
+        // var villagerGraphics = villager.transform.GetChild(0).gameObject;     
+        // villagerGraphics.SetActive(true);
         
         ///temporaryWork � vider
         base.PostAction(villager, coroutine);
