@@ -27,6 +27,7 @@ public class Place : MonoBehaviour
 
     public virtual void PostAction(Villager villager, Coroutine coroutine)
     {
+        villager.Data.IsBusy = false;
         coroutine = null;
     }
 
