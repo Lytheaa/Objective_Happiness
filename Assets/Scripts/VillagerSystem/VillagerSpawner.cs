@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VillagerSpawner : MonoBehaviour
 {
@@ -10,13 +12,14 @@ public class VillagerSpawner : MonoBehaviour
     [SerializeField] private float _areaWidth;
     [SerializeField] private float _areaLenght;
     [SerializeField] private float _areaHeight = 1f;
-    [SerializeField] private Transform _villagersInScene;
     [SerializeField] private GameObject _villagerPrefab;
+    [SerializeField] private Transform _villagersContainerInScene;
 
     [Header("Gizmos appearance :")]
     [SerializeField] private Color _gizmosColor = Color.red;
     [SerializeField] private bool _drawGizmos = false;
 
+    private bool _firstSpawn = true;
 
     private void Awake()
     {
@@ -24,32 +27,40 @@ public class VillagerSpawner : MonoBehaviour
         _villagerSpawner.position = new Vector3(_villagerSpawner.position.x, _villagerSpawner.position.y + 1, _villagerSpawner.position.z);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnVillager(int numberOfVillagers)
     {
-        KeySpawnTest();
-    }
-
-    public void SpawnVillager()
-    {
-        // Condition de spawn : timer ?
-
         Vector3 areaSpawnPosition = _villagerSpawner.position;
 
-        float minX = areaSpawnPosition.x - _areaWidth *.5f;
-        float maxX = areaSpawnPosition.x + _areaWidth *.5f;
+        float minX = areaSpawnPosition.x - _areaWidth * .5f;
+        float maxX = areaSpawnPosition.x + _areaWidth * .5f;
 
-        float minZ = areaSpawnPosition.z - _areaLenght *.5f;
-        float maxZ = areaSpawnPosition.z + _areaLenght *.5f;
+        float minZ = areaSpawnPosition.z - _areaLenght * .5f;
+        float maxZ = areaSpawnPosition.z + _areaLenght * .5f;
 
-        Vector3 spawnPosition = Vector3.zero;
-        spawnPosition.x = Random.Range(minX, maxX);
-        spawnPosition.z = Random.Range(minZ, maxZ);
-        spawnPosition.y = areaSpawnPosition.y;
+        for (int i = 0 ; i < numberOfVillagers; i++)
+        {
+            Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), areaSpawnPosition.y, Random.Range(minZ, maxZ));
 
-        //Instancier le villageois dans le GameObject "VillagersList"
-        Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersInScene.transform); //Verifier rotation des sprites 2D
+            GameObject villagerGO = Instantiate(_villagerPrefab, spawnPosition, Quaternion.identity, _villagersContainerInScene.transform); //Verifier rotation des sprites 2D
+            Villager villager = villagerGO.GetComponent<Villager>();
 
+            // SET WORK //
+            int previousWorkIndex = villager.Data.WorkId;
+
+            int newWorkIndex;
+            if (_firstSpawn)
+            {
+                newWorkIndex = i +1 ; // Assigner un travail unique lors du premier spawn
+            }
+            else
+            {
+                newWorkIndex = Random.Range(1, 6); // Assigner un travail aléatoire pour les autres spawns
+            }
+            villager.Work.SetWork(newWorkIndex);
+
+            VillagerManager.Instance.RegisterVillager(villager);
+        }
+        _firstSpawn = false;
     }
 
     private void OnDrawGizmosSelected()
@@ -59,15 +70,6 @@ public class VillagerSpawner : MonoBehaviour
         {
             Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), // Position
             new Vector3(_areaWidth, _areaHeight, _areaLenght)); // Taille
-        }
-    }
-
-    private void KeySpawnTest()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("Spawn Villager");
-            SpawnVillager();
         }
     }
 }

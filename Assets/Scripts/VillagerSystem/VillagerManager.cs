@@ -2,134 +2,198 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Random = System.Random;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class VillagerManager : MonoBehaviour
 {
-    public VillagerDataSO _data;
+    public static VillagerManager Instance;
 
-    [SerializeField] public ProsperityIndicator _prosperityIndicator; //Pas utile si écouté par l'event
-    /*private NavMeshAgent agent; */ 
+    private Dictionary<int, int> _workersCount = new Dictionary<int, int>()
+    { {1, 0}, {2, 0}, {3,0}, {4,0}, {5,0} };
 
-    public static event Action OnMoodChange;
-    public static event Action OnVillagerDeath;
+    [Header("Villagers parameters")]
+    [Tooltip("Max age of villagers before death")]
+    [SerializeField] private int _maxAge = 50;
+    public int MaxAge { get { return _maxAge; } }
 
-    //EVENTS ://
-    public IVillagerAction _actionBehaviour;
+    [Tooltip("Additional age added to villagers at each growth event")]
+    [SerializeField] private int _grownAge = 10;
+    //public int AdditionalAge { get { return _additionalAge; } }
 
+    [Header("Villagers indicators")]
+    [Tooltip("Nombre de villageois affamés")]
+    /*[SerializeField]*/
+    private int _hungryVillagersCount = 0;
+    public int HungryVillagersCount { get { return _hungryVillagersCount; } set { _hungryVillagersCount = value; } }
 
-    public void Initialize(VillagerDataSO data/*, IVillagerAction action*/)
-    {
-        _data = data;
-        /* _actionBehaviour = action;*/
-    }
+    [Header("Villagers List")]
+    [SerializeField] private List<Villager> _villagers = new List<Villager>();
+    public List<Villager> Villagers => _villagers;
+
+    [Header("Type of villagers")]
+
+    [Tooltip("Nombre de cueilleurs")]
+    [SerializeField] private int _numberOfPickers; // Nombre de cueilleurs
+
+    [Tooltip("Nombre de bûcherons")]
+    [SerializeField] private int _numberOfWoodsman; // Nombre de bûcherons
+
+    [Tooltip("Nombre de mineurs")]
+    [SerializeField] private int _numberOfMiners; // Nombre de mineurs
+
+    [Tooltip("Nombre de maçons")]
+    [SerializeField] private int _numberOfBuilders; // Nombre de maçons
+
+    [Tooltip("Nombre de vagabonds")]
+    [SerializeField] private int _numberOfItinerants; // Nombre de vagabonds
 
     private void Awake()
     {
-        _data.Age = 1;
-    }
-
-    private void Update()
-    {
-        bool _previousMood = _data.IsHappy;
-
-        KeyChangeMoodTest();
-
-        IsChangingMood(_previousMood);
-
-        KeyChangeAgeTest();
-
-        IsGoingToDie(_data.Age);
-
-        //if (_data.IsHappy != previousMood)
-        //{
-        //    if (_data.IsHappy == false)
-        //    {
-        //        Debug.Log("Villageois malheureux");
-        //        OnMoodChange();
-        //    }
-        //}
-    }
-
-    private void IsChangingMood(bool previousMood)
-    {
-        if (_data.IsHappy != previousMood)
+        if (Instance == null)
         {
-            if (_data.IsHappy == false)
+            Instance = this;
+        }
+    }
+
+    public void RegisterVillager(Villager villager)
+    {
+        _villagers.Add(villager);
+    }
+
+    /// DEPLACEMENT DES VILLAGEOIS ///
+
+    public void TimeToWork()
+    {
+        Debug.Log("Time to work !");
+
+        /// S'il n'est pas fatiqué ajouter condition : 
+        foreach (var villager in _villagers)
+        {
+            if (villager != null && villager.Controler != null)
             {
-                Debug.Log("Villageois malheureux");
-                OnMoodChange();
+                villager.Controler.GoToWork();
             }
         }
     }
 
 
-    private void WantToEat(bool previousState)
+public void TimeToRest()
+{
+    Debug.Log("Time to rest !");
+
+    foreach (var villager in _villagers)
     {
-        if(_data.IsHungry != previousState) //Le Villageois change d'état de faim
+        if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 
         {
-            if(_data.IsHungry == true)
-            {
-                Debug.Log("Villageois affamé");
-                //Ajouter event manger
-
-                // déduire -1 de la variable de ressource nourriture globale   
-                // si la variable ressource nourriture globale > 0
-                //      _data.IsHungry = false;
-
-            }
+            villager.Controler.GoToSleep();
         }
     }
-
-    private void IsGoingToDie(int age)
-    {
-        if (age >= 50 | _data.IsHungry == false) // S'il est trop vieux ou affamé : déclancher la mort : A LA FIN DE LA JOURNEE 
-        {
-            OnVillagerDeath();
-        }
-    }
-
-    private void KeyChangeMoodTest() //K
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (_data.IsHappy == true)
-            {
-                _data.IsHappy = false;
-
-            }
-            else if (_data.IsHappy == false)
-            {
-                {
-                    _data.IsHappy = true;
-                }
-            }
-            Debug.Log($" Is Happy{_data.IsHappy}");
-        }
-    }
-
-    private void KeyChangeAgeTest() //D
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            _data.Age += 10;
-            Debug.Log($" New Age Villager : {_data.Age}");
-        }
-    }
-
-
-    private void GoToWork(Transform target)
-    {
-        //if (target != null)
-        //{
-        //    agent.SetDestination(target.position);
-        //}
-        //Récupérer la target au préalable dans l'initialisation? 
-    }
-
-
 }
+
+/// GESTION DE LA FATIGUE ///
+
+public void SetAllTired()
+{
+    foreach (var villager in _villagers)
+    {
+        if (villager.Data.WorkId != 5) // Les vagabonds ne se fatiguent pas
+        {
+            villager.Data.IsTired = true;
+        }
+    }
+}
+
+/// GESTION DE L'AGE ///
+
+public void GrownVillagers()
+{
+    foreach (var villager in _villagers)
+    {
+        villager.Data.Age += _grownAge;
+    }
+}
+
+/// GESTION DE LA FAIM ///
+
+public void SetAllHungry()
+{
+    foreach (var villager in _villagers)
+    {
+        villager.Data.IsHungry = true;
+    }
+}
+
+public void KillHungryVillagers() // Version avec mélange
+{
+    int deaths = _hungryVillagersCount;
+
+    for (int i = 0; i < deaths; i++)
+    {
+        int randomIndex = UnityEngine.Random.Range(0, _villagers.Count);
+        Villager villager = _villagers[randomIndex];
+        villager.Die();
+        _villagers.RemoveAt(randomIndex);
+    }
+    _hungryVillagersCount = 0; // Reset après les morts
+}
+
+/// VILLAGER COUNTER :/// 
+
+private void OnEnable()
+{
+    VillagerWork.OnWorkChange += ChangeWorkersCountersValues;
+    Villager.OnDeath += SubstractWorkersCounter;
+}
+
+private void OnDisable()
+{
+    VillagerWork.OnWorkChange -= ChangeWorkersCountersValues;
+    Villager.OnDeath -= SubstractWorkersCounter;
+}
+
+private void ChangeWorkersCountersValues(int previousWorkId, int newWorkId)
+{
+    SubstractWorkersCounter(previousWorkId);
+
+    if (_workersCount.ContainsKey(newWorkId))
+    {
+        _workersCount[newWorkId]++;
+    }
+    else
+    {
+        _workersCount[newWorkId] = 1;
+    }
+    UpdateWorkersCounter();
+}
+
+private void SubstractWorkersCounter(int workId)
+{
+    if (_workersCount.ContainsKey(workId))
+    {
+        _workersCount[workId]--;
+
+        if (_workersCount[workId] <= 0)
+        {
+            _workersCount.Remove(workId);
+        }
+    }
+    UpdateWorkersCounter();
+}
+
+public void UpdateWorkersCounter()
+{
+    _workersCount.TryGetValue(1, out _numberOfPickers);
+    _workersCount.TryGetValue(2, out _numberOfWoodsman);
+    _workersCount.TryGetValue(3, out _numberOfMiners);
+    _workersCount.TryGetValue(4, out _numberOfBuilders);
+    _workersCount.TryGetValue(5, out _numberOfItinerants);
+}
+}
+
+
 
 
 

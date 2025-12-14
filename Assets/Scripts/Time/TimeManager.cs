@@ -15,9 +15,7 @@ public class TimeManager : MonoBehaviour
     public float CurrentTime { get; private set; } = 0;
     public int[] TimeInHours { get; private set; } = new int[3];
 
-    private float _eventCooldown = 2;
-    private float _lastEventTime = 0;
-    private float _lastSpawnTime = 0;
+    public UnityEvent OnStartGame = new UnityEvent();
 
     public UnityEvent OnWorkTime = new UnityEvent();
     public UnityEvent OnSleepTime = new UnityEvent();
@@ -27,6 +25,9 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int[] workTime = new int[3] { 9, 0, 0 };
     [SerializeField] private int[] sleepTime = new int[3] {20, 0, 0 };
     [SerializeField] private int[] spawnTime = new int[3] {24*3 , 0, 0 }; // tous les 3 jours
+    private float _lastSpawnTime = 0;
+    private bool _workTimeTriggered = false;
+    private bool _sleepTimeTriggered = false;
 
     private void Awake()
     {
@@ -34,11 +35,15 @@ public class TimeManager : MonoBehaviour
             Inst = this;
     }
 
+    private void Start()
+    {
+        OnStartGame.Invoke();
+    }
+
     private void Update()
     {
         //print($"{CurrentTime} seconds ||| {TimeInHours[0]}h {TimeInHours[1]}min {TimeInHours[2]}sec ||| hoursToSec {HoursToSec(TimeInHours)}");
-
-        print($"{GlobalTime} seconds total, {CurrentTime} seconds today");
+        //print($"{GlobalTime} seconds total, {CurrentTime} seconds today");
 
         CurrentTime += Time.deltaTime * TimeMultiplier;
         GlobalTime = Time.time * TimeMultiplier;
@@ -48,23 +53,25 @@ public class TimeManager : MonoBehaviour
         {
             CurrentTime = 0;
             OnDayEnds?.Invoke();
+            _workTimeTriggered = false; 
+            _sleepTimeTriggered = false;
         }
 
-        if (CurrentTime >= HoursToSec(workTime) && CurrentTime < HoursToSec(workTime)+1 && GlobalTime >= _lastEventTime + _eventCooldown)
+        if (CurrentTime >= HoursToSec(workTime) && !_workTimeTriggered)
         {
-            _lastEventTime = GlobalTime;
+            _workTimeTriggered = true;
             OnWorkTime?.Invoke();
+            Debug.Log("Work Time Event Triggered");
         }
         
-        if (CurrentTime >= HoursToSec(sleepTime) && CurrentTime < HoursToSec(sleepTime)+1 && GlobalTime >= _lastEventTime + _eventCooldown)
+        if (CurrentTime >= HoursToSec(sleepTime) && !_sleepTimeTriggered)
         {
-            _lastEventTime = GlobalTime;
+            _sleepTimeTriggered = true;
             OnSleepTime?.Invoke();
         }
 
         if (GlobalTime >= _lastSpawnTime + HoursToSec(spawnTime))
         {
-
             _lastSpawnTime = GlobalTime;
             OnSpawnTime?.Invoke();
         }

@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class School : Place
 {
-    public override void Action()
+    [Range(0, 1)] [SerializeField] private float progressAmount = .1f;
+    public override void Action(Villager villager)
     {
-        //villager disappear
-        //play Building animation
-        Debug.Log("School interaction");
+        //villager.getConversionProgressBar += progressAmount
+    }
+
+    public override void PreAction(Villager villager)
+    {
+        base.PreAction(villager);
+        var villagerGraphics = villager.transform.GetChild(0).gameObject;
+        villagerGraphics.SetActive(false);
+    }
+
+    public override void PostAction(Villager villager)
+    {
+        var villagerGraphics = villager.transform.GetChild(0).gameObject;
+        villagerGraphics.SetActive(true);
     }
 }
