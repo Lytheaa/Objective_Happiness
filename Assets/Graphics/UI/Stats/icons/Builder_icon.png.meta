@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eff18c10dc2183740a31f4fc0dae5c88
+guid: 5423a252927d88247bbe19e367ed49af
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -110,22 +110,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plan de travail 13_0
+      name: Builder_icon_0
       rect:
         serializedVersion: 2
         x: 30
-        y: 11
-        width: 115
-        height: 115
+        y: 19
+        width: 113
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e3cb67251f104a409426e91ffea00f6
-      internalID: 198527336
+      spriteID: c28d7c4d569962f44b8ebcf84683df99
+      internalID: -687210215
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plan de travail 13_0: 198527336
+      Builder_icon_0: -687210215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

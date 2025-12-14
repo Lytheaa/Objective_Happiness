@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class MouseManager : MonoBehaviour
 {
     public static event Action<Vector3> OnMouseMove;
     public static event Action OnMouseClick;
-    
+    public static event Action<GameObject> OnObjectClicked;
+
     private Vector2 _pointerPosition;
     private bool _isPointerDown;
     private Camera _camera;
@@ -44,8 +42,6 @@ public class MouseManager : MonoBehaviour
 
         RaycastHit hit; ///RayCast from Camera
         Ray ray = _camera.ScreenPointToRay(_pointerPosition);
-
-
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -83,8 +79,17 @@ public class MouseManager : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             _isPointerDown = true;
-            OnMouseClick?.Invoke();
+
+            Ray ray = _camera.ScreenPointToRay(_pointerPosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                OnObjectClicked?.Invoke(hit.collider.gameObject);
+            }
+                OnMouseClick?.Invoke();
         }
+
         if (context.phase == InputActionPhase.Canceled)
         {
             _isPointerDown = false;
@@ -115,6 +120,7 @@ public class MouseManager : MonoBehaviour
             }
         }
     }
+    
 }
 
 

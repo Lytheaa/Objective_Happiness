@@ -10,20 +10,23 @@ using static UnityEngine.GraphicsBuffer;
 public class Villager : MonoBehaviour
 {
     #region CHAMPS 
-    private GameManager _gameManager; 
+    private GameManager _gameManager;
     public GameManager GameManager { get { return _gameManager; } }
 
     private VillagerData _data;
-    public VillagerData Data {  get { return _data; } }
+    public VillagerData Data { get { return _data; } }
 
     private VillagerManager _villagerManager;
     public VillagerManager VillagerManager { get { return _villagerManager; } }
 
-    private VillagerControler _controler;
-    public VillagerControler Controler { get { return _controler; } }
+    private VillagerController _controller;
+    public VillagerController Controller { get { return _controller; } }
 
     private VillagerWork _work;
     public VillagerWork Work { get { return _work; } }
+
+    private VillagersGraphics _graphics;
+    public VillagersGraphics Graphics { get => _graphics; set => _graphics = value; }
 
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
@@ -35,7 +38,16 @@ public class Villager : MonoBehaviour
 
     [SerializeField] private bool _isTiredDisplay;
 
+    [SerializeField] private bool _isHappyDisplay;
+
     [SerializeField] private Transform _workTarget;
+    [SerializeField] private bool _wantToGoToSchool;
+    [SerializeField] private int _futureWorkId;
+    [SerializeField] private bool _isBusyDisplay;
+    [SerializeField] public bool DisplayPrint = false;
+
+    //[SerializeField] private bool _isSelected = false; 
+    //public bool IsSelected { get {  return _isSelected; } } 
 
     public static event Action<int> OnDeath;
 
@@ -46,8 +58,9 @@ public class Villager : MonoBehaviour
         _gameManager = GameManager.Instance;
         _villagerManager = VillagerManager.Instance;
         _data = GetComponent<VillagerData>();
-        _controler = GetComponent<VillagerControler>();
+        _controller = GetComponent<VillagerController>();
         _work = GetComponent<VillagerWork>();
+        _graphics = GetComponentInChildren<VillagersGraphics>();
     }
 
     private void Update()
@@ -55,6 +68,10 @@ public class Villager : MonoBehaviour
         _ageDisplay = _data.Age;
         _isHungryDisplay = _data.IsHungry;
         _isTiredDisplay = _data.IsTired;
+        _isHappyDisplay = _data.IsHappy;
+        _wantToGoToSchool = _data.WantToGoSchool;
+        _futureWorkId = _data.FutureWorkId;
+        _isBusyDisplay = _data.IsBusy;
     }
 
     ///EVENT LISTENER///
@@ -66,7 +83,6 @@ public class Villager : MonoBehaviour
         _data.OnHungerChange += FeedVillager;
         _data.OnAgeChange += CheckAge;
         //_data.OnWorkChange += CheckWork;
-
     }
 
     private void OnDisable()
@@ -89,20 +105,18 @@ public class Villager : MonoBehaviour
             if (_gameManager.Food > 0)
             {
                 _gameManager.Food--;
+                _data.IsHappy = true; // les villageois pouvant manger sont heureux
             }
             else
             {
                 _villagerManager.HungryVillagersCount++;
             }
-
             _data.IsHungry = false; // Réinitialiser la faim une fois le compteur mis à jour
         }
     }
 
     private void CheckAge(int age)
     {
-        //_ageDisplay = age;
-
         if (age >= _villagerManager.MaxAge) // S'il est trop vieux ou affamé : déclancher la mort
         {
             Debug.Log("Villageois va mourir de vieillesse : event Check Age");
@@ -112,14 +126,10 @@ public class Villager : MonoBehaviour
 
     private void MoodChange(bool isHappy)
     {
-        if (isHappy)
+        if (!isHappy)
         {
-            Debug.Log("Villageois est maintenant heureux (via event)");
-        }
-        else
-        {
-            _gameManager.ProsperityIndicator.SubstractProsperityPoints(10); // Changer valeur
-            Debug.Log("Villageois est maintenant malheureux (via event)");
+            _gameManager.ProsperityIndicator.SubstractProsperityPoints(1f); // Changer valeur
+            Debug.Log("Villageois est maintenant malheureux (via event), soustraction de points de prospérité");
         }
     }
 
@@ -144,29 +154,6 @@ public class Villager : MonoBehaviour
         Destroy(this.gameObject);
 
     }
-    //private void SetWorkTarget(int work)
-    //{
-    //    Transform newWorkTarget;
-
-    //    foreach (Transform zone in _workZonesWaypoints)
-    //    {
-    //        switch (work)
-    //        {
-    //            case 1: //Picker
-    //                newWorkTarget = zone.GetComponent<FoodZone>().transform;
-    //                break;
-    //            case 2: //Woodsman
-    //                newWorkTarget = zone.GetComponent<Forest>().transform;
-    //                break;
-    //            case 3: //Miner
-    //                newWorkTarget = zone.GetComponent<StoneZone>().transform;
-    //                break;
-    //            case 4:
-    //                Debug.Log($"Zone work target = maçon");
-    //                break;
-    //        }
-    //    }
-    //}
 }
 
 

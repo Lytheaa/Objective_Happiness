@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9f8af8cd0550984784686397b26eaa4
+guid: a381f24ffbb5329419d05a4020b62aef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plan de travail 9_0
+      name: Miner_icon_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 28
-        width: 100
-        height: 100
+        x: 33
+        y: 26
+        width: 91
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe5d262636da08c48b720f5f42ae326d
-      internalID: 1346082876
+      spriteID: 4b879d1ca2fc1a94795e6dc2c5382904
+      internalID: 1450639473
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plan de travail 9_0: 1346082876
+      Miner_icon_0: 1450639473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

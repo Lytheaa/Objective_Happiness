@@ -65,132 +65,148 @@ public class VillagerManager : MonoBehaviour
 
     /// DEPLACEMENT DES VILLAGEOIS ///
 
-    public void TimeToWork()
+    public void WorkTime()
     {
-        Debug.Log("Time to work !");
-
         /// S'il n'est pas fatiqué ajouter condition : 
         foreach (var villager in _villagers)
         {
-            if (villager != null && villager.Controler != null)
+            if (villager != null && villager.Controller != null)
             {
-                villager.Controler.GoToWork();
+                if (villager.Data.WantToGoSchool)
+                {
+                    villager.Controller.GoToSchool();
+                } else
+                {
+                    villager.Controller.GoToWork();
+                }
             }
         }
     }
 
-
-public void TimeToRest()
-{
-    Debug.Log("Time to rest !");
-
-    foreach (var villager in _villagers)
+    public void TimeToRest()
     {
-        if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 
+        foreach (var villager in _villagers)
         {
-            villager.Controler.GoToSleep();
+            if (villager.Data.WorkId > 0 && villager.Data.WorkId < 5) /// Si les villageois ont un métier autre que vagabond 
+            {
+                villager.Controller.GoToSleep();
+            }
         }
     }
-}
 
-/// GESTION DE LA FATIGUE ///
+    /// GESTION DE LA FATIGUE ///
 
-public void SetAllTired()
-{
-    foreach (var villager in _villagers)
+    public void SetAllTired()
     {
-        if (villager.Data.WorkId != 5) // Les vagabonds ne se fatiguent pas
+        foreach (var villager in _villagers)
         {
-            villager.Data.IsTired = true;
+            if (villager.Data.WorkId != 5) // Les vagabonds ne se fatiguent pas
+            {
+                villager.Data.IsTired = true;
+            }
         }
     }
-}
 
-/// GESTION DE L'AGE ///
+    /// GESTION DE L'AGE ///
 
-public void GrownVillagers()
-{
-    foreach (var villager in _villagers)
+    public void GrownVillagers()
     {
-        villager.Data.Age += _grownAge;
-    }
-}
-
-/// GESTION DE LA FAIM ///
-
-public void SetAllHungry()
-{
-    foreach (var villager in _villagers)
-    {
-        villager.Data.IsHungry = true;
-    }
-}
-
-public void KillHungryVillagers() // Version avec mélange
-{
-    int deaths = _hungryVillagersCount;
-
-    for (int i = 0; i < deaths; i++)
-    {
-        int randomIndex = UnityEngine.Random.Range(0, _villagers.Count);
-        Villager villager = _villagers[randomIndex];
-        villager.Die();
-        _villagers.RemoveAt(randomIndex);
-    }
-    _hungryVillagersCount = 0; // Reset après les morts
-}
-
-/// VILLAGER COUNTER :/// 
-
-private void OnEnable()
-{
-    VillagerWork.OnWorkChange += ChangeWorkersCountersValues;
-    Villager.OnDeath += SubstractWorkersCounter;
-}
-
-private void OnDisable()
-{
-    VillagerWork.OnWorkChange -= ChangeWorkersCountersValues;
-    Villager.OnDeath -= SubstractWorkersCounter;
-}
-
-private void ChangeWorkersCountersValues(int previousWorkId, int newWorkId)
-{
-    SubstractWorkersCounter(previousWorkId);
-
-    if (_workersCount.ContainsKey(newWorkId))
-    {
-        _workersCount[newWorkId]++;
-    }
-    else
-    {
-        _workersCount[newWorkId] = 1;
-    }
-    UpdateWorkersCounter();
-}
-
-private void SubstractWorkersCounter(int workId)
-{
-    if (_workersCount.ContainsKey(workId))
-    {
-        _workersCount[workId]--;
-
-        if (_workersCount[workId] <= 0)
+        foreach (var villager in _villagers)
         {
-            _workersCount.Remove(workId);
+            villager.Data.Age += _grownAge;
         }
     }
-    UpdateWorkersCounter();
-}
 
-public void UpdateWorkersCounter()
-{
-    _workersCount.TryGetValue(1, out _numberOfPickers);
-    _workersCount.TryGetValue(2, out _numberOfWoodsman);
-    _workersCount.TryGetValue(3, out _numberOfMiners);
-    _workersCount.TryGetValue(4, out _numberOfBuilders);
-    _workersCount.TryGetValue(5, out _numberOfItinerants);
-}
+    /// GESTION DE l'HUMEUR ///
+
+    public void SetAllSad()
+    {
+        foreach (var villager in _villagers)
+        {
+            villager.Data.IsHappy = false;
+        }
+    }
+
+    /// GESTION DE LA FAIM ///
+
+    public void SetAllHungry()
+    {
+        foreach (var villager in _villagers)
+        {
+            villager.Data.IsHungry = true;
+        }
+    }
+
+    public void KillHungryVillagers() // Version avec mélange
+    {
+        if (HungryVillagersCount > 0)
+        {
+            int deaths = _hungryVillagersCount;
+
+            for (int i = 0; i < deaths; i++)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, _villagers.Count);
+                Villager villager = _villagers[randomIndex];
+                villager.Die();
+                _villagers.RemoveAt(randomIndex);
+            }
+            _hungryVillagersCount = 0; // Reset après les morts
+
+            SetAllSad(); ///Tous les villageois encore vivants sont tristes à cause de la famine 
+        }
+    }
+
+    /// VILLAGER COUNTER :/// 
+
+    private void OnEnable()
+    {
+        VillagerWork.OnWorkChange += ChangeWorkersCountersValues;
+        Villager.OnDeath += SubstractWorkersCounter;
+    }
+
+    private void OnDisable()
+    {
+        VillagerWork.OnWorkChange -= ChangeWorkersCountersValues;
+        Villager.OnDeath -= SubstractWorkersCounter;
+    }
+
+    private void ChangeWorkersCountersValues(int previousWorkId, int newWorkId)
+    {
+        SubstractWorkersCounter(previousWorkId);
+
+        if (_workersCount.ContainsKey(newWorkId))
+        {
+            _workersCount[newWorkId]++;
+        }
+        else
+        {
+            _workersCount[newWorkId] = 1;
+        }
+        UpdateWorkersCounter();
+    }
+
+    private void SubstractWorkersCounter(int workId)
+    {
+        if (_workersCount.ContainsKey(workId))
+        {
+            _workersCount[workId]--;
+
+            if (_workersCount[workId] <= 0)
+            {
+                _workersCount.Remove(workId);
+            }
+        }
+        UpdateWorkersCounter();
+    }
+
+    public void UpdateWorkersCounter()
+    {
+        _workersCount.TryGetValue(1, out _numberOfPickers);
+        _workersCount.TryGetValue(2, out _numberOfWoodsman);
+        _workersCount.TryGetValue(3, out _numberOfMiners);
+        _workersCount.TryGetValue(4, out _numberOfBuilders);
+        _workersCount.TryGetValue(5, out _numberOfItinerants);
+    }
 }
 
 

@@ -17,7 +17,7 @@ public class VillagerData : MonoBehaviour
         }
     }
 
-    private bool _isHappy;
+    private bool _isHappy = true;
     public bool IsHappy
     {
         get => _isHappy;
@@ -75,7 +75,7 @@ public class VillagerData : MonoBehaviour
         }
     }
 
-    private bool _isBusy; 
+    private bool _isBusy = false; 
     public bool IsBusy
     {
         get => _isBusy;
@@ -86,10 +86,27 @@ public class VillagerData : MonoBehaviour
         }
     }
 
+    private bool _wantToGoSchool = false;
+    public bool WantToGoSchool
+    {
+        get => _wantToGoSchool;
+        set
+        {
+            if (_wantToGoSchool == value) return;
+            _wantToGoSchool = value;
+
+            OnTargetSchool?.Invoke(_wantToGoSchool);
+        }
+    }
+
+    private int _futureWorkId = 0; 
+    public int FutureWorkId { get { return _futureWorkId; } set { _futureWorkId = value; } }
+
     /// EVÊNEMENTS : ///
     public event Action<int> OnAgeChange;
     public event Action<bool> OnMoodChange;
     public event Action<bool> OnTirednessChange;
     public event Action<bool> OnHungerChange;
     public event Action<int> OnWorkChange;
+    public event Action<bool> OnTargetSchool; 
 }

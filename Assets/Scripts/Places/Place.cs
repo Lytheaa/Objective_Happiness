@@ -12,7 +12,7 @@ public class Place : MonoBehaviour
     public int StoneCost = 0;
     public int BuilderCost = 0;
     
-    protected float LastActionTime = 0;
+    protected float beginActionTime = 0;
     public virtual void Action(Villager villager)
     {
     }
@@ -27,14 +27,17 @@ public class Place : MonoBehaviour
 
     public virtual void PostAction(Villager villager)
     {
+        villager.Data.IsBusy = false;
     }
 
     public IEnumerator ActionCoroutine(Villager villager)
     {
+        beginActionTime = TimeManager.Inst.GlobalTime;
         PreAction(villager);
-        while (TimeManager.Inst.GlobalTime < LastActionTime + TimeManager.Inst.HoursToSec(ActionDuration))
+
+        float endTime = beginActionTime + TimeManager.Inst.HoursToSec(ActionDuration);
+        while (TimeManager.Inst.GlobalTime < endTime )
         {
-            LastActionTime = TimeManager.Inst.GlobalTime;
             Action(villager);
             yield return null;
         }

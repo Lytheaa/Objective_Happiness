@@ -3,9 +3,14 @@ using UnityEngine;
 public class VillagersGraphics : MonoBehaviour
 {
     private Villager _villager;
-    //public VillagerData _data;
     private MeshRenderer _meshRenderer;
 
+    [SerializeField]private GameObject _outline;
+
+    [SerializeField]private bool _isSelected = false;
+    public bool IsSelected { get { return _isSelected; } set { _isSelected = value; } }
+
+    [Header("Graphics parameters")]
     /// COLORS  - Test avec des materials : à changer pour des components Image ? ///
     [SerializeField] private Material _pickerMaterial;
     [SerializeField] private Material _woodsmanMaterial;
@@ -17,14 +22,15 @@ public class VillagersGraphics : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _villager = GetComponentInParent<Villager>();
-        //_data = GetComponentInParent<VillagerData>();
+
+        _outline = transform.parent.Find("Outline").gameObject;
+        _outline.SetActive(false);
     }
 
     /// EVENT LISTENER///
     
     private void OnEnable()
     {
-        //_data.OnWorkChange += SetGraphics;
         _villager.Data.OnWorkChange += SetGraphics;
     }
     private void OnDisable()
@@ -55,5 +61,17 @@ public class VillagersGraphics : MonoBehaviour
         {
             _meshRenderer.material = _itinerantMaterial;
         }
+    }
+
+    public void ActiveOutline()
+    {
+        if (_outline != null)
+            _outline.SetActive(true);
+    }
+
+    public void DisactiveOutline()
+    {
+        if (_outline != null)
+            _outline.SetActive(false);
     }
 }
