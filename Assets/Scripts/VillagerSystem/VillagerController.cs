@@ -62,6 +62,8 @@ public class VillagerController : MonoBehaviour
 
     public void GoToWork()
     {
+        if (_villager.Data.IsTired)
+            return;
 
         if (_villager.Data.WorkId < 4) // S'il a un m�tier autre que vagabond ou ma�on 
         {
