@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 6304474929496632927}
   - component: {fileID: 2465718205978109303}
   - component: {fileID: 9101206615856227554}
-  - component: {fileID: 5739494490719815959}
+  - component: {fileID: 3795633906715934430}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -219,7 +219,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5739494490719815959
+--- !u!114 &3795633906715934430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,7 +340,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 1

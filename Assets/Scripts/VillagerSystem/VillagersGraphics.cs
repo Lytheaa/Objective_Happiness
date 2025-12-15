@@ -3,6 +3,7 @@ using UnityEngine;
 public class VillagersGraphics : MonoBehaviour
 {
     private Villager _villager;
+    //private SpriteRenderer _spriteRenderer;
     private MeshRenderer _meshRenderer;
 
     [SerializeField]private GameObject _outline;
@@ -20,6 +21,7 @@ public class VillagersGraphics : MonoBehaviour
 
     private void Awake()
     {
+        //_spriteRenderer = GetComponent<SpriteRenderer>();
         _meshRenderer = GetComponent<MeshRenderer>();
         _villager = GetComponentInParent<Villager>();
 

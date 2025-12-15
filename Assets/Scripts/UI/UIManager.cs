@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
             _villagerSelected = null;
 
             _schoolMenu.SetActive(false);
-            Debug.Log("Impossible de récupérer le villageois");
+            //Debug.Log("Impossible de récupérer le villageois");
         }
     }
 

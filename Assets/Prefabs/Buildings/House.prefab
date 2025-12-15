@@ -141,7 +141,7 @@ MonoBehaviour:
   WoodCost: 0
   StoneCost: 0
   BuilderCost: 0
-  PreviewSprite: {fileID: 21300000, guid: f16bbdab4696230498c8e25561daa998, type: 3}
+  PreviewSprite: {fileID: 21300000, guid: 7045fe616f3984c4286470e0f4ccd5d0, type: 3}
   validMat: {fileID: 2100000, guid: 68411d042808d25468a78b3491e18864, type: 2}
   invalidMat: {fileID: 2100000, guid: 507da86cd5584f547b008291aa4bff1c, type: 2}
   progressAmount: 0.1

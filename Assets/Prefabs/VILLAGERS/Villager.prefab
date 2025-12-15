@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6024000809444936534}
   - component: {fileID: 2465718205978109303}
   - component: {fileID: 9101206615856227554}
-  - component: {fileID: 5739494490719815959}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -108,25 +107,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5739494490719815959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3515614151236864839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada5ff357ec3b0b44b700e2c7a4554a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outline: {fileID: 0}
-  _isSelected: 0
-  _pickerMaterial: {fileID: 2100000, guid: 8fe91dc79eb564d448ecaba483694393, type: 2}
-  _woodsmanMaterial: {fileID: 2100000, guid: 2404aa67ed7e1644e962ab5d111ec6ad, type: 2}
-  _minerMaterial: {fileID: 2100000, guid: d73030aa029cbb94bbfc56cf9b1f0478, type: 2}
-  _builderMaterial: {fileID: 2100000, guid: c55cf2f3762981e4eba2b52f980f0b06, type: 2}
-  _itinerantMaterial: {fileID: 2100000, guid: 5203f6521e899f24ca0996fa6bf0c39a, type: 2}
 --- !u!1 &6269143423062357834
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +119,7 @@ GameObject:
   - component: {fileID: 8918811359662056056}
   - component: {fileID: 7981823808635951824}
   - component: {fileID: 232222436623742245}
+  - component: {fileID: 6157476266057620147}
   m_Layer: 0
   m_Name: Outline
   m_TagString: Untagged
@@ -234,6 +215,25 @@ CapsuleCollider:
   m_Height: 1.9999999
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6157476266057620147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269143423062357834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada5ff357ec3b0b44b700e2c7a4554a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _outline: {fileID: 0}
+  _isSelected: 0
+  _pickerMaterial: {fileID: 2100000, guid: 8fe91dc79eb564d448ecaba483694393, type: 2}
+  _woodsmanMaterial: {fileID: 2100000, guid: 2404aa67ed7e1644e962ab5d111ec6ad, type: 2}
+  _minerMaterial: {fileID: 2100000, guid: d73030aa029cbb94bbfc56cf9b1f0478, type: 2}
+  _builderMaterial: {fileID: 2100000, guid: c55cf2f3762981e4eba2b52f980f0b06, type: 2}
+  _itinerantMaterial: {fileID: 2100000, guid: 5203f6521e899f24ca0996fa6bf0c39a, type: 2}
 --- !u!1 &8941412899264389602
 GameObject:
   m_ObjectHideFlags: 0
