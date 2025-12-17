@@ -1,10 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VillagersGraphics : MonoBehaviour
 {
     private Villager _villager;
-    //private SpriteRenderer _spriteRenderer;
-    private MeshRenderer _meshRenderer;
+    [SerializeField]private Image _workIcon;
 
     [SerializeField]private GameObject _outline;
 
@@ -12,17 +12,15 @@ public class VillagersGraphics : MonoBehaviour
     public bool IsSelected { get { return _isSelected; } set { _isSelected = value; } }
 
     [Header("Graphics parameters")]
-    /// COLORS  - Test avec des materials : à changer pour des components Image ? ///
-    [SerializeField] private Material _pickerMaterial;
-    [SerializeField] private Material _woodsmanMaterial;
-    [SerializeField] private Material _minerMaterial;
-    [SerializeField] private Material _builderMaterial;
-    [SerializeField] private Material _itinerantMaterial;
+    [SerializeField] private Sprite _pickerIcon;
+    [SerializeField] private Sprite _woodsmanIcon;
+    [SerializeField] private Sprite _minerIcon;
+    [SerializeField] private Sprite _builderIcon;
+    [SerializeField] private Sprite _itinerantIcon;
 
     private void Awake()
     {
-        //_spriteRenderer = GetComponent<SpriteRenderer>();
-        _meshRenderer = GetComponent<MeshRenderer>();
+        //_workIcon = GetComponentInChildren<Image>();
         _villager = GetComponentInParent<Villager>();
 
         _outline = transform.parent.Find("Outline").gameObject;
@@ -37,7 +35,6 @@ public class VillagersGraphics : MonoBehaviour
     }
     private void OnDisable()
     {
-        //_data.OnWorkChange -= SetGraphics;
         _villager.Data.OnWorkChange -= SetGraphics;
     }
 
@@ -45,23 +42,23 @@ public class VillagersGraphics : MonoBehaviour
     {
         if (workIndex == 1)  //Picker graphics
         {
-            _meshRenderer.material = _pickerMaterial;
+            _workIcon.sprite = _pickerIcon;
         }
         else if (workIndex == 2)  //Woodsman graphics
         {
-            _meshRenderer.material = _woodsmanMaterial;
+            _workIcon.sprite = _woodsmanIcon;
         }
         else if (workIndex == 3)  //Miner graphics
         {
-            _meshRenderer.material = _minerMaterial;
+            _workIcon.sprite = _minerIcon;
         }
         else if (workIndex == 4) //Builder graphics
         {
-            _meshRenderer.material = _builderMaterial;
+            _workIcon.sprite = _builderIcon;
         }
         else if (workIndex == 5)  //Itinerant graphics
         {
-            _meshRenderer.material = _itinerantMaterial;
+            _workIcon.sprite = _itinerantIcon;
         }
     }
 

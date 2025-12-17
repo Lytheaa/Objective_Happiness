@@ -123,22 +123,9 @@ public class VillagerController : MonoBehaviour
         
         int houseIndex = 0;
 
-        // foreach (Transform house in _placesManager.HousesWayPoints)
-        // {
-        //     print($"{_villager.Data.WorkId}: {house.GetComponent<House>().IsOccupied}");
-        // }
         
         foreach (Transform house in _placesManager.HousesWayPoints)
         {
-            //if (houseIndex != _housesWaypoints.Count)
-            //{
-            //    houseIndex++;
-            //}
-            //else
-            //{
-            //    houseIndex = 0;
-            //}
-
             var houseComponent = house.GetComponent<House>();
             if (!houseComponent.IsOccupied)
             {
