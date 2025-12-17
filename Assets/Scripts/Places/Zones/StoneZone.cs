@@ -9,14 +9,16 @@ public class StoneZone : Place
     {
         GameManager.Instance.Stone += progressAmount;
     }
-    
+
     public override void PreAction(Villager villager)
     {
         base.PreAction(villager);
+
     }
 
     public override void PostAction(Villager villager, Coroutine coroutine)
     {
         base.PostAction(villager, coroutine);
+
     }
 }

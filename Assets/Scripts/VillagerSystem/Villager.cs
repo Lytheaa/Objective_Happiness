@@ -27,9 +27,12 @@ public class Villager : MonoBehaviour
 
     private VillagersGraphics _graphics;
     public VillagersGraphics Graphics { get => _graphics; set => _graphics = value; }
+    [Header("Animators references")]
+    [SerializeField] private Animator _bodyAnimator;
+    public Animator Animator { get => _bodyAnimator; set => _bodyAnimator = value; }
 
-    private Animator _animator;
-    public Animator Animator { get => _animator; set => _animator = value; }
+    [SerializeField] private Animator _workAnimator;
+    public Animator WorkAnimator { get => _workAnimator; set => _workAnimator = value; }
 
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
@@ -38,11 +41,8 @@ public class Villager : MonoBehaviour
 
     [Tooltip("Display hungry propertie in inspector to check parameters")]
     [SerializeField] private bool _isHungryDisplay;
-
     [SerializeField] private bool _isTiredDisplay;
-
     [SerializeField] private bool _isHappyDisplay;
-
     [SerializeField] private Transform _workTarget;
     [SerializeField] private bool _wantToGoToSchool;
     [SerializeField] private int _futureWorkId;

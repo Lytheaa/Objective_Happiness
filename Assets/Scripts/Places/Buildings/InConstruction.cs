@@ -76,6 +76,7 @@ public class InConstruction : Place
     public override void PreAction(Villager villager)
     {
         if (!_placed) return;
+        //villager.WorkAnimator.SetBool("IsBuilding", true);
         //print("preAction");
         //start villager animation
         //make it dont move
@@ -90,6 +91,8 @@ public class InConstruction : Place
         if (ConstructionProgress >= 1)
         {
             print("building finished!!");
+            //villager.WorkAnimator.SetBool("IsBuilding", false);
+
             PlacesManager.Instance.NewBuildings.Remove(transform);
             
             foreach (Place place in GetComponents<Place>()) //expensive code

@@ -9,4 +9,20 @@ public class FoodZone : Place
     {
         GameManager.Instance.Food += progressAmount;
     }
+    //    villager.WorkAnimator.SetBool("IsPicking", true);
+    //}
+
+    /////Ajout de ces 2 sections comparativement à Stonezone : test
+
+    //public override void PreAction(Villager villager)
+    //{
+    //    base.PreAction(villager);
+    //}
+
+    //public override void PostAction(Villager villager, Coroutine coroutine)
+    //{
+    //    base.PostAction(villager, coroutine);
+    //    //villager.WorkAnimator.SetBool("IsPicking", false);
+
+    //}
 }

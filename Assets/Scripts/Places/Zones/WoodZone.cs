@@ -9,4 +9,20 @@ public class WoodZone : Place
       {
             GameManager.Instance.Wood += progressAmount;
       }
+
+
+    ///Ajout de ces 2 sections comparativement à FoodZone : test
+
+    public override void PreAction(Villager villager)
+    {
+        base.PreAction(villager);
+        villager.WorkAnimator.SetBool("IsWoodCutting", true);
+    }
+
+    public override void PostAction(Villager villager, Coroutine coroutine)
+    {
+        base.PostAction(villager, coroutine);
+        //villager.WorkAnimator.SetBool("IsWoodCutting", false);
+
+    }
 }
