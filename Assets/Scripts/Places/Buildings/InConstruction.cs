@@ -47,8 +47,11 @@ public class InConstruction : Place
 
     private void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _defaultMat = _meshRenderer.material;
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        if (_meshRenderer != null) {
+            print("MeshRenderer Get");
+        }else { print("Mesh renderer not get"); };
+            _defaultMat = _meshRenderer.material;
     }
 
     private void Update()

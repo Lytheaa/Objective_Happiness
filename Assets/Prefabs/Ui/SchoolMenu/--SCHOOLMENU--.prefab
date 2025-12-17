@@ -59,21 +59,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6675629020933753104}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64c38f806a2becb42829c8893e5829cf, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -614593029, guid: ab79390d43f6e7844a8910bfd0b8aa24, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -133,8 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8061ed8a3c69e78479c655e415225cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placesManager: {fileID: 0}
-  _uIManager: {fileID: 0}
   _togglesSchoolMenu:
   - {fileID: 4811028074515763468}
   - {fileID: 2814576662884132803}
