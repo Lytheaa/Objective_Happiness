@@ -28,6 +28,9 @@ public class Villager : MonoBehaviour
     private VillagersGraphics _graphics;
     public VillagersGraphics Graphics { get => _graphics; set => _graphics = value; }
 
+    private Animator _animator;
+    public Animator Animator { get => _animator; set => _animator = value; }
+
     [Header("Debug Variables")] // TO SUPRESS LATER (?)
 
     [Tooltip("Display age propertie in inspector to check parameters")]
