@@ -2010,6 +2010,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7174938026675286023, guid: 188a1892dcbb380408fd8b6b85070c07, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174938026675286023, guid: 188a1892dcbb380408fd8b6b85070c07, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -614593029, guid: ab79390d43f6e7844a8910bfd0b8aa24, type: 3}
+    - target: {fileID: 7174938026675286023, guid: 188a1892dcbb380408fd8b6b85070c07, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174938026675286023, guid: 188a1892dcbb380408fd8b6b85070c07, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8720294509272914327, guid: 188a1892dcbb380408fd8b6b85070c07, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

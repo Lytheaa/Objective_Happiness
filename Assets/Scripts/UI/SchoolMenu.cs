@@ -39,7 +39,7 @@ public class SchoolMenu : MonoBehaviour
                 foreach (Toggle toggle in _togglesSchoolMenu)
                 {
                     toggle.interactable = false;
-                    toggle.image.color = new Color(1, 1, 1, 0.25f);
+                    toggle.image.color = new Color(1, 1, 1, 0.6f);
                 }
             }
         }
