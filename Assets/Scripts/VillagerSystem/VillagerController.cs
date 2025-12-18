@@ -24,7 +24,6 @@ public class VillagerController : MonoBehaviour
     {
         if (_villager.Data.IsBusy)
         {
-            _villager.WorkAnimator.gameObject.SetActive(true);
             if (_navMeshAgent.remainingDistance < .5f /*&& !_navMeshAgent.pathPending*/)
             {
                 RaycastHit[] allHits = Physics.SphereCastAll(transform.position, 2, Vector3.down);
@@ -44,7 +43,10 @@ public class VillagerController : MonoBehaviour
                                     continue;
                             
                                 if(_coroutine == null)
+                                    {/*_villager.WorkAnimator.gameObject.SetActive(true);*/
+
                                     _coroutine = StartCoroutine(comp.ActionCoroutine(_villager, _coroutine));
+                                }
                                 return;
                             }
                         }
@@ -54,7 +56,7 @@ public class VillagerController : MonoBehaviour
         }
         else
         {
-            _villager.WorkAnimator.gameObject.SetActive(false);
+            //_villager.WorkAnimator.gameObject.SetActive(false);
             WanderingMovement();
         }
     }
