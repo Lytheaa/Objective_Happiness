@@ -440,7 +440,7 @@ MonoBehaviour:
   _woodsmanIcon: {fileID: -1281926375, guid: eff18c10dc2183740a31f4fc0dae5c88, type: 3}
   _minerIcon: {fileID: 1450639473, guid: a381f24ffbb5329419d05a4020b62aef, type: 3}
   _builderIcon: {fileID: -687210215, guid: 5423a252927d88247bbe19e367ed49af, type: 3}
-  _itinerantIcon: {fileID: 21300000, guid: d9f9ae3e2386d0e48b53b89563181eff, type: 3}
+  _itinerantIcon: {fileID: 21300000, guid: b16b8a058f8d3fb4d802617496925af4, type: 3}
 --- !u!1 &3515614151236864839
 GameObject:
   m_ObjectHideFlags: 0

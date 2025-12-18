@@ -66,6 +66,12 @@ public class Villager : MonoBehaviour
         _graphics = GetComponentInChildren<VillagersGraphics>();
     }
 
+
+    private void Start()
+    {
+        _workAnimator.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         _ageDisplay = _data.Age;
