@@ -15,7 +15,7 @@ public class WoodZone : Place
         {
             GameManager.Instance.Wood += progressAmount;
             _lastSpawn = Time.time;
-            print("cooldown");
+
         }
 
         //if (TimeManager.Inst.CurrentTime >= _lastSpawn + TimeManager.Inst.HoursToSec(_delayToGetResource)) ;
@@ -23,7 +23,7 @@ public class WoodZone : Place
         //    GameManager.Instance.Wood += progressAmount;
         //    _lastSpawn = TimeManager.Inst.CurrentTime;
         //    print("cooldown");
-        //    villager.WorkAnimator.SetBool("IsWoodCutting", true);
+        //    
         //}
       }
 
@@ -31,12 +31,13 @@ public class WoodZone : Place
 
     public override void PreAction(Villager villager)
     {
-        print("PostAction");
+        villager.WorkAnimator.SetBool("IsWoodCutting", true);
         base.PreAction(villager);
     }
 
     public override void PostAction(Villager villager, Coroutine coroutine)
     {
+        villager.WorkAnimator.SetBool("IsWoodCutting", false);
         base.PostAction(villager, coroutine);
 
 

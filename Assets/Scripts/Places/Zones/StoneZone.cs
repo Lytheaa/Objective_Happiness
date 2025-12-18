@@ -23,12 +23,16 @@ public class StoneZone : Place
     public override void PreAction(Villager villager)
     {
         base.PreAction(villager);
+        villager.WorkAnimator.SetBool("IsMining", true);
+
 
     }
 
     public override void PostAction(Villager villager, Coroutine coroutine)
     {
         base.PostAction(villager, coroutine);
+        villager.WorkAnimator.SetBool("IsMining", false);
+
 
     }
 }
