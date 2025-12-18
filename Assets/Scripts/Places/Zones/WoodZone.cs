@@ -31,14 +31,12 @@ public class WoodZone : Place
 
     public override void PreAction(Villager villager)
     {
-        //villager.WorkAnimator.gameObject.SetActive(true);
         print("PostAction");
         base.PreAction(villager);
     }
 
     public override void PostAction(Villager villager, Coroutine coroutine)
     {
-        //villager.WorkAnimator.gameObject.SetActive(false);
         base.PostAction(villager, coroutine);
 
 

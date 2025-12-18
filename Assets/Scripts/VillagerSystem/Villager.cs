@@ -69,7 +69,8 @@ public class Villager : MonoBehaviour
 
     private void Start()
     {
-        _workAnimator.gameObject.SetActive(false);
+        //_workAnimator.gameObject.SetActive(false);
+        _workAnimator.SetBool("IsActive", true);
     }
 
     private void Update()
