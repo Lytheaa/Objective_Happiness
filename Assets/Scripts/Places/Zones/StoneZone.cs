@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class StoneZone : Place
 {
-    [SerializeField] int progressAmount = 1;
+    [SerializeField] int progressAmount = 10;
+    [SerializeField] float _delayToGetResource = 5f;
+    //[SerializeField] int[] _delayToGetResource = new int[3] { 1, 0, 0 };
+    [SerializeField] float _lastSpawn;
+
     public override void Action(Villager villager)
     {
-        GameManager.Instance.Stone += progressAmount;
+        if (Time.time > _lastSpawn + _delayToGetResource)
+        {
+            GameManager.Instance.Stone += progressAmount;
+            _lastSpawn = Time.time;
+            print("cooldown");
+        }
+
     }
 
     public override void PreAction(Villager villager)

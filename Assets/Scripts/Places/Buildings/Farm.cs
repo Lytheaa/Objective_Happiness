@@ -18,7 +18,7 @@ public class Farm : Place
         var foodZonesList = FindObjectsByType<FoodZone>(FindObjectsSortMode.None);
         foreach (FoodZone zone in foodZonesList)
         {
-            zone.progressAmount *= foodAmountMultiplier;
+            zone.ProgressAmount *= foodAmountMultiplier;
         }
     }
 }

@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class FoodZone : Place
 {
-    public int progressAmount = 1;
+    [SerializeField] int progressAmount = 2;
+    public int ProgressAmount { get => progressAmount; set => progressAmount = value;
+    }
+    [SerializeField] float _delayToGetResource = 5f;
+    //[SerializeField] int[] _delayToGetResource = new int[3] { 1, 0, 0 };
+    [SerializeField] float _lastSpawn;
+
     public override void Action(Villager villager)
     {
-        villager.WorkAnimator.SetBool("IsActive", true);
-        villager.WorkAnimator.SetBool("IsPicking", true);
-        GameManager.Instance.Food += progressAmount;
+        if (Time.time > _lastSpawn + _delayToGetResource)
+        {
+            GameManager.Instance.Food += progressAmount;
+            _lastSpawn = Time.time;
+            //print("cooldown");
+        }
+        //villager.WorkAnimator.SetBool("IsActive", true);
+        //villager.WorkAnimator.SetBool("IsPicking", true);
 
     }
 
