@@ -38,14 +38,14 @@ public class Place : MonoBehaviour
 
     public IEnumerator ActionCoroutine(Villager villager, Coroutine self)
     {
-        beginActionTime = TimeManager.Inst.GlobalTime;
+        beginActionTime = TimeManager.Instance.GlobalTime;
         PreAction(villager);
 
-        float endTime = beginActionTime + TimeManager.Inst.HoursToSec(ActionDuration);
-        while (TimeManager.Inst.GlobalTime < endTime )
+        float endTime = beginActionTime + TimeManager.Instance.HoursToSec(ActionDuration);
+        while (TimeManager.Instance.GlobalTime < endTime )
         {
             if(villager.Data.WorkId == 4)
-            print($"not finished yet: {TimeManager.Inst.GlobalTime} : {endTime}");
+            print($"not finished yet: {TimeManager.Instance.GlobalTime} : {endTime}");
             Action(villager);
             yield return null;
         }

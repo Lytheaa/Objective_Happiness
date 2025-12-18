@@ -15,7 +15,7 @@ public class Clock : MonoBehaviour
 
     private void Update()
     {
-        var time = TimeManager.Inst.TimeInHours;
+        var time = TimeManager.Instance.TimeInHours;
         _display.text = $"{time[0]} : {time[1]}";
     }
 }

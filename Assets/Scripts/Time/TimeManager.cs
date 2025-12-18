@@ -6,10 +6,11 @@ using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager Inst;
+    public static TimeManager Instance;
     [Header("Time Settings :")]
     [SerializeField] private float TimeMultiplier = 1;
-    [SerializeField] private int _days = 0; 
+    [SerializeField] private int _daysCount = 0; 
+    public int DaysCount => _daysCount;
 
     public float GlobalTime { get; private set; } = 0;
     //public float GlobalTime { get; private set; } = 0;
@@ -34,8 +35,8 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Inst == null)
-            Inst = this;
+        if(Instance == null)
+            Instance = this;
     }
 
     private void Start()
@@ -58,7 +59,7 @@ public class TimeManager : MonoBehaviour
             OnDayEnds?.Invoke();
             _workTimeTriggered = false; 
             _sleepTimeTriggered = false;
-            _days++;
+            _daysCount++;
         }
 
         if (CurrentTime >= HoursToSec(workTime) && !_workTimeTriggered)

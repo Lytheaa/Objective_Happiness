@@ -8,7 +8,7 @@ public class DecorativeBuilding : Place
     [SerializeField] private int prosperityBonus;
     private void Awake()
     {
-        TimeManager.Inst.OnDayEnds.AddListener(Action);
+        TimeManager.Instance.OnDayEnds.AddListener(Action);
     }
 
     public override void Action()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -7,9 +8,11 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; } // Singleton
 
     [SerializeField] private GameObject _schoolMenu;
-
+    [SerializeField] private TextMeshProUGUI _dayCounter;
     private Villager _villagerSelected; // le villageois actuellement sélectionné
     public Villager VillagerSelected { get { return _villagerSelected; } set { _villagerSelected = value; } }
+
+    
 
     private void Awake()
     {
@@ -19,6 +22,11 @@ public class UIManager : MonoBehaviour
         }
 
         _schoolMenu.SetActive(false);
+    }
+
+    private void Update()
+    {
+        _dayCounter.text = TimeManager.Instance.DaysCount.ToString();
     }
 
     private void OnEnable()
@@ -85,5 +93,7 @@ public class UIManager : MonoBehaviour
             _villagerSelected = null;
         }
     }
+
+
 
 }
