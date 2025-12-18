@@ -14,6 +14,7 @@ public class Farm : Place
 
     public override void Action()
     {
+
         var foodZonesList = FindObjectsByType<FoodZone>(FindObjectsSortMode.None);
         foreach (FoodZone zone in foodZonesList)
         {

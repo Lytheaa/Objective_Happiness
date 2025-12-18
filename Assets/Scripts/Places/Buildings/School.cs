@@ -8,6 +8,7 @@ public class School : Place
     public override void Action(Villager villager)
     {
         //villager.getConversionProgressBar += progressAmount
+
     }
 
     public override void PreAction(Villager villager)

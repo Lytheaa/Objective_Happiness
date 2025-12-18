@@ -64,13 +64,15 @@ public class Villager : MonoBehaviour
         _controller = GetComponent<VillagerController>();
         _work = GetComponent<VillagerWork>();
         _graphics = GetComponentInChildren<VillagersGraphics>();
+
+
+        _workAnimator.SetBool("IsActive", false);
     }
 
 
     private void Start()
     {
         //_workAnimator.gameObject.SetActive(false);
-        _workAnimator.SetBool("IsActive", true);
     }
 
     private void Update()

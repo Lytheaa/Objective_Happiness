@@ -37,7 +37,7 @@ public class VillagerWork : MonoBehaviour
         _workType = WorkToString(newWorkId);
 
         OnWorkChange(previousWorkId, newWorkId); ///MAJ COUNTER
-        SetAnimatorWork(newWorkId);
+        //SetAnimatorWork(newWorkId);
 
         _villagerManager.UpdateWorkersCounter();
     }
@@ -62,28 +62,27 @@ public class VillagerWork : MonoBehaviour
         }
     }
 
-    private void SetAnimatorWork(int workIndex)
-    {
-        switch (workIndex)
-        {
-            case 1: //Picker 
-                _villager.WorkAnimator.SetBool("IsPicking", true);
-                print("Set Animator Work");
-                break;
-            case 2: //Miner
-                _villager.WorkAnimator.SetBool("IsWoodCutting", true);
-                break;
-            case 3:// Builder
-                _villager.WorkAnimator.SetBool("IsWoodCutting", true);
-                break;
-            case 4: //Builder 
-                _villager.WorkAnimator.SetBool("IsBuilding", true);
-                break;
-            case 5:
-                /// Que faire ?
-                break;
+    //private void SetAnimatorWork(int workIndex)
+    //{
+    //    switch (workIndex)
+    //    {
+    //        case 1: //Picker 
+    //            _villager.WorkAnimator.SetBool("IsPicking", true);
+    //            print("Set Animator Work");
+    //            break;
+    //        case 2: //Miner
+    //            _villager.WorkAnimator.SetBool("IsWoodCutting", true);
+    //            break;
+    //        case 3:// Builder
+    //            _villager.WorkAnimator.SetBool("IsWoodCutting", true);
+    //            break;
+    //        case 4: //Builder 
+    //            _villager.WorkAnimator.SetBool("IsBuilding", true);
+    //            break;
+    //        case 5:
+    //            /// Que faire ?
+    //            break;
 
-        }
-    }
+    //    }
+    //}
 }
-s

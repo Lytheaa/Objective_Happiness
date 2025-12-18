@@ -23,13 +23,13 @@ public class Place : MonoBehaviour
 
     public virtual void PreAction(Villager villager)
     {
-        villager.WorkAnimator.gameObject.SetActive(true);
+        //villager.WorkAnimator.gameObject.SetActive(true);
 
     }
 
     public virtual void PostAction(Villager villager, Coroutine coroutine)
     {
-        villager.WorkAnimator.gameObject.SetActive(false);
+        //villager.WorkAnimator.gameObject.SetActive(false);
 
         if (villager.Data.WorkId == 1) print($"no mor busy?? (megamind meme) {villager.Data.WorkTarget.name}");
         villager.Data.IsBusy = false;

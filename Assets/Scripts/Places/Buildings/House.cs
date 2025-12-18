@@ -10,6 +10,7 @@ public class House : Place
     public override void Action(Villager villager)
     {
         Debug.Log("sleeping");
+        //villager.Animator.SetBool("IsSlepping", true);
     }
 
     public override void PreAction(Villager villager)
@@ -18,7 +19,6 @@ public class House : Place
         base.PreAction(villager);
         
         _villager = villager;
-        _villager.Animator.SetBool("IsSlepping", true);
         _villagerGraphics = villager.transform.GetChild(0).gameObject;
 
         _villagerGraphics.SetActive(false);
@@ -28,7 +28,7 @@ public class House : Place
     public override void PostAction(Villager villager, Coroutine coroutine)
     {
         _villagerGraphics.SetActive(true);
-        _villager.Animator.SetBool("IsSlepping", false);
+        //_villager.Animator.SetBool("IsSlepping", false);
 
         _villagerGraphics = null;
         _villager = null;
