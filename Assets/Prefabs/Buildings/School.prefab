@@ -275,7 +275,9 @@ PrefabInstance:
       value: Ecole v2.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -9081029263028196066, guid: eed976383a69a3542bced0d0f5c122c0, type: 3}
+    - {fileID: -8154577027504731222, guid: eed976383a69a3542bced0d0f5c122c0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eed976383a69a3542bced0d0f5c122c0, type: 3}
