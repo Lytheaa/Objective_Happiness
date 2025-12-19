@@ -14,24 +14,37 @@ public class House : Place
 
     public override void PreAction(Villager villager)
     { 
-        _villager.Animator.SetBool("IsSleeping", true);
+        // Vérifications de sécurité
+        if (villager == null)
+        {
+            Debug.LogError("Villager est null dans House.PreAction !");
+            return;
+        }
+
+        if (villager.WorkAnimator == null)
+        {
+            Debug.LogError($"WorkAnimator est null pour {villager.name} !");
+            return;
+        }
+        villager.BodyAnimator.SetBool("IsSleeping", true);
         print("begin to sleep");
         base.PreAction(villager);
-        
-        _villager = villager;
+
+        //_villager = villager;
+
         _villagerGraphics = villager.transform.GetChild(0).gameObject;
 
         _villagerGraphics.SetActive(false);
-        _villager.Data.IsTired = false;
+        villager.Data.IsTired = false;
     }
 
     public override void PostAction(Villager villager, Coroutine coroutine)
     {
         _villagerGraphics.SetActive(true);
-        _villager.Animator.SetBool("IsSleeping", false);
+        villager.BodyAnimator.SetBool("IsSleeping", false);
 
         _villagerGraphics = null;
-        _villager = null;
+        villager = null;
         IsOccupied = false;
         print("finished sleeping");
         base.PostAction(villager, coroutine);

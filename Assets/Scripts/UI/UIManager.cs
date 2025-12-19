@@ -9,10 +9,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject _schoolMenu;
     [SerializeField] private TextMeshProUGUI _dayCounter;
+    [SerializeField] private GameObject _winPanel;
+    [SerializeField] private TextMeshProUGUI _victoryText;
     private Villager _villagerSelected; // le villageois actuellement sélectionné
     public Villager VillagerSelected { get { return _villagerSelected; } set { _villagerSelected = value; } }
-
-    
 
     private void Awake()
     {
@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
         }
 
         _schoolMenu.SetActive(false);
+        _winPanel.SetActive(false);
     }
 
     private void Update()
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         MouseManager.OnObjectClicked -= ReturnVillagerSelected;
+
     }
 
     private void ReturnVillagerSelected(GameObject clickedObject)
@@ -94,6 +96,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void DisplayVictoryPanel(string message)
+    {
+        _winPanel.SetActive(true);
+        _victoryText.text = message;
 
+    }
 
 }

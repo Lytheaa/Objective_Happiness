@@ -27,9 +27,10 @@ public class Villager : MonoBehaviour
 
     private VillagersGraphics _graphics;
     public VillagersGraphics Graphics { get => _graphics; set => _graphics = value; }
+
     [Header("Animators references")]
     [SerializeField] private Animator _bodyAnimator;
-    public Animator Animator { get => _bodyAnimator; set => _bodyAnimator = value; }
+    public Animator BodyAnimator { get => _bodyAnimator; set => _bodyAnimator = value; }
 
     [SerializeField] private Animator _workAnimator;
     public Animator WorkAnimator { get => _workAnimator; set => _workAnimator = value; }

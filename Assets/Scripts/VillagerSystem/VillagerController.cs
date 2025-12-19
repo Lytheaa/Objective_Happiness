@@ -43,8 +43,7 @@ public class VillagerController : MonoBehaviour
                                     continue;
                             
                                 if(_coroutine == null)
-                                    {/*_villager.WorkAnimator.gameObject.SetActive(true);*/
-
+                                    {
                                     _coroutine = StartCoroutine(comp.ActionCoroutine(_villager, _coroutine));
                                 }
                                 return;
