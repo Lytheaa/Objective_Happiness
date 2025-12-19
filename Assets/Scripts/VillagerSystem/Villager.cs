@@ -141,8 +141,14 @@ public class Villager : MonoBehaviour
     {
         if (!isHappy)
         {
-            _gameManager.ProsperityIndicator.SubstractProsperityPoints(1f); // Changer valeur
+            _gameManager.ProsperityIndicator.SubstractProsperityPoints(5f); // Changer valeur
             Debug.Log("Villageois est maintenant malheureux (via event), soustraction de points de prospérité");
+        }
+        else if (isHappy)
+        {
+            _gameManager.ProsperityIndicator.AddProsperityPoints(3f); // Changer valeur
+            Debug.Log("Villageois est heureux(via event), ajout de points de prospérité");
+
         }
     }
 

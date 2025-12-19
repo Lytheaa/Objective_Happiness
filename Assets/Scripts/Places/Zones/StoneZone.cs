@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StoneZone : Place
 {
+    [Header("Parameters :")]
     [SerializeField] int progressAmount = 10;
     [SerializeField] float _delayToGetResource = 5f;
     //[SerializeField] int[] _delayToGetResource = new int[3] { 1, 0, 0 };

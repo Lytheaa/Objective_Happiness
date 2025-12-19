@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActionDuration: 
-  WoodCost: 0
-  StoneCost: 0
-  BuilderCost: 0
+  WoodCost: 3
+  StoneCost: 4
+  BuilderCost: 2
   prosperityBonus: 5
 --- !u!1 &1702578838814135231
 GameObject:

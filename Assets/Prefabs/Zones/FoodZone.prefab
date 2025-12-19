@@ -123,4 +123,5 @@ MonoBehaviour:
   WoodCost: 0
   StoneCost: 0
   BuilderCost: 0
-  progressAmount: 1
+  progressAmount: 3
+  _delayToGetResource: 5

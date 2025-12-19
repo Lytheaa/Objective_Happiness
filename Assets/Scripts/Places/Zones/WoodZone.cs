@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WoodZone : Place
 {
+    [Header("Parameters :")]
     [SerializeField] int progressAmount = 10;
     [SerializeField] float _delayToGetResource = 5f;
     //[SerializeField] int[] _delayToGetResource = new int[3] { 1, 0, 0 };
-    [SerializeField] float _lastSpawn;
+     float _lastSpawn;
 
     public override void Action(Villager villager)
       {
